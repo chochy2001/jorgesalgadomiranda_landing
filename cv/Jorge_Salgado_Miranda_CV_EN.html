@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jorge Salgado Miranda, Software Architect · CV 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ink: #0b0c0e;
+  --ink-2: #3b3f46;
+  --ink-3: #6b7180;
+  --line: #d9dde3;
+  --accent: #006f8f;
+  --bg: #fff;
+  --paper: #faf9f6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding: 20px 0;
+}
+.sheet {
+  max-width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  background: var(--bg);
+  padding: 22mm 20mm;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+}
+.header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 2px solid var(--ink); margin-bottom: 20px; gap: 24px; }
+.name-block h1 { font-family: 'Instrument Serif', serif; font-size: 38pt; line-height: 1; font-weight: 400; letter-spacing: -0.01em; }
+.name-block .role { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-size: 14pt; margin-top: 4px; }
+.contact { font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; color: var(--ink-2); text-align: right; line-height: 1.7; }
+.contact a { color: var(--ink-2); text-decoration: none; }
+.summary { font-size: 10.5pt; color: var(--ink-2); margin: 0 0 18px; line-height: 1.55; }
+.summary strong { color: var(--ink); }
+
+h2.section {
+  font-family: 'Instrument Serif', serif;
+  font-size: 16pt;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 16px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: baseline; gap: 10px;
+}
+h2.section::before {
+  content: attr(data-num);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8pt;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.job { margin-bottom: 14px; page-break-inside: avoid; }
+.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.job-title { font-weight: 600; font-size: 11pt; }
+.job-title .company { color: var(--accent); font-weight: 500; }
+.job-meta { font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+.job-blurb { font-size: 10pt; color: var(--ink-2); margin: 4px 0 6px; font-style: italic; }
+.job ul { list-style: none; padding-left: 0; }
+.job li { position: relative; padding-left: 14px; margin-bottom: 3px; font-size: 10pt; color: var(--ink-2); line-height: 1.5; }
+.job li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 8pt; top: 2px; }
+.job .tech { font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--ink-3); margin-top: 5px; letter-spacing: 0.02em; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
+.skills { display: grid; grid-template-columns: 160px 1fr; gap: 4px 14px; font-size: 9.5pt; }
+.skills dt { font-weight: 600; color: var(--ink); }
+.skills dd { color: var(--ink-2); font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; line-height: 1.6; }
+
+.arch-security { background: #f4f7f9; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 8px 0 16px; font-size: 9.5pt; }
+.arch-security strong { color: var(--accent); }
+
+.certs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; font-size: 9.5pt; }
+.cert-row { display: flex; gap: 8px; align-items: baseline; }
+.cert-row .dot { color: var(--accent); }
+.cert-row .inflight { color: var(--ink-3); font-style: italic; font-size: 8.5pt; margin-left: auto; font-family: 'JetBrains Mono', monospace; }
+
+.foot { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--ink-3); display: flex; justify-content: space-between; }
+
+@media print {
+  body { background: white; padding: 0; }
+  .sheet { box-shadow: none; margin: 0; max-width: none; padding: 18mm 16mm; }
+  .no-print { display: none !important; }
+}
+.toolbar { position: fixed; top: 16px; right: 16px; display: flex; gap: 8px; z-index: 10; }
+.toolbar button { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 8px 12px; border: 1px solid var(--line); background: white; border-radius: 6px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="toolbar no-print">
+  <button onclick="window.print()">Print / Save as PDF</button>
+  <a href="../index.html" style="text-decoration:none;color:inherit"><button>← Back</button></a>
+</div>
+
+<article class="sheet">
+  <header class="header">
+    <div class="name-block">
+      <h1>Jorge Salgado Miranda</h1>
+      <div class="role">Software Architect, Mobile, Web &amp; Security</div>
+    </div>
+    <div class="contact">
+      Mexico City, MX · Remote<br/>
+      jorgesalgadomiranda@protonmail.com<br/>
+      +52 55 2198 2449<br/>
+      <a href="https://jorgesalgadomiranda.com">jorgesalgadomiranda.com</a><br/>
+      <a href="https://linkedin.com/in/jorge-salgado-miranda-74023b181">linkedin.com/in/jorge-salgado-miranda</a><br/>
+      <a href="https://github.com/chochy2001">github.com/chochy2001</a>
+    </div>
+  </header>
+
+  <p class="summary">
+    Senior Software Architect with <strong>8+ years</strong> designing systems across mobile, web and backend. Currently at <strong>PayPal/Venmo</strong>, shipping financial features for 426M+ users with an <strong>"Exceeds Expectations"</strong> performance rating. Founder &amp; CEO of <strong>Capdesis</strong>: 34+ delivered projects, 51,000+ students reached, team of 4 to 6 engineers. Deep expertise in Kotlin, Swift, Flutter and Go; Clean Architecture, OAuth 2.0, biometric auth, multi-module systems. Actively pursuing <strong>AWS Solutions Architect Professional</strong> and advanced cybersecurity certifications. Instructor to 54,000+ developers on Udemy.
+  </p>
+
+  <h2 class="section" data-num="01">Technical Skills</h2>
+  <dl class="skills">
+    <dt>Mobile Native</dt><dd>Kotlin · Swift · Jetpack Compose · SwiftUI · UIKit · Android SDK · iOS SDK</dd>
+    <dt>Cross-Platform</dt><dd>Flutter · Dart · React Native</dd>
+    <dt>Backend &amp; Cloud</dt><dd>Go · Python · Node · REST · GraphQL · gRPC · AWS · GCP · Firebase · Docker · Kubernetes · Kafka · Redis</dd>
+    <dt>State &amp; Reactive</dt><dd>BLoC · Riverpod · Provider · GetX · RxJava · RxSwift · Combine · Kotlin Flows</dd>
+    <dt>Architecture</dt><dd>Clean Architecture · MVVM · Multi-module · Repository Pattern · SOLID · DDD · High-Level Design</dd>
+    <dt>Security</dt><dd>Biometric Auth (Face ID, Fingerprint) · OAuth 2.0 · JWT · Secure Storage · Encryption · Threat Modeling · mTLS</dd>
+    <dt>Testing &amp; Quality</dt><dd>JUnit · Mockito · Espresso · XCTest · Flutter Test · UI &amp; Automation Testing · 85%+ coverage</dd>
+    <dt>DevOps &amp; CI/CD</dt><dd>GitHub Actions · GitLab CI · Jenkins · Fastlane · Terraform · Datadog</dd>
+    <dt>Tools &amp; Env</dt><dd>Linux (Arch) · macOS · Neovim · tmux · Android Studio · Xcode · Figma · Git · AI pair (Claude, Cursor)</dd>
+    <dt>Databases</dt><dd>PostgreSQL · MySQL · SQLite · Firebase Firestore · Redis</dd>
+    <dt>Feature Mgmt</dt><dd>Feature Flags · Fake Responses · A/B Testing · Remote Config</dd>
+    <dt>Languages</dt><dd>Spanish (Native) · English (C1 Professional)</dd>
+  </dl>
+
+  <div class="arch-security">
+    <strong>Architecture &amp; Security focus.</strong> I design systems, not just features. My HLDs cover auth flows, data boundaries, failure modes, observability and threat models, not just the happy path. Currently preparing <strong>AWS Solutions Architect Professional</strong> and <strong>OSCP / AWS Security Specialty</strong>.
+  </div>
+
+  <h2 class="section" data-num="02">Experience</h2>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Senior Mobile Engineer · <span class="company">PayPal / Venmo</span></div>
+      <div class="job-meta">May 2024-Present · Remote · Fintech</div>
+    </div>
+    <div class="job-blurb">Financial features for 426M+ users · "Exceeds Expectations" rating</div>
+    <ul>
+      <li>Authored High-Level Designs (HLDs) for Push Provisioning, Auth Users and security-critical features</li>
+      <li>Led Push Provisioning in Kotlin &amp; Swift, credit card addition to Apple Wallet &amp; Google Pay</li>
+      <li>Architected Auth Users (6 users/card) with a complete refactor to Clean Architecture</li>
+      <li>Implemented biometric authentication (Face ID, Fingerprint) for secure card management</li>
+      <li>Delivered 50/50 on Android &amp; iOS simultaneously · Maintained 85%+ test coverage</li>
+      <li>Shipped Feature Flags and Fake Responses for controlled rollouts &amp; deterministic testing</li>
+      <li>Enhanced accessibility compliance (VoiceOver, TalkBack) across feature set</li>
+      <li>Mentor 2 to 5 engineers on mobile best practices, code reviews and architecture</li>
+    </ul>
+    <div class="tech">Tech · Kotlin · Swift · Jetpack Compose · SwiftUI · RxJava · Combine · GraphQL · OAuth 2.0 · JWT · Biometrics · Feature Flags · Datadog</div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">CEO &amp; Founder · <span class="company">Capdesis</span></div>
+      <div class="job-meta">Jan 2019-Present · CDMX · EdTech &amp; Consulting</div>
+    </div>
+    <div class="job-blurb">Founded a software studio: 34+ projects delivered, 51,000+ students reached, 97% client satisfaction</div>
+    <ul>
+      <li>Lead a team of 4 to 6 engineers shipping Flutter, Go backends and web for clients across Mexico</li>
+      <li><strong>IngenieríaTracker</strong> (10k+ MAU), offline-first Flutter + Go backend (22+ APIs, 66% latency reduction)</li>
+      <li><strong>Formulae Pro &amp; Community</strong> (40k+ users), math/chemistry learning, ChatGPT integration</li>
+      <li><strong>CapMenu, Cap Living, Lo Más Fresh</strong>: restaurant, property and marketplace apps</li>
+      <li>Web projects for Art of León, Arty Publimex, Opus Asesores, León Entertainment, Ancare, Xunkaab · Work for Banco Multiva, Scotiabank, Hospital Ángeles</li>
+      <li>Strategic direction, technical advisory, hiring · Mentored 20+ developers through courses &amp; workshops</li>
+    </ul>
+    <div class="tech">Tech · Flutter · Dart · BLoC · Riverpod · Go · Python · Firebase · RevenueCat · Docker</div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Senior Native Mobile Developer · <span class="company">Tienda UNAM</span></div>
+      <div class="job-meta">Sep 2022 - Apr 2024 · Hybrid · E-commerce</div>
+    </div>
+    <div class="job-blurb">Modernized university commerce platform for thousands of students &amp; staff</div>
+    <ul>
+      <li>Integrated AI-powered chat via OpenAI API for customer support automation</li>
+      <li>Optimized QR scanning, <strong>3× faster</strong> with Kotlin coroutines</li>
+      <li>Implemented Universal Links &amp; App Links for deep linking across web and app</li>
+      <li>Redesigned UX with Figma + Design Systems, <strong>+40% engagement</strong></li>
+      <li>Built companion web app; owned full App Store &amp; Play Store release cycle</li>
+    </ul>
+    <div class="tech">Tech · Kotlin · Swift · SwiftUI · Jetpack Compose · OpenAI API · CoreLocation · Firebase</div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Senior Backend Engineer · <span class="company">Flexera</span></div>
+      <div class="job-meta">Jan 2022 - Aug 2022 · Remote · Enterprise</div>
+    </div>
+    <div class="job-blurb">Monolith → microservices migration with Go, Kubernetes and AWS</div>
+    <ul>
+      <li>Led database migration improving performance and reliability</li>
+      <li>Built CI/CD pipelines with GitLab CI, Jenkins and GitHub Actions</li>
+      <li>Implemented Kafka and Redis for real-time streaming and caching</li>
+    </ul>
+    <div class="tech">Tech · Go · Kubernetes · AWS (S3, EC2, RDS) · PostgreSQL · MySQL · Docker · Terraform · Kafka · Redis</div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Mobile Developer &amp; Project Lead · <span class="company">iOS Development Lab, UNAM</span></div>
+      <div class="job-meta">Jan 2020 - Dec 2021 · CDMX · Education</div>
+    </div>
+    <ul>
+      <li>Developed iOS and Flutter applications for university geolocation &amp; navigation</li>
+      <li>Led team of developers; hackathon honorable mentions</li>
+      <li>Implemented GitHub Actions CI/CD for automated testing and deployment</li>
+    </ul>
+    <div class="tech">Tech · Swift · Flutter · Dart · MySQL · iOS SDK · CoreLocation</div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Senior Instructor · <span class="company">Udemy</span></div>
+      <div class="job-meta">Jan 2020 - Dec 2023 · Remote · Online Education</div>
+    </div>
+    <ul>
+      <li>Created 6 courses (C, C++, Flutter, Kotlin), educated <strong>54,000+ developers</strong> worldwide</li>
+      <li>Maintained high engagement with practical projects and updated content</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Project Manager · <span class="company">Audiovisuell</span></div>
+      <div class="job-meta">Jan 2018 - Dec 2019 · CDMX · Media</div>
+    </div>
+    <ul>
+      <li>Managed audiovisual projects, brand experiences and educational content</li>
+      <li>Led cross-functional teams and coordinated multi-stakeholder deliverables</li>
+    </ul>
+  </div>
+
+  <h2 class="section" data-num="03">Education &amp; Certifications</h2>
+  <div class="grid-2">
+    <div>
+      <div style="font-weight:600">B.S. Computer Engineering</div>
+      <div style="color:var(--ink-2);font-size:9.5pt">Facultad de Ingeniería · UNAM · Mexico City</div>
+    </div>
+    <div class="certs">
+      <div class="cert-row"><span class="dot">●</span>AWS Cloud Practitioner</div>
+      <div class="cert-row"><span class="dot">●</span>Google Developer</div>
+      <div class="cert-row"><span class="dot">●</span>Meta Developer</div>
+      <div class="cert-row"><span class="dot">●</span>Mobile Architecture</div>
+      <div class="cert-row"><span class="dot">○</span>AWS SA Professional <span class="inflight">in progress</span></div>
+      <div class="cert-row"><span class="dot">○</span>AWS Security Specialty <span class="inflight">in progress</span></div>
+      <div class="cert-row"><span class="dot">○</span>Advanced Cybersecurity (OSCP track) <span class="inflight">in progress</span></div>
+    </div>
+  </div>
+
+  <h2 class="section" data-num="04">Additional</h2>
+  <ul style="font-size:9.5pt; color:var(--ink-2); padding-left:18px;">
+    <li><strong>Speaking:</strong> Tech conferences (UNAM), hackathons (honorable mentions), webinars</li>
+    <li><strong>Projects:</strong> Home automation IoT, ARKit applications, open source tools</li>
+    <li><strong>Leadership:</strong> Founded and scaled Capdesis · Mentored 20+ engineers · Hands-on hiring &amp; team structure</li>
+  </ul>
+
+  <div class="foot">
+    <span>Jorge Salgado Miranda · CV · 2026</span>
+    <span>jorgesalgadomiranda.com</span>
+  </div>
+</article>
+</body>
+</html>
