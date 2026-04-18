@@ -58,6 +58,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://assets.zyrosite.com" crossorigin />
+<link rel="preconnect" href="https://capdesis.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0e1a'/%3E%3Ctext x='50' y='68' font-family='Georgia' font-size='60' font-style='italic' text-anchor='middle' fill='%2300d4ff'%3Ejs%3C/text%3E%3C/svg%3E" />
@@ -719,10 +720,20 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   overflow: hidden;
 }
 .app-icon-inner { position: relative; z-index: 1; }
+.app-icon-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 10px;
+  z-index: 2;
+  background: #fff;
+  border-radius: inherit;
+}
 .app-icon::after {
   content: '';
   position: absolute; inset: 0;
   background: linear-gradient(135deg, transparent, rgba(255,255,255,0.18));
+  z-index: 0;
 }
 .app-icon-it { background: linear-gradient(135deg, #0b63e5, #5ec6ff); }
 .app-icon-fo { background: linear-gradient(135deg, #7c3aed, #ec4899); }
@@ -824,16 +835,23 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .web-monogram {
   position: absolute;
   top: 22px; left: 24px;
-  width: 56px; height: 56px;
+  width: 64px; height: 64px;
   display: grid; place-items: center;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.95);
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 12px;
   backdrop-filter: blur(8px);
   font-family: var(--font-mono);
   font-size: 22px; font-weight: 600;
-  color: #f8fafc;
+  color: #0f172a;
   letter-spacing: 1px;
+  overflow: hidden;
+}
+.web-monogram img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 6px;
+  display: block;
 }
 .web-thumb-tag {
   position: absolute;
@@ -1352,6 +1370,99 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   will-change: transform;
 }
 
+/* PORTRAIT (about) */
+.about-portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 480px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  filter: grayscale(20%) contrast(1.02);
+  transition: filter 0.5s ease, transform 0.5s ease;
+  margin-bottom: 4px;
+}
+.about-portrait:hover { filter: grayscale(0%) contrast(1.05); transform: translateY(-2px); }
+[data-theme="light"] .about-portrait { filter: grayscale(15%); }
+
+/* ENGINEERING / HOW I BUILD */
+.eng-intro { max-width: 64ch; color: var(--fg-muted); font-size: 17px; line-height: 1.6; margin-bottom: 40px; }
+.eng-intro strong { color: var(--fg); font-weight: 500; }
+.eng-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1100px) { .eng-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 680px) { .eng-grid { grid-template-columns: 1fr; } }
+.eng-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.eng-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.eng-card-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 14px;
+}
+.eng-icon {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+.eng-icon svg { width: 20px; height: 20px; }
+.eng-card h4 {
+  font-family: var(--font-serif);
+  font-size: 20px; font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.eng-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.eng-card li {
+  font-size: 13.5px; color: var(--fg-muted);
+  line-height: 1.5;
+  padding-left: 14px; position: relative;
+}
+.eng-card li::before {
+  content: ''; position: absolute;
+  left: 0; top: 0.58em;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--accent);
+}
+.eng-card code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg);
+  background: var(--bg-elev-2);
+  padding: 1px 6px; border-radius: 4px;
+}
+
+/* TECH LOGO STRIP */
+.tech-strip {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  margin-top: 32px;
+  padding: 20px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg-elev);
+  align-items: center; justify-content: center;
+}
+.tech-strip img {
+  height: 32px; width: auto;
+  max-width: 80px;
+  object-fit: contain;
+  opacity: 0.78;
+  transition: opacity 0.3s, transform 0.3s;
+  filter: grayscale(30%);
+}
+.tech-strip img:hover { opacity: 1; transform: scale(1.06); filter: grayscale(0%); }
+[data-theme="light"] .tech-strip img { filter: grayscale(0%); }
+
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1389,6 +1500,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
     <li><a href="#capdesis" data-i18n="nav.capdesis">Capdesis</a></li>
     <li><a href="#stack" data-i18n="nav.stack">Stack</a></li>
+    <li><a href="#engineering" data-i18n="nav.engineering">Engineering</a></li>
     <li><a href="#certifications" data-i18n="nav.certs">Certifications</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
@@ -1534,6 +1646,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       </div>
 
       <div class="about-side">
+        <img class="about-portrait" data-reveal src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=600,h=750,fit=cover,trim=76.8;0;44.8;0/mjE2xGMQ20iKRBEE/foto_perfil-AQEJje1oJvHLpXzJ.jpeg" alt="Jorge Salgado Miranda" loading="lazy" decoding="async" width="600" height="750" />
         <div class="about-card" data-tilt data-reveal>
           <span class="about-card-label" data-i18n="about.card1.label">Currently</span>
           <h3 class="about-card-title">PayPal / Venmo</h3>
@@ -1542,7 +1655,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
         <div class="about-card" data-tilt data-reveal>
           <span class="about-card-label" data-i18n="about.card2.label">Founder</span>
           <h3 class="about-card-title">Capdesis</h3>
-          <p data-i18n="about.card2.p">Since 2019. 55,000+ students across educational apps. Team of 4 to 6 devs building Flutter, Go, and web for clients across MX.</p>
+          <p data-i18n="about.card2.p">Since 2019. 51,000+ students across educational apps. Team of 4 to 6 devs building Flutter, Go, and web for clients across MX.</p>
         </div>
         <div class="about-card" data-tilt data-reveal>
           <span class="about-card-label" data-i18n="about.card3.label">Also at</span>
@@ -1702,7 +1815,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-it">
-          <span class="app-icon-inner">IT</span>
+          <span class="app-icon-inner" aria-hidden="true">IT</span>
+          <img class="app-icon-img" src="https://capdesis.com/images/products/ingenieriatracker_logo.svg" alt="" loading="lazy" decoding="async" />
         </div>
         <div class="app-body">
           <h4>IngenieríaTracker</h4>
@@ -1711,54 +1825,74 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <div class="app-meta">
             <span class="app-pill">iOS</span><span class="app-pill">Android</span><span class="app-pill">Web</span>
           </div>
+          <a href="https://ingenieriatrackerunam.com/" target="_blank" rel="noopener noreferrer" class="app-link" aria-label="Visit ingenieriatrackerunam.com">
+            <span>ingenieriatrackerunam.com</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
         </div>
       </article>
 
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-fo">
-          <span class="app-icon-inner">Σ</span>
+          <span class="app-icon-inner" aria-hidden="true">Σ</span>
+          <img class="app-icon-img" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=160,h=160,fit=contain/m5KW4JlJkDuWQ66y/icono512px-YX4ZOgXl82hZWo12.png" alt="" loading="lazy" decoding="async" />
         </div>
         <div class="app-body">
-          <h4>Formulae Pro & Community</h4>
+          <h4>Formulae Pro &amp; Community</h4>
           <p class="app-tag" data-i18n="cap.apps.fo.tag">Flutter · Firebase · 40,000+ users</p>
-          <p class="app-desc" data-i18n="cap.apps.fo.desc">Personalized learning assistant, math & chemistry formulas with explanatory images, video walkthroughs, PDF export, practice exercises and ChatGPT integration for doubts. Available Pro (ad-free) and Community (free).</p>
+          <p class="app-desc" data-i18n="cap.apps.fo.desc">Personalized learning assistant, math and chemistry formulas with explanatory images, video walkthroughs, PDF export, practice exercises and ChatGPT integration for doubts. Available Pro (ad-free) and Community (free).</p>
           <div class="app-meta">
             <span class="app-pill">iOS</span><span class="app-pill">Android</span><span class="app-pill">AI</span>
           </div>
+          <a href="https://formulaeapps.com/" target="_blank" rel="noopener noreferrer" class="app-link" aria-label="Visit formulaeapps.com">
+            <span>formulaeapps.com</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
         </div>
       </article>
 
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-cm">
-          <span class="app-icon-inner">CM</span>
+          <span class="app-icon-inner" aria-hidden="true">CM</span>
+          <img class="app-icon-img" src="https://capdesis.com/images/products/capmenu_logo.webp" alt="" loading="lazy" decoding="async" />
         </div>
         <div class="app-body">
           <h4>CapMenu</h4>
           <p class="app-tag" data-i18n="cap.apps.cm.tag">Flutter · QR · Restaurants</p>
-          <p class="app-desc" data-i18n="cap.apps.cm.desc">Digital menu & ordering platform for restaurants. QR-driven, multi-language, with a backend dashboard for owners to edit items, prices and availability in real time.</p>
+          <p class="app-desc" data-i18n="cap.apps.cm.desc">Digital menu and ordering platform for restaurants. QR-driven, multi-language, with a backend dashboard for owners to edit items, prices and availability in real time.</p>
           <div class="app-meta">
             <span class="app-pill">iOS</span><span class="app-pill">Android</span><span class="app-pill">Web Admin</span>
           </div>
+          <a href="https://www.capmenu.app/" target="_blank" rel="noopener noreferrer" class="app-link" aria-label="Visit capmenu.app">
+            <span>capmenu.app</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
         </div>
       </article>
 
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-cl">
-          <span class="app-icon-inner">CL</span>
+          <span class="app-icon-inner" aria-hidden="true">CL</span>
+          <img class="app-icon-img" src="https://capdesis.com/images/products/capliving_logo.webp" alt="" loading="lazy" decoding="async" />
         </div>
         <div class="app-body">
           <h4>Cap Living</h4>
           <p class="app-tag" data-i18n="cap.apps.cl.tag">Flutter · Residences</p>
-          <p class="app-desc" data-i18n="cap.apps.cl.desc">Residence & property management, residents report incidents, book amenities, receive announcements. Admin side for managers with analytics and access control.</p>
+          <p class="app-desc" data-i18n="cap.apps.cl.desc">Residence and property management: residents report incidents, book amenities and receive announcements. Admin side for managers with analytics and access control.</p>
           <div class="app-meta">
             <span class="app-pill">iOS</span><span class="app-pill">Android</span><span class="app-pill">Admin</span>
           </div>
+          <a href="https://capliving.mx/" target="_blank" rel="noopener noreferrer" class="app-link" aria-label="Visit capliving.mx">
+            <span>capliving.mx</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
         </div>
       </article>
 
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-lf">
-          <span class="app-icon-inner">LF</span>
+          <span class="app-icon-inner" aria-hidden="true">LF</span>
+          <img class="app-icon-img" src="https://capdesis.com/images/products/lomasfresh_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
         </div>
         <div class="app-body">
           <h4>Lo Más Fresh</h4>
@@ -1767,6 +1901,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <div class="app-meta">
             <span class="app-pill">iOS</span><span class="app-pill">Android</span><span class="app-pill">Marketplace</span>
           </div>
+          <a href="https://lomasfresh.com/" target="_blank" rel="noopener noreferrer" class="app-link" aria-label="Visit lomasfresh.com">
+            <span>lomasfresh.com</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
         </div>
       </article>
 
@@ -1789,9 +1927,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     <div class="web-grid">
 
       <article class="web-card" data-tilt data-reveal>
-        <a href="https://capdesis.com" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="León Entertainment"></a>
+        <a href="https://capdesis.com/clientes/leon-entertainment/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="León Entertainment"></a>
         <div class="web-thumb web-thumb-1">
-          <div class="web-monogram">LE</div>
+          <div class="web-monogram"><img src="https://capdesis.com/images/clients/logo_leon_entertainment.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='LE'" /></div>
           <span class="web-thumb-tag">EVENTS · BOOKING</span>
         </div>
         <div class="web-body">
@@ -1804,9 +1942,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       </article>
 
       <article class="web-card" data-tilt data-reveal>
-        <a href="https://capdesis.com" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="OPUS Asesores"></a>
+        <a href="https://capdesis.com/clientes/opus-asesores/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="OPUS Asesores"></a>
         <div class="web-thumb web-thumb-2">
-          <div class="web-monogram">OP</div>
+          <div class="web-monogram"><img src="https://capdesis.com/images/clients/logo_opus_asesores.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='OP'" /></div>
           <span class="web-thumb-tag">ASESORES · CRM</span>
         </div>
         <div class="web-body">
@@ -1819,9 +1957,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       </article>
 
       <article class="web-card" data-tilt data-reveal>
-        <a href="https://capdesis.com" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Artipublimex"></a>
+        <a href="https://capdesis.com/clientes/artipublimex/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Artipublimex"></a>
         <div class="web-thumb web-thumb-3">
-          <div class="web-monogram">AP</div>
+          <div class="web-monogram"><img src="https://capdesis.com/images/clients/logo_artimetmex.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='AP'" /></div>
           <span class="web-thumb-tag">PRINT · BRAND</span>
         </div>
         <div class="web-body">
@@ -1834,14 +1972,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       </article>
 
       <article class="web-card" data-tilt data-reveal>
-        <a href="https://capdesis.com" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Ancare, Analogic Care"></a>
+        <a href="https://capdesis.com/clientes/ancare/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Ancare, Analogic Care"></a>
         <div class="web-thumb web-thumb-4">
-          <div class="web-monogram">AN</div>
+          <div class="web-monogram"><img src="https://capdesis.com/images/clients/ancare_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='AN'" /></div>
           <span class="web-thumb-tag">HEALTH · CARE</span>
         </div>
         <div class="web-body">
           <div class="web-head">
-            <h4>Ancare <em class="web-alt">Analogic Care</em></h4>
+            <h4>Ancare, <em class="web-alt">Analogic Care</em></h4>
             <span class="web-badge" data-i18n="cap.web.4.kind">Healthcare</span>
           </div>
           <p data-i18n="cap.web.4">Care platform, practitioner profiles, patient follow-up and booking. Responsive web with a companion mobile experience.</p>
@@ -1849,9 +1987,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       </article>
 
       <article class="web-card" data-tilt data-reveal>
-        <a href="https://capdesis.com" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Apiario Xun-kaab"></a>
+        <a href="https://capdesis.com/clientes/xunkaab/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Apiario Xun-kaab"></a>
         <div class="web-thumb web-thumb-5">
-          <div class="web-monogram">XK</div>
+          <div class="web-monogram"><img src="https://capdesis.com/images/clients/xunkaab_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='XK'" /></div>
           <span class="web-thumb-tag">APIARY · SHOP</span>
         </div>
         <div class="web-body">
@@ -1864,9 +2002,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       </article>
 
       <article class="web-card" data-tilt data-reveal>
-        <a href="https://capdesis.com" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Finca SANRO"></a>
+        <a href="https://capdesis.com/clientes/finca-sanro/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Finca SANRO"></a>
         <div class="web-thumb web-thumb-6">
-          <div class="web-monogram">SR</div>
+          <div class="web-monogram"><img src="https://capdesis.com/images/clients/finca_sanro_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='SR'" /></div>
           <span class="web-thumb-tag">ESTATE · HOSPITALITY</span>
         </div>
         <div class="web-body">
@@ -1984,10 +2122,129 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
   </section>
 
+  <!-- ENGINEERING PRACTICE -->
+  <section id="engineering" class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <span class="section-kicker" data-i18n="eng.kicker">Engineering practice</span>
+    </div>
+
+    <h2 class="section-title section-title-wide">
+      <span data-reveal data-i18n="eng.title1">Patterns, infrastructure,</span>
+      <em data-reveal data-i18n="eng.title2">and the stack I actually ship.</em>
+    </h2>
+
+    <p class="eng-intro" data-reveal data-i18n="eng.intro">These aren't buzzwords. Every item below comes from a repo I maintain: <strong>Clean Architecture</strong> Go services behind <strong>Traefik</strong> on <strong>Tailscale</strong>, offline-first Flutter with <strong>BLoC</strong> and <strong>Drift</strong>, <strong>PostgreSQL 16</strong> with daily backups pushed to a private GitHub repo, <strong>Grafana</strong> dashboards watched by Gmail SMTP alerts, and CI that uses <code>dorny/paths-filter</code> so only the changed module runs its tests.</p>
+
+    <div class="eng-grid">
+
+      <article class="eng-card" data-tilt data-reveal>
+        <div class="eng-card-head">
+          <div class="eng-icon">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4M4 7v10l8 4 8-4V7M4 7l8 4 8-4M12 11v10"/></svg>
+          </div>
+          <h4 data-i18n="eng.card1.title">Clean Architecture backends</h4>
+        </div>
+        <ul>
+          <li data-i18n="eng.card1.p1"><code>Go 1.25</code> with Chi router, domain-split <code>internal/application/{contract,chat,auth,payment}/handler</code></li>
+          <li data-i18n="eng.card1.p2">Hexagonal repositories with interfaces, Postgres adapters, golang-migrate for schema</li>
+          <li data-i18n="eng.card1.p3"><code>govulncheck</code> in CI and <code>go test -race</code> as a merge gate</li>
+        </ul>
+      </article>
+
+      <article class="eng-card" data-tilt data-reveal>
+        <div class="eng-card-head">
+          <div class="eng-icon">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          </div>
+          <h4 data-i18n="eng.card2.title">Offline-first mobile</h4>
+        </div>
+        <ul>
+          <li data-i18n="eng.card2.p1">Flutter with <code>flutter_bloc</code> + <code>go_router</code>, strict state boundaries</li>
+          <li data-i18n="eng.card2.p2"><code>Drift</code> for on-device SQLite, background sync via <code>web_socket_channel</code></li>
+          <li data-i18n="eng.card2.p3">Native iOS/Android split when the platform matters (Swift/Kotlin + Compose)</li>
+        </ul>
+      </article>
+
+      <article class="eng-card" data-tilt data-reveal>
+        <div class="eng-card-head">
+          <div class="eng-icon">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>
+          </div>
+          <h4 data-i18n="eng.card3.title">Self-hosted VPS stack</h4>
+        </div>
+        <ul>
+          <li data-i18n="eng.card3.p1">Two Contabo VPS (16 GB each): app-vps + storage-vps, joined via <code>Tailscale</code></li>
+          <li data-i18n="eng.card3.p2"><code>Traefik v3</code> edge with DNS-01 Cloudflare for wildcard TLS</li>
+          <li data-i18n="eng.card3.p3"><code>Docker Compose</code> services: Postgres 16, Redis 7, MinIO, Grafana</li>
+        </ul>
+      </article>
+
+      <article class="eng-card" data-tilt data-reveal>
+        <div class="eng-card-head">
+          <div class="eng-icon">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4 data-i18n="eng.card4.title">Security in layers</h4>
+        </div>
+        <ul>
+          <li data-i18n="eng.card4.p1"><code>gitleaks</code> as a pre-commit hook and CI gate on every repo</li>
+          <li data-i18n="eng.card4.p2">UFW firewall + Traefik dashboard pinned to Tailscale IP (never public)</li>
+          <li data-i18n="eng.card4.p3">OAuth 2.0, JWT, biometrics, mTLS between internal services, threat modeling upfront</li>
+        </ul>
+      </article>
+
+      <article class="eng-card" data-tilt data-reveal>
+        <div class="eng-card-head">
+          <div class="eng-icon">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M12 12v5M9 14l3-3 3 3"/></svg>
+          </div>
+          <h4 data-i18n="eng.card5.title">CI/CD that pays attention</h4>
+        </div>
+        <ul>
+          <li data-i18n="eng.card5.p1">GitHub Actions with <code>dorny/paths-filter</code>: only the changed module runs</li>
+          <li data-i18n="eng.card5.p2">Self-hosted runners on the VPS itself for fast deploys via SSH + <code>docker compose</code></li>
+          <li data-i18n="eng.card5.p3">Fastlane to App Store and Play Store; migrations run before any service restart</li>
+        </ul>
+      </article>
+
+      <article class="eng-card" data-tilt data-reveal>
+        <div class="eng-card-head">
+          <div class="eng-icon">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 4 4 4-7"/></svg>
+          </div>
+          <h4 data-i18n="eng.card6.title">Observability by default</h4>
+        </div>
+        <ul>
+          <li data-i18n="eng.card6.p1"><code>Prometheus</code> scraping <code>/metrics</code>, <code>Grafana</code> dashboards (31 rules on CapLiving)</li>
+          <li data-i18n="eng.card6.p2">Gmail SMTP alerts on the way down, Firebase Crashlytics on the device</li>
+          <li data-i18n="eng.card6.p3">Daily <code>pg_dump</code> pushed to a private GitHub backup repo via systemd timer</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="tech-strip" data-reveal aria-label="Technologies I work with">
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/flutter-m7VpgBr0jyhpkRlE.png" alt="Flutter" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/swift-YrDaoznMx1hVpl72.png" alt="Swift" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/kotlin-mv0jy9EVoniRk2lX.png" alt="Kotlin" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/jetpack_compose-YX4PwWNGjbFX2PpY.png" alt="Jetpack Compose" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=160,h=64,fit=contain/mjE2xGMQ20iKRBEE/golang-ALpJwDErwQCgLZ37.png" alt="Go" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/aws-m7VpgBr0L8ClBwQq.png" alt="AWS" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/docker-Yanq8pr3XZu46JXe.webp" alt="Docker" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/kubernetes_logo-AE0akZLvgOuRPLra.png" alt="Kubernetes" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/postgresql-YbNaMeoVGztVJ9zq.png" alt="PostgreSQL" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/graphql_logo-AR0MkvwV19sNLV4L.png" alt="GraphQL" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/firebase_logo-YKbEkB3DlPFpB6qx.png" alt="Firebase" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/vim_logo-mP42kjO124CWeeqZ.png" alt="Neovim" loading="lazy" decoding="async" />
+    </div>
+
+  </section>
+
   <!-- CERTIFICATIONS -->
   <section id="certifications" class="section">
     <div class="section-head">
-      <span class="section-num">05</span>
+      <span class="section-num">06</span>
       <span class="section-kicker" data-i18n="cert.kicker">Certifications · Learning path</span>
     </div>
 
@@ -2064,7 +2321,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- UDEMY -->
   <section id="udemy" class="section section-udemy">
     <div class="section-head">
-      <span class="section-num">06</span>
+      <span class="section-num">07</span>
       <span class="section-kicker" data-i18n="udemy.kicker">Teaching</span>
     </div>
 
@@ -2105,7 +2362,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- TESTIMONIALS -->
   <section id="testimonials" class="section">
     <div class="section-head">
-      <span class="section-num">07</span>
+      <span class="section-num">08</span>
       <span class="section-kicker" data-i18n="test.kicker">Testimonials</span>
     </div>
 
@@ -2194,7 +2451,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- CONTACT -->
   <section id="contact" class="section section-contact">
     <div class="section-head">
-      <span class="section-num">08</span>
+      <span class="section-num">09</span>
       <span class="section-kicker" data-i18n="contact.kicker">Contact</span>
     </div>
 
@@ -2246,6 +2503,7 @@ const I18N = {
     "nav.experience": "Experience",
     "nav.capdesis": "Capdesis",
     "nav.stack": "Stack",
+    "nav.engineering": "Engineering",
     "nav.certs": "Certifications",
     "nav.contact": "Contact",
 
@@ -2273,7 +2531,7 @@ const I18N = {
     "about.card1.label": "Currently",
     "about.card1.p": "Financial features for 426M+ users. Led Push Provisioning, Auth Users, biometric flows. \"Exceeds Expectations\" rating.",
     "about.card2.label": "Founder",
-    "about.card2.p": "Since 2019. 55,000+ students across educational apps. Team of 4 to 6 devs building Flutter, Go, and web for clients across MX.",
+    "about.card2.p": "Since 2019. 51,000+ students across educational apps. Team of 4 to 6 devs building Flutter, Go, and web for clients across MX.",
     "about.card3.label": "Also at",
     "about.card3.p": "Mobile developer at iOS Development Lab, Facultad de Ingeniería, my alma mater.",
     "about.card4.label": "Languages",
@@ -2363,6 +2621,34 @@ const I18N = {
     "stack.legend.lead": "How to read these labels",
     "lv.learning.note": "Actively studying / certifying",
 
+    "eng.kicker": "Engineering practice",
+    "eng.title1": "Patterns, infrastructure",
+    "eng.title2": "and the stack I actually ship.",
+    "eng.intro": "These aren't buzzwords. Every item below comes from a repo I maintain: <strong>Clean Architecture</strong> Go services behind <strong>Traefik</strong> on <strong>Tailscale</strong>, offline-first Flutter with <strong>BLoC</strong> and <strong>Drift</strong>, <strong>PostgreSQL 16</strong> with daily backups pushed to a private GitHub repo, <strong>Grafana</strong> dashboards watched by Gmail SMTP alerts, and CI that uses <code>dorny/paths-filter</code> so only the changed module runs its tests.",
+    "eng.card1.title": "Clean Architecture backends",
+    "eng.card1.p1": "<code>Go 1.25</code> with Chi router, domain-split <code>internal/application/{contract,chat,auth,payment}/handler</code>",
+    "eng.card1.p2": "Hexagonal repositories with interfaces, Postgres adapters, golang-migrate for schema",
+    "eng.card1.p3": "<code>govulncheck</code> in CI and <code>go test -race</code> as a merge gate",
+    "eng.card2.title": "Offline-first mobile",
+    "eng.card2.p1": "Flutter with <code>flutter_bloc</code> + <code>go_router</code>, strict state boundaries",
+    "eng.card2.p2": "<code>Drift</code> for on-device SQLite, background sync via <code>web_socket_channel</code>",
+    "eng.card2.p3": "Native iOS/Android split when the platform matters (Swift/Kotlin + Compose)",
+    "eng.card3.title": "Self-hosted VPS stack",
+    "eng.card3.p1": "Two Contabo VPS (16 GB each): app-vps + storage-vps, joined via <code>Tailscale</code>",
+    "eng.card3.p2": "<code>Traefik v3</code> edge with DNS-01 Cloudflare for wildcard TLS",
+    "eng.card3.p3": "<code>Docker Compose</code> services: Postgres 16, Redis 7, MinIO, Grafana",
+    "eng.card4.title": "Security in layers",
+    "eng.card4.p1": "<code>gitleaks</code> as a pre-commit hook and CI gate on every repo",
+    "eng.card4.p2": "UFW firewall + Traefik dashboard pinned to Tailscale IP (never public)",
+    "eng.card4.p3": "OAuth 2.0, JWT, biometrics, mTLS between internal services, threat modeling upfront",
+    "eng.card5.title": "CI/CD that pays attention",
+    "eng.card5.p1": "GitHub Actions with <code>dorny/paths-filter</code>: only the changed module runs",
+    "eng.card5.p2": "Self-hosted runners on the VPS itself for fast deploys via SSH + <code>docker compose</code>",
+    "eng.card5.p3": "Fastlane to App Store and Play Store; migrations run before any service restart",
+    "eng.card6.title": "Observability by default",
+    "eng.card6.p1": "<code>Prometheus</code> scraping <code>/metrics</code>, <code>Grafana</code> dashboards (31 rules on CapLiving)",
+    "eng.card6.p2": "Gmail SMTP alerts on the way down, Firebase Crashlytics on the device",
+    "eng.card6.p3": "Daily <code>pg_dump</code> pushed to a private GitHub backup repo via systemd timer",
     "cert.kicker": "Certifications · Learning path",
     "cert.title1": "Always leveling up.",
     "cert.title2": "Next: architecture & security.",
@@ -2415,6 +2701,7 @@ const I18N = {
     "nav.experience": "Experiencia",
     "nav.capdesis": "Capdesis",
     "nav.stack": "Stack",
+    "nav.engineering": "Ingeniería",
     "nav.certs": "Certificaciones",
     "nav.contact": "Contacto",
 
@@ -2443,7 +2730,7 @@ const I18N = {
     "about.card1.label": "Actualmente",
     "about.card1.p": "Features financieras para 426M+ usuarios. Push Provisioning, Auth Users, flujos biométricos. Rating \"Exceeds Expectations\".",
     "about.card2.label": "Fundador",
-    "about.card2.p": "Desde 2019. 55,000+ estudiantes en apps educativas. Equipo de 4 a 6 devs construyendo Flutter, Go y web para clientes en MX.",
+    "about.card2.p": "Desde 2019. 51,000+ estudiantes en apps educativas. Equipo de 4 a 6 devs construyendo Flutter, Go y web para clientes en MX.",
     "about.card3.label": "También en",
     "about.card3.p": "Desarrollador mobile en iOS Development Lab, Facultad de Ingeniería, mi alma mater.",
     "about.card4.label": "Idiomas",
@@ -2532,6 +2819,34 @@ const I18N = {
     "stack.legend.lead": "Cómo leer estas etiquetas",
     "lv.learning.note": "Estudiando / certificándome ahora",
 
+    "eng.kicker": "Práctica de ingeniería",
+    "eng.title1": "Patrones, infraestructura",
+    "eng.title2": "y el stack que de verdad entrego.",
+    "eng.intro": "No son palabras bonitas. Cada punto de abajo viene de un repo que mantengo: servicios en Go con <strong>Clean Architecture</strong> detrás de <strong>Traefik</strong> sobre <strong>Tailscale</strong>, Flutter offline-first con <strong>BLoC</strong> y <strong>Drift</strong>, <strong>PostgreSQL 16</strong> con respaldos diarios empujados a un repo privado de GitHub, dashboards de <strong>Grafana</strong> monitoreados por alertas por Gmail SMTP, y CI que usa <code>dorny/paths-filter</code> para que solo el módulo cambiado corra sus tests.",
+    "eng.card1.title": "Backends con Clean Architecture",
+    "eng.card1.p1": "<code>Go 1.25</code> con router Chi, split por dominio en <code>internal/application/{contract,chat,auth,payment}/handler</code>",
+    "eng.card1.p2": "Repositorios hexagonales con interfaces, adapters de Postgres, golang-migrate para schema",
+    "eng.card1.p3": "<code>govulncheck</code> en CI y <code>go test -race</code> como candado de merge",
+    "eng.card2.title": "Mobile offline-first",
+    "eng.card2.p1": "Flutter con <code>flutter_bloc</code> + <code>go_router</code>, límites estrictos de estado",
+    "eng.card2.p2": "<code>Drift</code> para SQLite en el dispositivo, sync en background por <code>web_socket_channel</code>",
+    "eng.card2.p3": "Nativo iOS/Android cuando la plataforma importa (Swift/Kotlin + Compose)",
+    "eng.card3.title": "Stack en VPS propio",
+    "eng.card3.p1": "Dos VPS Contabo (16 GB c/u): app-vps + storage-vps, unidos por <code>Tailscale</code>",
+    "eng.card3.p2": "<code>Traefik v3</code> en el borde con DNS-01 Cloudflare para TLS wildcard",
+    "eng.card3.p3": "Servicios con <code>Docker Compose</code>: Postgres 16, Redis 7, MinIO, Grafana",
+    "eng.card4.title": "Seguridad en capas",
+    "eng.card4.p1": "<code>gitleaks</code> como pre-commit hook y candado de CI en cada repo",
+    "eng.card4.p2": "Firewall UFW + dashboard de Traefik anclado a IP de Tailscale (nunca público)",
+    "eng.card4.p3": "OAuth 2.0, JWT, biometría, mTLS entre servicios internos, threat modeling desde el diseño",
+    "eng.card5.title": "CI/CD que presta atención",
+    "eng.card5.p1": "GitHub Actions con <code>dorny/paths-filter</code>: solo corre el módulo cambiado",
+    "eng.card5.p2": "Runners self-hosted en el VPS para deploys rápidos por SSH + <code>docker compose</code>",
+    "eng.card5.p3": "Fastlane para App Store y Play Store; las migraciones corren antes del restart",
+    "eng.card6.title": "Observabilidad por default",
+    "eng.card6.p1": "<code>Prometheus</code> scrapeando <code>/metrics</code>, dashboards de <code>Grafana</code> (31 reglas en CapLiving)",
+    "eng.card6.p2": "Alertas por Gmail SMTP cuando algo cae, Firebase Crashlytics en el dispositivo",
+    "eng.card6.p3": "<code>pg_dump</code> diario empujado a un repo privado de GitHub por systemd timer",
     "cert.kicker": "Certificaciones · Camino de aprendizaje",
     "cert.title1": "Siempre subiendo de nivel.",
     "cert.title2": "Sigue: arquitectura y seguridad.",
@@ -2680,33 +2995,34 @@ window.__I18N__ = I18N;
     if (blob) blob.style.display = 'none';
   }
 
-  // ============ MAGNETIC BUTTONS ============
-  document.querySelectorAll('[data-magnetic]').forEach(el => {
-    el.addEventListener('mousemove', (e) => {
-      const r = el.getBoundingClientRect();
-      const x = e.clientX - (r.left + r.width / 2);
-      const y = e.clientY - (r.top + r.height / 2);
-      el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+  // ============ MAGNETIC BUTTONS + TILT CARDS (gated by reduce-motion & coarse pointer) ============
+  if (!reduceMotion && !coarsePointer) {
+    document.querySelectorAll('[data-magnetic]').forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = e.clientX - (r.left + r.width / 2);
+        const y = e.clientY - (r.top + r.height / 2);
+        el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      });
     });
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = '';
-    });
-  });
 
-  // ============ TILT CARDS ============
-  document.querySelectorAll('[data-tilt]').forEach(el => {
-    el.addEventListener('mousemove', (e) => {
-      const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width;
-      const py = (e.clientY - r.top) / r.height;
-      const rx = (py - 0.5) * -8;
-      const ry = (px - 0.5) * 10;
-      el.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+    document.querySelectorAll('[data-tilt]').forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const rx = (py - 0.5) * -8;
+        const ry = (px - 0.5) * 10;
+        el.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      });
     });
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = '';
-    });
-  });
+  }
 
   // ============ SCROLL INDICATOR ============
   const fill = document.getElementById('scroll-indicator-fill');
