@@ -548,6 +548,44 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: flex; flex-direction: column; gap: 16px;
 }
 @media (max-width: 1000px) { .about-side { grid-column: 1; } }
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 64px;
+  max-width: var(--maxw);
+}
+@media (max-width: 1100px) { .about-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .about-cards { grid-template-columns: 1fr; } }
+
+.about-quick {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 20px 22px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg-elev);
+}
+.about-quick li {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 16px;
+  font-size: 14px;
+  align-items: baseline;
+}
+.about-quick-k {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+.about-quick-v { color: var(--fg); }
+
 .about-card {
   background: var(--bg-elev);
   border: 1px solid var(--border);
@@ -1649,30 +1687,40 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
         <p data-reveal data-i18n="about.p2">What sets me apart is the <strong>full-stack perspective on architecture</strong>. I don't just consume APIs; I design them. I don't just ship features; I think about the HLD, the threat model, the feedback loop, the developer experience. I've taken UI/UX courses because I believe engineers who don't understand design ship worse products.</p>
 
         <p data-reveal data-i18n="about.p3">My next chapter is deliberate: <strong>AWS Solutions Architect Professional</strong> and advanced cybersecurity certifications. Architecture and security are where I want to spend the next decade, building platforms that are fast, secure, and a pleasure to work on.</p>
+
+        <ul class="about-quick" data-reveal aria-label="Quick facts">
+          <li><span class="about-quick-k" data-i18n="about.quick.based">Based</span><span class="about-quick-v">CDMX · Remote</span></li>
+          <li><span class="about-quick-k" data-i18n="about.quick.years">Years shipping</span><span class="about-quick-v">8+</span></li>
+          <li><span class="about-quick-k" data-i18n="about.quick.role">Role</span><span class="about-quick-v" data-i18n="about.quick.role.v">Senior Mobile Engineer · Founder</span></li>
+          <li><span class="about-quick-k" data-i18n="about.quick.open">Open to</span><span class="about-quick-v" data-i18n="about.quick.open.v">Architecture &amp; security advisory</span></li>
+        </ul>
       </div>
 
       <div class="about-side">
         <img class="about-portrait" data-reveal src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=600,h=750,fit=cover,trim=76.8;0;44.8;0/mjE2xGMQ20iKRBEE/foto_perfil-AQEJje1oJvHLpXzJ.jpeg" alt="Jorge Salgado Miranda" loading="lazy" decoding="async" width="600" height="750" />
-        <div class="about-card" data-tilt data-reveal>
-          <span class="about-card-label" data-i18n="about.card1.label">Currently</span>
-          <h3 class="about-card-title">PayPal / Venmo</h3>
-          <p data-i18n="about.card1.p">Financial features for 426M+ users. Led Push Provisioning, Auth Users, biometric flows. "Exceeds Expectations" rating.</p>
-        </div>
-        <div class="about-card" data-tilt data-reveal>
-          <span class="about-card-label" data-i18n="about.card2.label">Founder</span>
-          <h3 class="about-card-title">Capdesis</h3>
-          <p data-i18n="about.card2.p">Since 2019. 51,000+ students across educational apps. Team of 4 to 6 devs building Flutter, Go, and web for clients across MX.</p>
-        </div>
-        <div class="about-card" data-tilt data-reveal>
-          <span class="about-card-label" data-i18n="about.card3.label">Also at</span>
-          <h3 class="about-card-title">UNAM</h3>
-          <p data-i18n="about.card3.p">Mobile developer at iOS Development Lab, Facultad de Ingeniería, my alma mater.</p>
-        </div>
-        <div class="about-card" data-tilt data-reveal>
-          <span class="about-card-label" data-i18n="about.card4.label">Languages</span>
-          <h3 class="about-card-title" data-i18n="about.card4.title">ES · EN</h3>
-          <p data-i18n="about.card4.p">Native Spanish, professional English. Daily standups, async docs, client calls, conference talks, in both.</p>
-        </div>
+      </div>
+    </div>
+
+    <div class="about-cards">
+      <div class="about-card" data-tilt data-reveal>
+        <span class="about-card-label" data-i18n="about.card1.label">Currently</span>
+        <h3 class="about-card-title">PayPal / Venmo</h3>
+        <p data-i18n="about.card1.p">Financial features for 426M+ users. Led Push Provisioning, Auth Users, biometric flows. "Exceeds Expectations" rating.</p>
+      </div>
+      <div class="about-card" data-tilt data-reveal>
+        <span class="about-card-label" data-i18n="about.card2.label">Founder</span>
+        <h3 class="about-card-title">Capdesis</h3>
+        <p data-i18n="about.card2.p">Since 2019. 51,000+ students across educational apps. Team of 4 to 6 devs building Flutter, Go, and web for clients across MX.</p>
+      </div>
+      <div class="about-card" data-tilt data-reveal>
+        <span class="about-card-label" data-i18n="about.card3.label">Also at</span>
+        <h3 class="about-card-title">UNAM</h3>
+        <p data-i18n="about.card3.p">Mobile developer at iOS Development Lab, Facultad de Ingeniería, my alma mater.</p>
+      </div>
+      <div class="about-card" data-tilt data-reveal>
+        <span class="about-card-label" data-i18n="about.card4.label">Languages</span>
+        <h3 class="about-card-title" data-i18n="about.card4.title">ES · EN</h3>
+        <p data-i18n="about.card4.p">Native Spanish, professional English. Daily standups, async docs, client calls, conference talks, in both.</p>
       </div>
     </div>
   </section>
@@ -2543,6 +2591,12 @@ const I18N = {
     "about.card4.label": "Languages",
     "about.card4.title": "ES · EN",
     "about.card4.p": "Native Spanish, professional English. Daily standups, async docs, client calls and conference talks, in both.",
+    "about.quick.based": "Based",
+    "about.quick.years": "Years shipping",
+    "about.quick.role": "Role",
+    "about.quick.role.v": "Senior Mobile Engineer · Founder",
+    "about.quick.open": "Open to",
+    "about.quick.open.v": "Architecture &amp; security advisory",
     "a11y.skip": "Skip to content",
     "cap.sub.web.note": "A selection of sites and platforms delivered through Capdesis. Logos are placeholders, real brand marks live on capdesis.com.",
     "cap.clients.title": "Trusted by",
@@ -2742,6 +2796,12 @@ const I18N = {
     "about.card4.label": "Idiomas",
     "about.card4.title": "ES · EN",
     "about.card4.p": "Español nativo, inglés profesional. Standups diarios, docs asíncronos, llamadas con clientes y charlas en conferencias, en ambos.",
+    "about.quick.based": "Ubicación",
+    "about.quick.years": "Años entregando",
+    "about.quick.role": "Rol",
+    "about.quick.role.v": "Senior Mobile Engineer · Fundador",
+    "about.quick.open": "Abierto a",
+    "about.quick.open.v": "Asesoría en arquitectura y seguridad",
     "cap.sub.web.note": "Una selección de sitios y plataformas entregados a través de Capdesis. Los logos son placeholders, las marcas reales viven en capdesis.com.",
     "cap.clients.title": "Con quién he trabajado",
 
