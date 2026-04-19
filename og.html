@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>OG card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #0d111c;
+    color: #f3f5f8;
+    font-family: 'Geist', system-ui, sans-serif;
+    position: relative;
+    padding: 64px 72px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .glow {
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .glow-2 {
+    position: absolute; bottom: -240px; left: -100px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.16), transparent 70%);
+    pointer-events: none;
+  }
+  .top {
+    display: flex; align-items: center; gap: 14px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #00d4ff;
+  }
+  .top-mark {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: #0a0e1a;
+    display: grid; place-items: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: #00d4ff;
+  }
+  .top-divider { color: rgba(255,255,255,0.3); }
+  .top-loc { color: rgba(255,255,255,0.55); letter-spacing: 0.14em; }
+  .name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 96px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+  .name em { color: #00d4ff; font-style: italic; font-weight: 400; }
+  .role {
+    font-family: 'Instrument Serif', serif;
+    font-size: 38px;
+    line-height: 1.2;
+    color: rgba(243, 245, 248, 0.78);
+    font-style: italic;
+    max-width: 880px;
+    margin-top: 18px;
+  }
+  .role span { color: #f3f5f8; font-style: normal; font-weight: 500; font-family: 'Geist', sans-serif; font-size: 32px; }
+  .bottom {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 32px;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 36px 64px;
+  }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 44px;
+    line-height: 1;
+    color: #ffffff;
+  }
+  .stat-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(243, 245, 248, 0.55);
+    margin-top: 6px;
+  }
+  .url {
+    font-family: 'Geist Mono', monospace;
+    font-size: 16px;
+    color: rgba(243, 245, 248, 0.6);
+    letter-spacing: 0.04em;
+    align-self: flex-end;
+  }
+  .url::before { content: '→ '; color: #00d4ff; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="glow-2"></div>
+
+  <div class="top">
+    <span class="top-mark">js</span>
+    <span>Software Architect</span>
+    <span class="top-divider">·</span>
+    <span class="top-loc">CDMX · Remote</span>
+  </div>
+
+  <div>
+    <h1 class="name">Jorge Salgado <em>Miranda</em></h1>
+    <p class="role"><span>Mobile · Web · Security</span> from the first sketch to the last deploy.</p>
+  </div>
+
+  <div class="bottom">
+    <div class="stats">
+      <div>
+        <div class="stat-num">426M+</div>
+        <div class="stat-label">Users at PayPal/Venmo</div>
+      </div>
+      <div>
+        <div class="stat-num">54K+</div>
+        <div class="stat-label">Devs trained on Udemy</div>
+      </div>
+      <div>
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Years shipping at scale</div>
+      </div>
+    </div>
+    <div class="url">jorgesalgadomiranda.com</div>
+  </div>
+</body>
+</html>

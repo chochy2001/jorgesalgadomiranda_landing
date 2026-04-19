@@ -32,8 +32,10 @@ mirror --reverse \
   --exclude-glob .gitignore \
   --exclude-glob node_modules/ \
   --exclude-glob scripts/ \
+  --exclude-glob docs/ \
   --exclude-glob package.json \
   --exclude-glob README.md \
+  --exclude-glob og.html \
   --exclude-glob .DS_Store \
   ./ $FTP_REMOTE_DIR
 bye

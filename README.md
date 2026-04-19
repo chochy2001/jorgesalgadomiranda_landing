@@ -1,52 +1,77 @@
 # jorgesalgadomiranda_landing
 
-Personal website of Jorge Salgado Miranda. Software Architect, Mobile · Web · Security.
+Personal website of Jorge Salgado Miranda · Software Architect · Mobile, Web & Security.
 
 Live at [jorgesalgadomiranda.com](https://jorgesalgadomiranda.com/).
 
-## Stack
+## At a glance
 
-- Vanilla HTML / CSS / JS, no framework
-- Instrument Serif · Geist · Geist Mono from Google Fonts
-- Bilingual ES / EN (auto-detected, togglable, persisted in `localStorage`)
-- Dark / light theme (auto-detected, togglable, persisted)
-- Static hosting on Hostinger, deployed over FTP
+- Bilingual portfolio (ES default, EN toggle), light + dark theme, fully accessible
+- Engineering practice section with the real architecture I ship
+- Two print-ready CV pages (EN + ES) and a downloadable PDF
+- Static HTML/CSS/JS, no framework, no build step, ~150 KB total
+- Hosted on Hostinger, deployed by FTP
 
-## Structure
+## Quick start
+
+```bash
+bun run dev      # serves http://localhost:3000
+bun run deploy   # uploads the site to Hostinger via lftp
+```
+
+## Repository layout
 
 ```
-.
-├── index.html                           Main landing page (self-contained: inline CSS + JS + i18n)
+jorgesalgadomiranda_landing/
+├── index.html                            Self-contained landing (inline CSS, JS, i18n)
+├── og.html                               Source for the Open Graph card
+├── og.png                                1200x630 social card (rendered from og.html)
 ├── cv/
-│   ├── Jorge_Salgado_Miranda_CV_EN.html Print-ready CV, English
-│   └── Jorge_Salgado_Miranda_CV_ES.html Print-ready CV, Spanish
+│   ├── Jorge_Salgado_Miranda_CV_EN.html  Print-ready CV in English
+│   └── Jorge_Salgado_Miranda_CV_ES.html  Print-ready CV in Spanish
 ├── assets/
 │   └── cv/
-│       └── Jorge_Salgado_Miranda_CV.pdf Downloadable PDF resume
-├── package.json                         Dev server + deploy scripts (bun)
-└── scripts/
-    └── deploy.sh                        FTP deploy to Hostinger
+│       └── Jorge_Salgado_Miranda_CV.pdf  Downloadable PDF resume
+├── scripts/
+│   └── deploy.sh                         FTP deploy via lftp
+├── docs/
+│   ├── ARCHITECTURE.md                   Page structure, design tokens, JS modules
+│   ├── TECHNOLOGIES.md                   Every tech on the page and why it is here
+│   ├── DEPLOY.md                         Step-by-step deploy and rollback
+│   └── CHANGELOG.md                      What shipped, ordered by commit
+├── package.json                          Dev + deploy scripts (bun)
+├── .env.example                          FTP credential template
+├── .gitignore
+└── README.md                             This file
 ```
 
-## Develop
+## Documentation
 
-```bash
-bun run dev
-```
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - how the page is composed
+- [docs/TECHNOLOGIES.md](docs/TECHNOLOGIES.md) - every dependency and runtime choice
+- [docs/DEPLOY.md](docs/DEPLOY.md) - production deploy procedure
+- [docs/CHANGELOG.md](docs/CHANGELOG.md) - release log
 
-Serves the site on `http://localhost:3000`.
+## Design system
 
-## Deploy
+| Token        | Dark                   | Light                  |
+|--------------|------------------------|------------------------|
+| Background   | `oklch(0.14 0.008 240)` | `oklch(0.985 0.003 80)` |
+| Foreground   | `oklch(0.97 0.005 240)` | `oklch(0.18 0.005 240)` |
+| Accent       | `oklch(0.82 0.14 210)` (cyan) | `oklch(0.52 0.15 210)` |
+| Serif        | Instrument Serif       |                        |
+| Sans         | Geist                  |                        |
+| Mono         | Geist Mono             |                        |
 
-Set FTP credentials in `.env` (see `.env.example`), then:
+Theme is detected from system preference, togglable, persisted in `localStorage`.
+Language is detected from `navigator.language`, togglable, persisted.
 
-```bash
-bun run deploy
-```
+## Contributing
 
-This uploads the site to `public_html/` on Hostinger via `lftp`.
+This is a personal portfolio, not an open source project. If you spot a typo or
+broken link, open an issue or PR.
 
-## Pending manual assets
+## License
 
-- `og.png` (1200×630) for Open Graph / Twitter cards, referenced from the HTML
-- Real brand logos for the Capdesis client cards (currently monogram placeholders)
+All content (text, photo, CV) is copyrighted. Source is shared as a reference
+for what a self-contained, single-file portfolio can look like.
