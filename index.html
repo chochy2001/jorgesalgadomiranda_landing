@@ -59,7 +59,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://assets.zyrosite.com" crossorigin />
 <link rel="preconnect" href="https://capdesis.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" /></noscript>
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0e1a'/%3E%3Ctext x='50' y='68' font-family='Georgia' font-size='60' font-style='italic' text-anchor='middle' fill='%2300d4ff'%3Ejs%3C/text%3E%3C/svg%3E" />
 
@@ -423,7 +424,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .stat { display: flex; flex-direction: column; gap: 6px; }
 .stat-value {
   font-family: var(--font-serif);
-  font-size: clamp(32px, 4vw, 52px);
+  font-size: clamp(40px, 5vw, 64px);
   line-height: 1;
   letter-spacing: -0.02em;
   color: var(--fg);
@@ -496,6 +497,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .panel-body::-webkit-scrollbar { height: 6px; }
 .panel-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+@media (max-width: 480px) {
+  .panel-body { white-space: pre-wrap; overflow-x: hidden; word-break: break-word; }
+}
 .code-brace { color: var(--fg-dim); }
 .code-key { color: var(--accent); }
 .code-str { color: var(--fg); }
@@ -1345,14 +1349,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: inline-flex;
   align-items: center;
   gap: 22px;
+  max-width: 100%;
   font-family: var(--font-serif);
-  font-size: clamp(22px, 2.4vw, 34px);
+  font-size: clamp(20px, 2.4vw, 34px);
   font-style: italic;
   color: var(--fg);
   border-bottom: 1px solid var(--border);
   padding-bottom: 14px;
   transition: color 0.3s, border-color 0.3s, gap 0.3s;
   letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .contact-email:hover {
   color: var(--accent);
@@ -1442,42 +1449,76 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 1100px) { .eng-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 680px) { .eng-grid { grid-template-columns: 1fr; } }
 .eng-card {
+  position: relative;
   background: var(--bg-elev);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px 24px;
-  transition: border-color 0.3s, transform 0.3s;
+  border-radius: 16px;
+  padding: 28px 28px 26px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+  overflow: hidden;
 }
-.eng-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.eng-card::before {
+  content: '';
+  position: absolute; inset: 0 auto auto 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.eng-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--accent) 50%, transparent);
+}
+.eng-card:hover::before { opacity: 1; }
 .eng-card-head {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 14px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 14px;
+  row-gap: 4px;
+  align-items: start;
+  margin-bottom: 18px;
 }
 .eng-icon {
-  width: 36px; height: 36px;
+  grid-row: 1 / span 2;
+  width: 42px; height: 42px;
   display: grid; place-items: center;
-  border-radius: 10px;
-  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
   color: var(--accent);
+  align-self: center;
 }
-.eng-icon svg { width: 20px; height: 20px; }
+.eng-icon svg { width: 22px; height: 22px; }
+.eng-outcome {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  align-self: end;
+}
 .eng-card h4 {
   font-family: var(--font-serif);
-  font-size: 20px; font-weight: 400;
+  font-size: 22px; font-weight: 400;
   letter-spacing: -0.01em;
+  line-height: 1.15;
+  align-self: start;
 }
-.eng-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.eng-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .eng-card li {
-  font-size: 13.5px; color: var(--fg-muted);
-  line-height: 1.5;
-  padding-left: 14px; position: relative;
+  font-size: 14px; color: var(--fg-muted);
+  line-height: 1.55;
+  padding-left: 18px; position: relative;
 }
 .eng-card li::before {
   content: ''; position: absolute;
-  left: 0; top: 0.58em;
-  width: 4px; height: 4px; border-radius: 50%;
+  left: 0; top: 0.62em;
+  width: 6px; height: 6px; border-radius: 2px;
   background: var(--accent);
+  transform: rotate(45deg);
 }
+.eng-card li strong { color: var(--fg); font-weight: 500; }
 .eng-card code {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -1608,7 +1649,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
         </div>
         <div class="stat">
           <span class="stat-value" data-count="54" data-suffix="K+">0</span>
-          <span class="stat-label" data-i18n="hero.stat2">Developers mentored on Udemy</span>
+          <span class="stat-label" data-i18n="hero.stat2">Developers trained on Udemy</span>
         </div>
         <div class="stat">
           <span class="stat-value" data-count="8" data-suffix="+">0</span>
@@ -1654,17 +1695,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- MARQUEE -->
   <section class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async">PayPal · Venmo</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async">Capdesis</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async">Tienda UNAM</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async">Flexera</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async">Udemy · 54K+ devs</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/ios-YBgpM5QrVwHGLral.png" alt="" loading="lazy" decoding="async">iOS Lab FI · UNAM</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async">PayPal · Venmo</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async">Capdesis</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async">Tienda UNAM</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async">Flexera</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async">Udemy · 54K+ devs</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async">PayPal · Venmo</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async">Capdesis</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async">Tienda UNAM</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async">Flexera</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async">Udemy · 54K+ devs</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/ios-YBgpM5QrVwHGLral.png" alt="" loading="lazy" decoding="async">iOS Lab FI · UNAM</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async">PayPal · Venmo</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async">Capdesis</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async">Tienda UNAM</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async">Flexera</span><span class="marquee-sep">◆</span>
+      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async">Udemy · 54K+ devs</span><span class="marquee-sep">◆</span>
     </div>
   </section>
 
@@ -1697,7 +1738,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       </div>
 
       <div class="about-side">
-        <img class="about-portrait" data-reveal src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=600,h=750,fit=cover,trim=76.8;0;44.8;0/mjE2xGMQ20iKRBEE/foto_perfil-AQEJje1oJvHLpXzJ.jpeg" alt="Jorge Salgado Miranda" loading="lazy" decoding="async" width="600" height="750" />
+        <img class="about-portrait" data-reveal src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=600,h=750,fit=cover,trim=76.8;0;44.8;0/mjE2xGMQ20iKRBEE/foto_perfil-AQEJje1oJvHLpXzJ.jpeg" alt="Jorge Salgado Miranda" loading="eager" fetchpriority="high" decoding="async" width="600" height="750" />
       </div>
     </div>
 
@@ -2196,11 +2237,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     </div>
 
     <h2 class="section-title section-title-wide">
-      <span data-reveal data-i18n="eng.title1">Patterns, infrastructure,</span>
-      <em data-reveal data-i18n="eng.title2">and the stack I actually ship.</em>
+      <span data-reveal data-i18n="eng.title1">From the first sketch</span>
+      <em data-reveal data-i18n="eng.title2">to the last deploy.</em>
     </h2>
 
-    <p class="eng-intro" data-reveal data-i18n="eng.intro">These aren't buzzwords. Every item below comes from a repo I maintain: <strong>Clean Architecture</strong> Go services behind <strong>Traefik</strong> on <strong>Tailscale</strong>, offline-first Flutter with <strong>BLoC</strong> and <strong>Drift</strong>, <strong>PostgreSQL 16</strong> with daily backups pushed to a private GitHub repo, <strong>Grafana</strong> dashboards watched by Gmail SMTP alerts, and CI that uses <code>dorny/paths-filter</code> so only the changed module runs its tests.</p>
+    <p class="eng-intro" data-reveal data-i18n="eng.intro">I build products end to end: <strong>mobile apps</strong>, <strong>backends</strong> and the <strong>infrastructure</strong>, <strong>security</strong> and <strong>observability</strong> that keep them running in production. Every pattern below comes from real projects I maintain, not slides.</p>
 
     <div class="eng-grid">
 
@@ -2209,12 +2250,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <div class="eng-icon">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4M4 7v10l8 4 8-4V7M4 7l8 4 8-4M12 11v10"/></svg>
           </div>
-          <h4 data-i18n="eng.card1.title">Clean Architecture backends</h4>
+          <span class="eng-outcome" data-i18n="eng.card1.tag">Backbone</span>
+          <h4 data-i18n="eng.card1.title">Backends built to scale</h4>
         </div>
         <ul>
-          <li data-i18n="eng.card1.p1"><code>Go 1.25</code> with Chi router, domain-split <code>internal/application/{contract,chat,auth,payment}/handler</code></li>
-          <li data-i18n="eng.card1.p2">Hexagonal repositories with interfaces, Postgres adapters, golang-migrate for schema</li>
-          <li data-i18n="eng.card1.p3"><code>govulncheck</code> in CI and <code>go test -race</code> as a merge gate</li>
+          <li data-i18n="eng.card1.p1">Clean Architecture and hexagonal repositories from day one, designed to evolve, easy to test</li>
+          <li data-i18n="eng.card1.p2">Production-grade <strong>Go</strong> and <strong>Node</strong> services with versioned APIs, structured logs and rate limits</li>
+          <li data-i18n="eng.card1.p3">Vulnerability scanning, integration tests and migrations run before anything merges</li>
         </ul>
       </article>
 
@@ -2223,12 +2265,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <div class="eng-icon">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
           </div>
-          <h4 data-i18n="eng.card2.title">Offline-first mobile</h4>
+          <span class="eng-outcome" data-i18n="eng.card2.tag">Reach</span>
+          <h4 data-i18n="eng.card2.title">Mobile that feels native</h4>
         </div>
         <ul>
-          <li data-i18n="eng.card2.p1">Flutter with <code>flutter_bloc</code> + <code>go_router</code>, strict state boundaries</li>
-          <li data-i18n="eng.card2.p2"><code>Drift</code> for on-device SQLite, background sync via <code>web_socket_channel</code></li>
-          <li data-i18n="eng.card2.p3">Native iOS/Android split when the platform matters (Swift/Kotlin + Compose)</li>
+          <li data-i18n="eng.card2.p1"><strong>Flutter</strong> for speed across platforms, native <strong>Swift</strong> and <strong>Kotlin</strong> when polish matters</li>
+          <li data-i18n="eng.card2.p2">Offline-first by default with on-device cache and reliable background sync</li>
+          <li data-i18n="eng.card2.p3">Accessibility, performance budgets and crash reporting shipped, not promised</li>
         </ul>
       </article>
 
@@ -2237,12 +2280,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <div class="eng-icon">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/></svg>
           </div>
-          <h4 data-i18n="eng.card3.title">Self-hosted VPS stack</h4>
+          <span class="eng-outcome" data-i18n="eng.card3.tag">Foundation</span>
+          <h4 data-i18n="eng.card3.title">Infrastructure you can sleep through</h4>
         </div>
         <ul>
-          <li data-i18n="eng.card3.p1">Two Contabo VPS (16 GB each): app-vps + storage-vps, joined via <code>Tailscale</code></li>
-          <li data-i18n="eng.card3.p2"><code>Traefik v3</code> edge with DNS-01 Cloudflare for wildcard TLS</li>
-          <li data-i18n="eng.card3.p3"><code>Docker Compose</code> services: Postgres 16, Redis 7, MinIO, Grafana</li>
+          <li data-i18n="eng.card3.p1">Multi-host architecture on private mesh networking, zero-trust admin planes</li>
+          <li data-i18n="eng.card3.p2">Edge routing with automated wildcard TLS, no manual certificate work, ever</li>
+          <li data-i18n="eng.card3.p3">Containerized databases, cache, object storage and dashboards, reproducible from a single file</li>
         </ul>
       </article>
 
@@ -2251,12 +2295,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <div class="eng-icon">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h4 data-i18n="eng.card4.title">Security in layers</h4>
+          <span class="eng-outcome" data-i18n="eng.card4.tag">Posture</span>
+          <h4 data-i18n="eng.card4.title">Security from design to runtime</h4>
         </div>
         <ul>
-          <li data-i18n="eng.card4.p1"><code>gitleaks</code> as a pre-commit hook and CI gate on every repo</li>
-          <li data-i18n="eng.card4.p2">UFW firewall + Traefik dashboard pinned to Tailscale IP (never public)</li>
-          <li data-i18n="eng.card4.p3">OAuth 2.0, JWT, biometrics, mTLS between internal services, threat modeling upfront</li>
+          <li data-i18n="eng.card4.p1">Threat modeling done on the architecture, not bolted on later</li>
+          <li data-i18n="eng.card4.p2">Secret scanning on every commit, encrypted service-to-service traffic, private admin planes</li>
+          <li data-i18n="eng.card4.p3"><strong>OAuth 2.0</strong>, <strong>JWT</strong>, biometric auth and mTLS implemented to spec and audited</li>
         </ul>
       </article>
 
@@ -2265,12 +2310,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <div class="eng-icon">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M12 12v5M9 14l3-3 3 3"/></svg>
           </div>
-          <h4 data-i18n="eng.card5.title">CI/CD that pays attention</h4>
+          <span class="eng-outcome" data-i18n="eng.card5.tag">Velocity</span>
+          <h4 data-i18n="eng.card5.title">Pipelines that move with the team</h4>
         </div>
         <ul>
-          <li data-i18n="eng.card5.p1">GitHub Actions with <code>dorny/paths-filter</code>: only the changed module runs</li>
-          <li data-i18n="eng.card5.p2">Self-hosted runners on the VPS itself for fast deploys via SSH + <code>docker compose</code></li>
-          <li data-i18n="eng.card5.p3">Fastlane to App Store and Play Store; migrations run before any service restart</li>
+          <li data-i18n="eng.card5.p1">Smart CI: only the changed modules run, the rest skip, fast feedback every push</li>
+          <li data-i18n="eng.card5.p2">One-command deploys to staging and production, schema migrations and rollbacks included</li>
+          <li data-i18n="eng.card5.p3">App Store and Play Store releases automated end to end with <strong>Fastlane</strong></li>
         </ul>
       </article>
 
@@ -2279,30 +2325,31 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <div class="eng-icon">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 4 4 4-7"/></svg>
           </div>
-          <h4 data-i18n="eng.card6.title">Observability by default</h4>
+          <span class="eng-outcome" data-i18n="eng.card6.tag">Confidence</span>
+          <h4 data-i18n="eng.card6.title">Visibility into every layer</h4>
         </div>
         <ul>
-          <li data-i18n="eng.card6.p1"><code>Prometheus</code> scraping <code>/metrics</code>, <code>Grafana</code> dashboards (31 rules on CapLiving)</li>
-          <li data-i18n="eng.card6.p2">Gmail SMTP alerts on the way down, Firebase Crashlytics on the device</li>
-          <li data-i18n="eng.card6.p3">Daily <code>pg_dump</code> pushed to a private GitHub backup repo via systemd timer</li>
+          <li data-i18n="eng.card6.p1">Real-time metrics, logs and request traces in dashboards the team actually opens</li>
+          <li data-i18n="eng.card6.p2">Multi-channel alerting before users notice; crash and performance reporting on every device</li>
+          <li data-i18n="eng.card6.p3">Automated daily backups with point-in-time recovery, never lose a row</li>
         </ul>
       </article>
 
     </div>
 
     <div class="tech-strip" data-reveal aria-label="Technologies I work with">
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/flutter-m7VpgBr0jyhpkRlE.png" alt="Flutter" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/swift-YrDaoznMx1hVpl72.png" alt="Swift" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/kotlin-mv0jy9EVoniRk2lX.png" alt="Kotlin" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/jetpack_compose-YX4PwWNGjbFX2PpY.png" alt="Jetpack Compose" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=160,h=64,fit=contain/mjE2xGMQ20iKRBEE/golang-ALpJwDErwQCgLZ37.png" alt="Go" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/aws-m7VpgBr0L8ClBwQq.png" alt="AWS" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/docker-Yanq8pr3XZu46JXe.webp" alt="Docker" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/kubernetes_logo-AE0akZLvgOuRPLra.png" alt="Kubernetes" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/postgresql-YbNaMeoVGztVJ9zq.png" alt="PostgreSQL" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/graphql_logo-AR0MkvwV19sNLV4L.png" alt="GraphQL" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/firebase_logo-YKbEkB3DlPFpB6qx.png" alt="Firebase" loading="lazy" decoding="async" />
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/vim_logo-mP42kjO124CWeeqZ.png" alt="Neovim" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/flutter-m7VpgBr0jyhpkRlE.png" alt="Flutter" width="60" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/swift-YrDaoznMx1hVpl72.png" alt="Swift" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/kotlin-mv0jy9EVoniRk2lX.png" alt="Kotlin" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/jetpack_compose-YX4PwWNGjbFX2PpY.png" alt="Jetpack Compose" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=160,h=64,fit=contain/mjE2xGMQ20iKRBEE/golang-ALpJwDErwQCgLZ37.png" alt="Go" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/aws-m7VpgBr0L8ClBwQq.png" alt="AWS" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/docker-Yanq8pr3XZu46JXe.webp" alt="Docker" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/kubernetes_logo-AE0akZLvgOuRPLra.png" alt="Kubernetes" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/postgresql-YbNaMeoVGztVJ9zq.png" alt="PostgreSQL" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/graphql_logo-AR0MkvwV19sNLV4L.png" alt="GraphQL" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/firebase_logo-YKbEkB3DlPFpB6qx.png" alt="Firebase" width="80" height="32" loading="lazy" decoding="async" />
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=64,fit=contain/mjE2xGMQ20iKRBEE/vim_logo-mP42kjO124CWeeqZ.png" alt="Neovim" width="80" height="32" loading="lazy" decoding="async" />
     </div>
 
   </section>
@@ -2583,7 +2630,7 @@ const I18N = {
     "hero.cta1": "Let's talk",
     "hero.cta2": "Download CV",
     "hero.stat1": "Users reached at PayPal/Venmo",
-    "hero.stat2": "Developers mentored on Udemy",
+    "hero.stat2": "Developers trained on Udemy",
     "hero.stat3": "Years shipping at scale",
     "hero.stat4": "Projects delivered via Capdesis",
     "hero.scroll": "scroll",
@@ -2701,33 +2748,39 @@ const I18N = {
     "lv.learning.note": "Actively studying / certifying",
 
     "eng.kicker": "Engineering practice",
-    "eng.title1": "Patterns, infrastructure",
-    "eng.title2": "and the stack I actually ship.",
-    "eng.intro": "These aren't buzzwords. Every item below comes from a repo I maintain: <strong>Clean Architecture</strong> Go services behind <strong>Traefik</strong> on <strong>Tailscale</strong>, offline-first Flutter with <strong>BLoC</strong> and <strong>Drift</strong>, <strong>PostgreSQL 16</strong> with daily backups pushed to a private GitHub repo, <strong>Grafana</strong> dashboards watched by Gmail SMTP alerts, and CI that uses <code>dorny/paths-filter</code> so only the changed module runs its tests.",
-    "eng.card1.title": "Clean Architecture backends",
-    "eng.card1.p1": "<code>Go 1.25</code> with Chi router, domain-split <code>internal/application/{contract,chat,auth,payment}/handler</code>",
-    "eng.card1.p2": "Hexagonal repositories with interfaces, Postgres adapters, golang-migrate for schema",
-    "eng.card1.p3": "<code>govulncheck</code> in CI and <code>go test -race</code> as a merge gate",
-    "eng.card2.title": "Offline-first mobile",
-    "eng.card2.p1": "Flutter with <code>flutter_bloc</code> + <code>go_router</code>, strict state boundaries",
-    "eng.card2.p2": "<code>Drift</code> for on-device SQLite, background sync via <code>web_socket_channel</code>",
-    "eng.card2.p3": "Native iOS/Android split when the platform matters (Swift/Kotlin + Compose)",
-    "eng.card3.title": "Self-hosted VPS stack",
-    "eng.card3.p1": "Two Contabo VPS (16 GB each): app-vps + storage-vps, joined via <code>Tailscale</code>",
-    "eng.card3.p2": "<code>Traefik v3</code> edge with DNS-01 Cloudflare for wildcard TLS",
-    "eng.card3.p3": "<code>Docker Compose</code> services: Postgres 16, Redis 7, MinIO, Grafana",
-    "eng.card4.title": "Security in layers",
-    "eng.card4.p1": "<code>gitleaks</code> as a pre-commit hook and CI gate on every repo",
-    "eng.card4.p2": "UFW firewall + Traefik dashboard pinned to Tailscale IP (never public)",
-    "eng.card4.p3": "OAuth 2.0, JWT, biometrics, mTLS between internal services, threat modeling upfront",
-    "eng.card5.title": "CI/CD that pays attention",
-    "eng.card5.p1": "GitHub Actions with <code>dorny/paths-filter</code>: only the changed module runs",
-    "eng.card5.p2": "Self-hosted runners on the VPS itself for fast deploys via SSH + <code>docker compose</code>",
-    "eng.card5.p3": "Fastlane to App Store and Play Store; migrations run before any service restart",
-    "eng.card6.title": "Observability by default",
-    "eng.card6.p1": "<code>Prometheus</code> scraping <code>/metrics</code>, <code>Grafana</code> dashboards (31 rules on CapLiving)",
-    "eng.card6.p2": "Gmail SMTP alerts on the way down, Firebase Crashlytics on the device",
-    "eng.card6.p3": "Daily <code>pg_dump</code> pushed to a private GitHub backup repo via systemd timer",
+    "eng.title1": "From the first sketch",
+    "eng.title2": "to the last deploy.",
+    "eng.intro": "I build products end to end: <strong>mobile apps</strong>, <strong>backends</strong> and the <strong>infrastructure</strong>, <strong>security</strong> and <strong>observability</strong> that keep them running in production. Every pattern below comes from real projects I maintain, not slides.",
+    "eng.card1.tag": "Backbone",
+    "eng.card1.title": "Backends built to scale",
+    "eng.card1.p1": "Clean Architecture and hexagonal repositories from day one, designed to evolve, easy to test",
+    "eng.card1.p2": "Production-grade <strong>Go</strong> and <strong>Node</strong> services with versioned APIs, structured logs and rate limits",
+    "eng.card1.p3": "Vulnerability scanning, integration tests and migrations run before anything merges",
+    "eng.card2.tag": "Reach",
+    "eng.card2.title": "Mobile that feels native",
+    "eng.card2.p1": "<strong>Flutter</strong> for speed across platforms, native <strong>Swift</strong> and <strong>Kotlin</strong> when polish matters",
+    "eng.card2.p2": "Offline-first by default with on-device cache and reliable background sync",
+    "eng.card2.p3": "Accessibility, performance budgets and crash reporting shipped, not promised",
+    "eng.card3.tag": "Foundation",
+    "eng.card3.title": "Infrastructure you can sleep through",
+    "eng.card3.p1": "Multi-host architecture on private mesh networking, zero-trust admin planes",
+    "eng.card3.p2": "Edge routing with automated wildcard TLS, no manual certificate work, ever",
+    "eng.card3.p3": "Containerized databases, cache, object storage and dashboards, reproducible from a single file",
+    "eng.card4.tag": "Posture",
+    "eng.card4.title": "Security from design to runtime",
+    "eng.card4.p1": "Threat modeling done on the architecture, not bolted on later",
+    "eng.card4.p2": "Secret scanning on every commit, encrypted service-to-service traffic, private admin planes",
+    "eng.card4.p3": "<strong>OAuth 2.0</strong>, <strong>JWT</strong>, biometric auth and mTLS implemented to spec and audited",
+    "eng.card5.tag": "Velocity",
+    "eng.card5.title": "Pipelines that move with the team",
+    "eng.card5.p1": "Smart CI: only the changed modules run, the rest skip, fast feedback every push",
+    "eng.card5.p2": "One-command deploys to staging and production, schema migrations and rollbacks included",
+    "eng.card5.p3": "App Store and Play Store releases automated end to end with <strong>Fastlane</strong>",
+    "eng.card6.tag": "Confidence",
+    "eng.card6.title": "Visibility into every layer",
+    "eng.card6.p1": "Real-time metrics, logs and request traces in dashboards the team actually opens",
+    "eng.card6.p2": "Multi-channel alerting before users notice; crash and performance reporting on every device",
+    "eng.card6.p3": "Automated daily backups with point-in-time recovery, never lose a row",
     "cert.kicker": "Certifications · Learning path",
     "cert.title1": "Always leveling up.",
     "cert.title2": "Next: architecture & security.",
@@ -2795,7 +2848,7 @@ const I18N = {
     "hero.cta2": "Descargar CV",
     "a11y.skip": "Ir al contenido",
     "hero.stat1": "Usuarios alcanzados en PayPal/Venmo",
-    "hero.stat2": "Desarrolladores mentorizados en Udemy",
+    "hero.stat2": "Desarrolladores formados en Udemy",
     "hero.stat3": "Años entregando a escala",
     "hero.stat4": "Proyectos entregados con Capdesis",
     "hero.scroll": "scroll",
@@ -2912,33 +2965,39 @@ const I18N = {
     "lv.learning.note": "Estudiando / certificándome ahora",
 
     "eng.kicker": "Práctica de ingeniería",
-    "eng.title1": "Patrones, infraestructura",
-    "eng.title2": "y el stack que de verdad entrego.",
-    "eng.intro": "No son palabras bonitas. Cada punto de abajo viene de un repo que mantengo: servicios en Go con <strong>Clean Architecture</strong> detrás de <strong>Traefik</strong> sobre <strong>Tailscale</strong>, Flutter offline-first con <strong>BLoC</strong> y <strong>Drift</strong>, <strong>PostgreSQL 16</strong> con respaldos diarios empujados a un repo privado de GitHub, dashboards de <strong>Grafana</strong> monitoreados por alertas por Gmail SMTP, y CI que usa <code>dorny/paths-filter</code> para que solo el módulo cambiado corra sus tests.",
-    "eng.card1.title": "Backends con Clean Architecture",
-    "eng.card1.p1": "<code>Go 1.25</code> con router Chi, split por dominio en <code>internal/application/{contract,chat,auth,payment}/handler</code>",
-    "eng.card1.p2": "Repositorios hexagonales con interfaces, adapters de Postgres, golang-migrate para schema",
-    "eng.card1.p3": "<code>govulncheck</code> en CI y <code>go test -race</code> como candado de merge",
-    "eng.card2.title": "Mobile offline-first",
-    "eng.card2.p1": "Flutter con <code>flutter_bloc</code> + <code>go_router</code>, límites estrictos de estado",
-    "eng.card2.p2": "<code>Drift</code> para SQLite en el dispositivo, sync en background por <code>web_socket_channel</code>",
-    "eng.card2.p3": "Nativo iOS/Android cuando la plataforma importa (Swift/Kotlin + Compose)",
-    "eng.card3.title": "Stack en VPS propio",
-    "eng.card3.p1": "Dos VPS Contabo (16 GB c/u): app-vps + storage-vps, unidos por <code>Tailscale</code>",
-    "eng.card3.p2": "<code>Traefik v3</code> en el borde con DNS-01 Cloudflare para TLS wildcard",
-    "eng.card3.p3": "Servicios con <code>Docker Compose</code>: Postgres 16, Redis 7, MinIO, Grafana",
-    "eng.card4.title": "Seguridad en capas",
-    "eng.card4.p1": "<code>gitleaks</code> como pre-commit hook y candado de CI en cada repo",
-    "eng.card4.p2": "Firewall UFW + dashboard de Traefik anclado a IP de Tailscale (nunca público)",
-    "eng.card4.p3": "OAuth 2.0, JWT, biometría, mTLS entre servicios internos, threat modeling desde el diseño",
-    "eng.card5.title": "CI/CD que presta atención",
-    "eng.card5.p1": "GitHub Actions con <code>dorny/paths-filter</code>: solo corre el módulo cambiado",
-    "eng.card5.p2": "Runners self-hosted en el VPS para deploys rápidos por SSH + <code>docker compose</code>",
-    "eng.card5.p3": "Fastlane para App Store y Play Store; las migraciones corren antes del restart",
-    "eng.card6.title": "Observabilidad por default",
-    "eng.card6.p1": "<code>Prometheus</code> scrapeando <code>/metrics</code>, dashboards de <code>Grafana</code> (31 reglas en CapLiving)",
-    "eng.card6.p2": "Alertas por Gmail SMTP cuando algo cae, Firebase Crashlytics en el dispositivo",
-    "eng.card6.p3": "<code>pg_dump</code> diario empujado a un repo privado de GitHub por systemd timer",
+    "eng.title1": "Del primer sketch",
+    "eng.title2": "al último deploy.",
+    "eng.intro": "Construyo productos completos: <strong>apps mobile</strong>, <strong>backends</strong> y la <strong>infraestructura</strong>, <strong>seguridad</strong> y <strong>observabilidad</strong> que los mantienen vivos en producción. Cada patrón de abajo viene de proyectos reales que mantengo, no de slides.",
+    "eng.card1.tag": "Cimientos",
+    "eng.card1.title": "Backends que escalan",
+    "eng.card1.p1": "Clean Architecture y repositorios hexagonales desde el día uno, fáciles de evolucionar y testear",
+    "eng.card1.p2": "Servicios en <strong>Go</strong> y <strong>Node</strong> de grado producción, con APIs versionadas, logs estructurados y rate limits",
+    "eng.card1.p3": "Escaneo de vulnerabilidades, tests de integración y migraciones corren antes de cada merge",
+    "eng.card2.tag": "Alcance",
+    "eng.card2.title": "Mobile que se siente nativo",
+    "eng.card2.p1": "<strong>Flutter</strong> para velocidad multiplataforma, <strong>Swift</strong> y <strong>Kotlin</strong> nativos cuando la pulida importa",
+    "eng.card2.p2": "Offline-first por default, con caché en el dispositivo y sync en background confiable",
+    "eng.card2.p3": "Accesibilidad, presupuestos de performance y reporte de crashes entregados, no prometidos",
+    "eng.card3.tag": "Plataforma",
+    "eng.card3.title": "Infraestructura para dormir tranquilo",
+    "eng.card3.p1": "Arquitectura multi-host sobre red privada en mesh, planos de admin con zero-trust",
+    "eng.card3.p2": "Edge routing con TLS wildcard automático, sin volver a tocar un certificado a mano",
+    "eng.card3.p3": "Bases de datos, caché, almacenamiento de objetos y dashboards en contenedores, reproducibles desde un solo archivo",
+    "eng.card4.tag": "Postura",
+    "eng.card4.title": "Seguridad del diseño al runtime",
+    "eng.card4.p1": "Threat modeling sobre la arquitectura, no parchado al final",
+    "eng.card4.p2": "Escaneo de secretos en cada commit, tráfico cifrado entre servicios, planos de admin privados",
+    "eng.card4.p3": "<strong>OAuth 2.0</strong>, <strong>JWT</strong>, auth biométrica y mTLS implementados a spec y auditados",
+    "eng.card5.tag": "Velocidad",
+    "eng.card5.title": "Pipelines al ritmo del equipo",
+    "eng.card5.p1": "CI inteligente: solo los módulos cambiados corren, lo demás se salta, feedback rápido por push",
+    "eng.card5.p2": "Deploys de un comando a staging y producción, migraciones de schema y rollbacks incluidos",
+    "eng.card5.p3": "Releases automatizados de App Store y Play Store de punta a punta con <strong>Fastlane</strong>",
+    "eng.card6.tag": "Confianza",
+    "eng.card6.title": "Visibilidad en cada capa",
+    "eng.card6.p1": "Métricas, logs y trazas de request en tiempo real, en dashboards que el equipo realmente abre",
+    "eng.card6.p2": "Alertas multi-canal antes de que el usuario lo note; reporte de crashes y performance por dispositivo",
+    "eng.card6.p3": "Backups diarios automáticos con recuperación point-in-time, sin perder un solo registro",
     "cert.kicker": "Certificaciones · Camino de aprendizaje",
     "cert.title1": "Siempre subiendo de nivel.",
     "cert.title2": "Sigue: arquitectura y seguridad.",
