@@ -4,6 +4,49 @@ Reverse-chronological log of what shipped, why, and what to verify next time.
 
 ---
 
+## 2026-04-19 - Certifications revamp + self-hosted fonts + WhatsApp CTA
+
+**Certifications section rewritten around a real path**
+- Removed AWS Cloud Practitioner (foundational tier, below the level of a
+  Senior Architect, more noise than signal).
+- Earned (4): Meta Developer, Google Developer, Mobile Architecture,
+  B.S. Computer Engineering UNAM.
+- In progress (5): AWS Solutions Architect Professional, AWS Security
+  Specialty, CISSP (ISC2), Meta iOS Developer Professional, Meta Android
+  Developer Professional. All with progress bars and links to the
+  official exam pages.
+- On the roadmap (3): AWS DevOps Engineer Professional, AWS Generative AI
+  Developer Professional, ISSAP (ISC2). Separate badge style (arrow).
+- Rationale for every choice documented in [CERTIFICATIONS.md](CERTIFICATIONS.md),
+  including what was considered and left out (CISA, OSCP, CKA).
+- Grid bumped from 2 columns to 3 at >=1100px, with responsive step-downs.
+- CVs (EN + ES) updated to the same cert list.
+
+**Self-hosted fonts**
+- Downloaded 4 woff2 files from Google Fonts (latin subset only):
+  Instrument Serif normal + italic, Geist (variable 300-700), Geist Mono
+  (variable 400-500). Total ~90 KB.
+- Inlined `@font-face` declarations in index.html, og.html and both CVs.
+- Removed the Google Fonts `<link>` tag and both preconnects. No more
+  external font dependency; no runtime call to Google servers.
+- Added `<link rel="preload">` hints for the two critical fonts
+  (Instrument Serif and Geist).
+- CVs previously used Inter + JetBrains Mono + Instrument Serif from
+  Google Fonts; swapped Inter -> Geist and JetBrains Mono -> Geist Mono
+  so the whole project runs on one local font system.
+- Verified via Playwright: `document.fonts.check('16px "Instrument Serif"')`,
+  `Geist`, `Geist Mono` all return `true` after load.
+
+**Contact CTA**
+- Phone link `tel:+525521982449` replaced with a WhatsApp deep link
+  `https://wa.me/525521982449?text=Hola%20Jorge%2C`. Label reads
+  "WhatsApp · messages preferred" / "WhatsApp · prefiero mensajes" so
+  contacts default to messaging, not cold-calling.
+
+i18n parity 208 / 208.
+
+---
+
 ## 2026-04-19 - `b33cd70` Engineering: senior-architect rewrite + audit fixes
 
 **Why:** the Engineering section read like a homelab logbook (Contabo VPS by

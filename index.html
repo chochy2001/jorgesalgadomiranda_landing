@@ -55,12 +55,10 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://assets.zyrosite.com" crossorigin />
 <link rel="preconnect" href="https://capdesis.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" /></noscript>
+<link rel="preload" href="fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0e1a'/%3E%3Ctext x='50' y='68' font-family='Georgia' font-size='60' font-style='italic' text-anchor='middle' fill='%2300d4ff'%3Ejs%3C/text%3E%3C/svg%3E" />
 
@@ -68,6 +66,40 @@
 /* =========================================
    Jorge Salgado Miranda, Portfolio
    ========================================= */
+
+/* Self-hosted fonts (Google Fonts mirror, latin subset) */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/instrument-serif.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/instrument-serif-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('fonts/geist.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('fonts/geist-mono.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 :root {
   --bg: oklch(0.14 0.008 240);
@@ -1097,10 +1129,24 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* CERTIFICATIONS */
 .cert-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
 }
-@media (max-width: 900px) { .cert-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .cert-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px)  { .cert-grid { grid-template-columns: 1fr; } }
+.cert-item a.cert-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+.cert-item a.cert-link:hover h4 { color: var(--accent); }
+.cert-badge-next {
+  background: transparent;
+  border: 1px dashed var(--border);
+  color: var(--fg-muted);
+}
+.cert-item-next { opacity: 0.88; }
+.cert-item-next:hover { opacity: 1; }
 .cert-col-title {
   font-family: var(--font-mono); font-size: 12px;
   text-transform: uppercase; letter-spacing: 0.12em;
@@ -2372,15 +2418,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
         <div class="cert-list">
           <div class="cert-item" data-reveal>
             <span class="cert-badge">✓</span>
-            <div><h4>AWS Certified Cloud Practitioner</h4><p>Amazon Web Services</p></div>
+            <div><h4>Meta Developer Certification</h4><p>Meta</p></div>
           </div>
           <div class="cert-item" data-reveal>
             <span class="cert-badge">✓</span>
             <div><h4>Google Developer Certification</h4><p>Google</p></div>
-          </div>
-          <div class="cert-item" data-reveal>
-            <span class="cert-badge">✓</span>
-            <div><h4>Meta Developer Certification</h4><p>Meta</p></div>
           </div>
           <div class="cert-item" data-reveal>
             <span class="cert-badge">✓</span>
@@ -2401,8 +2443,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
               <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
             </span>
             <div>
-              <h4>AWS Solutions Architect, Professional</h4>
-              <p data-i18n="cert.aws.desc">Going deep on distributed system design, multi-region architecture and cost governance.</p>
+              <a class="cert-link" href="https://aws.amazon.com/certification/certified-solutions-architect-professional/" target="_blank" rel="noopener noreferrer">
+                <h4>AWS Solutions Architect, Professional</h4>
+              </a>
+              <p data-i18n="cert.aws.desc">Distributed system design, multi-region, cost governance. The architect credential that matches what I ship.</p>
               <span class="cert-progress"><i style="--w:55%"></i></span>
             </div>
           </div>
@@ -2411,9 +2455,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
               <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
             </span>
             <div>
-              <h4><span data-i18n="cert.sec.title">Advanced Cybersecurity</span></h4>
-              <p data-i18n="cert.sec.desc">OSCP-track: offensive security, threat modeling, secure mobile & cloud architectures.</p>
-              <span class="cert-progress"><i style="--w:35%"></i></span>
+              <a class="cert-link" href="https://aws.amazon.com/certification/certified-security-specialty/" target="_blank" rel="noopener noreferrer">
+                <h4>AWS Security, Specialty</h4>
+              </a>
+              <p data-i18n="cert.awssec.desc">IAM deep-dive, KMS, GuardDuty, VPC hardening and incident response in the cloud.</p>
+              <span class="cert-progress"><i style="--w:40%"></i></span>
             </div>
           </div>
           <div class="cert-item cert-item-inflight" data-reveal>
@@ -2421,9 +2467,74 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
               <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
             </span>
             <div>
-              <h4>AWS Security Specialty</h4>
-              <p data-i18n="cert.awssec.desc">IAM deep-dive, KMS, GuardDuty, VPC hardening and incident response in the cloud.</p>
-              <span class="cert-progress"><i style="--w:20%"></i></span>
+              <a class="cert-link" href="https://www.isc2.org/certifications/cissp" target="_blank" rel="noopener noreferrer">
+                <h4>CISSP</h4>
+              </a>
+              <p data-i18n="cert.cissp.desc">ISC2 Certified Information Systems Security Professional. The security gold standard.</p>
+              <span class="cert-progress"><i style="--w:30%"></i></span>
+            </div>
+          </div>
+          <div class="cert-item cert-item-inflight" data-reveal>
+            <span class="cert-badge cert-badge-loading">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </span>
+            <div>
+              <a class="cert-link" href="https://www.coursera.org/professional-certificates/meta-ios-developer" target="_blank" rel="noopener noreferrer">
+                <h4>Meta iOS Developer, Professional</h4>
+              </a>
+              <p data-i18n="cert.metaios.desc">Production-grade Swift and SwiftUI from Meta, App Store release workflow end to end.</p>
+              <span class="cert-progress"><i style="--w:60%"></i></span>
+            </div>
+          </div>
+          <div class="cert-item cert-item-inflight" data-reveal>
+            <span class="cert-badge cert-badge-loading">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            </span>
+            <div>
+              <a class="cert-link" href="https://www.coursera.org/professional-certificates/meta-android-developer" target="_blank" rel="noopener noreferrer">
+                <h4>Meta Android Developer, Professional</h4>
+              </a>
+              <p data-i18n="cert.metaandroid.desc">Kotlin, Jetpack Compose, modern Android architecture from Meta, Play Store release end to end.</p>
+              <span class="cert-progress"><i style="--w:55%"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-col">
+        <h3 class="cert-col-title" data-reveal data-i18n="cert.roadmap">On the roadmap</h3>
+        <div class="cert-list">
+          <div class="cert-item cert-item-next" data-reveal>
+            <span class="cert-badge cert-badge-next">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+            <div>
+              <a class="cert-link" href="https://aws.amazon.com/certification/certified-devops-engineer-professional/" target="_blank" rel="noopener noreferrer">
+                <h4>AWS DevOps Engineer, Professional</h4>
+              </a>
+              <p data-i18n="cert.awsdevops.desc">Pipelines, IaC, monitoring, governance and cost controls across multi-account AWS.</p>
+            </div>
+          </div>
+          <div class="cert-item cert-item-next" data-reveal>
+            <span class="cert-badge cert-badge-next">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+            <div>
+              <a class="cert-link" href="https://aws.amazon.com/certification/certified-generative-ai-developer-professional/" target="_blank" rel="noopener noreferrer">
+                <h4>AWS Generative AI Developer, Professional</h4>
+              </a>
+              <p data-i18n="cert.awsgenai.desc">Building production LLM applications on AWS: Bedrock, vector stores, evaluation, guardrails.</p>
+            </div>
+          </div>
+          <div class="cert-item cert-item-next" data-reveal>
+            <span class="cert-badge cert-badge-next">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+            <div>
+              <a class="cert-link" href="https://www.isc2.org/certifications/issap" target="_blank" rel="noopener noreferrer">
+                <h4>ISSAP</h4>
+              </a>
+              <p data-i18n="cert.issap.desc">CISSP concentration in security architecture, the natural follow-up to CISSP for an architect.</p>
             </div>
           </div>
         </div>
@@ -2588,7 +2699,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
         <li data-reveal><a href="https://github.com/chochy2001" target="_blank" rel="noopener noreferrer" ><span>GitHub</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
         <li data-reveal><a href="https://capdesis.com" target="_blank" rel="noopener noreferrer" ><span>Capdesis</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
         <li data-reveal><a href="https://www.udemy.com/user/jorge-salgado-miranda-4/" target="_blank" rel="noopener noreferrer" ><span>Udemy</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
-        <li data-reveal><a href="tel:+525521982449" ><span>+52 55 2198 2449</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8 10a16 16 0 0 0 6 6l1.36-1.36a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a></li>
+        <li data-reveal><a href="https://wa.me/525521982449?text=Hola%20Jorge%2C" target="_blank" rel="noopener noreferrer" aria-label="Send a WhatsApp message to Jorge"><span data-i18n="contact.whatsapp">WhatsApp · messages preferred</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
       </ul>
     </div>
   </section>
@@ -2783,14 +2894,20 @@ const I18N = {
     "eng.card6.p3": "Automated daily backups with point-in-time recovery, never lose a row",
     "cert.kicker": "Certifications · Learning path",
     "cert.title1": "Always leveling up.",
-    "cert.title2": "Next: architecture & security.",
+    "cert.title2": "Architecture, security, mobile.",
     "cert.done": "Earned",
     "cert.inprogress": "In progress",
+    "cert.roadmap": "On the roadmap",
     "cert.mobile": "Specialization",
-    "cert.aws.desc": "Going deep on distributed system design, multi-region architecture and cost governance.",
-    "cert.sec.title": "Advanced Cybersecurity",
-    "cert.sec.desc": "OSCP-track: offensive security, threat modeling, secure mobile & cloud architectures.",
+    "cert.aws.desc": "Distributed system design, multi-region, cost governance. The architect credential that matches what I ship.",
     "cert.awssec.desc": "IAM deep-dive, KMS, GuardDuty, VPC hardening and incident response in the cloud.",
+    "cert.cissp.desc": "ISC2 Certified Information Systems Security Professional. The security gold standard.",
+    "cert.metaios.desc": "Production-grade Swift and SwiftUI from Meta, App Store release workflow end to end.",
+    "cert.metaandroid.desc": "Kotlin, Jetpack Compose, modern Android architecture from Meta, Play Store release end to end.",
+    "cert.awsdevops.desc": "Pipelines, IaC, monitoring, governance and cost controls across multi-account AWS.",
+    "cert.awsgenai.desc": "Building production LLM applications on AWS: Bedrock, vector stores, evaluation, guardrails.",
+    "cert.issap.desc": "CISSP concentration in security architecture, the natural follow-up to CISSP for an architect.",
+    "contact.whatsapp": "WhatsApp · messages preferred",
 
     "udemy.kicker": "Teaching",
     "udemy.title1": "54,000+ developers",
@@ -3000,14 +3117,20 @@ const I18N = {
     "eng.card6.p3": "Backups diarios automáticos con recuperación point-in-time, sin perder un solo registro",
     "cert.kicker": "Certificaciones · Camino de aprendizaje",
     "cert.title1": "Siempre subiendo de nivel.",
-    "cert.title2": "Sigue: arquitectura y seguridad.",
+    "cert.title2": "Arquitectura, seguridad, mobile.",
     "cert.done": "Obtenidas",
     "cert.inprogress": "En proceso",
+    "cert.roadmap": "En el roadmap",
     "cert.mobile": "Especialización",
-    "cert.aws.desc": "Profundizando en diseño de sistemas distribuidos, arquitectura multi-región y gobierno de costos.",
-    "cert.sec.title": "Ciberseguridad Avanzada",
-    "cert.sec.desc": "Track OSCP: seguridad ofensiva, modelado de amenazas, arquitecturas seguras mobile y cloud.",
+    "cert.aws.desc": "Diseño de sistemas distribuidos, multi-región, gobierno de costos. La credencial de arquitectura que corresponde a lo que entrego.",
     "cert.awssec.desc": "IAM a fondo, KMS, GuardDuty, hardening de VPC y respuesta a incidentes en la nube.",
+    "cert.cissp.desc": "ISC2 Certified Information Systems Security Professional. El estándar de oro de seguridad.",
+    "cert.metaios.desc": "Swift y SwiftUI a nivel de producción desde Meta, flujo completo hasta el App Store.",
+    "cert.metaandroid.desc": "Kotlin, Jetpack Compose y arquitectura moderna de Android desde Meta, release completo en Play Store.",
+    "cert.awsdevops.desc": "Pipelines, IaC, monitoreo, gobierno y control de costos en AWS multi-cuenta.",
+    "cert.awsgenai.desc": "Aplicaciones LLM en producción sobre AWS: Bedrock, vector stores, evaluación, guardrails.",
+    "cert.issap.desc": "Concentración CISSP en arquitectura de seguridad, el siguiente paso natural después del CISSP para un arquitecto.",
+    "contact.whatsapp": "WhatsApp · prefiero mensajes",
 
     "udemy.kicker": "Enseñanza",
     "udemy.title1": "54,000+ desarrolladores",

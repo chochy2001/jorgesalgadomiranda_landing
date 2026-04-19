@@ -4,47 +4,50 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Jorge Salgado Miranda, Arquitecto de Software · CV 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  @font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/instrument-serif.woff2') format('woff2'); }
+  @font-face { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-display: swap; src: url('../fonts/instrument-serif-italic.woff2') format('woff2'); }
+  @font-face { font-family: 'Geist'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('../fonts/geist.woff2') format('woff2'); }
+  @font-face { font-family: 'Geist Mono'; font-style: normal; font-weight: 400 500; font-display: swap; src: url('../fonts/geist-mono.woff2') format('woff2'); }
+</style>
 <style>
 :root { --ink:#0b0c0e; --ink-2:#3b3f46; --ink-3:#6b7180; --line:#d9dde3; --accent:#006f8f; --bg:#fff; --paper:#faf9f6; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--paper); color: var(--ink); font-family: 'Inter', -apple-system, sans-serif; font-size: 10.5pt; line-height: 1.5; -webkit-font-smoothing: antialiased; padding: 20px 0; }
+body { background: var(--paper); color: var(--ink); font-family: 'Geist', -apple-system, sans-serif; font-size: 10.5pt; line-height: 1.5; -webkit-font-smoothing: antialiased; padding: 20px 0; }
 .sheet { max-width: 210mm; min-height: 297mm; margin: 0 auto; background: var(--bg); padding: 22mm 20mm; box-shadow: 0 6px 30px rgba(0,0,0,0.08); }
 .header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 2px solid var(--ink); margin-bottom: 20px; gap: 24px; }
 .name-block h1 { font-family: 'Instrument Serif', serif; font-size: 38pt; line-height: 1; font-weight: 400; letter-spacing: -0.01em; }
 .name-block .role { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-size: 14pt; margin-top: 4px; }
-.contact { font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; color: var(--ink-2); text-align: right; line-height: 1.7; }
+.contact { font-family: 'Geist Mono', monospace; font-size: 8.5pt; color: var(--ink-2); text-align: right; line-height: 1.7; }
 .contact a { color: var(--ink-2); text-decoration: none; }
 .summary { font-size: 10.5pt; color: var(--ink-2); margin: 0 0 18px; line-height: 1.55; }
 .summary strong { color: var(--ink); }
 h2.section { font-family: 'Instrument Serif', serif; font-size: 16pt; font-weight: 400; letter-spacing: -0.01em; margin: 16px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--line); display: flex; align-items: baseline; gap: 10px; }
-h2.section::before { content: attr(data-num); font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--accent); letter-spacing: 0.1em; }
+h2.section::before { content: attr(data-num); font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--accent); letter-spacing: 0.1em; }
 .job { margin-bottom: 14px; page-break-inside: avoid; }
 .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .job-title { font-weight: 600; font-size: 11pt; }
 .job-title .company { color: var(--accent); font-weight: 500; }
-.job-meta { font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+.job-meta { font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
 .job-blurb { font-size: 10pt; color: var(--ink-2); margin: 4px 0 6px; font-style: italic; }
 .job ul { list-style: none; padding-left: 0; }
 .job li { position: relative; padding-left: 14px; margin-bottom: 3px; font-size: 10pt; color: var(--ink-2); line-height: 1.5; }
 .job li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 8pt; top: 2px; }
-.job .tech { font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--ink-3); margin-top: 5px; letter-spacing: 0.02em; }
+.job .tech { font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--ink-3); margin-top: 5px; letter-spacing: 0.02em; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
 .skills { display: grid; grid-template-columns: 170px 1fr; gap: 4px 14px; font-size: 9.5pt; }
 .skills dt { font-weight: 600; color: var(--ink); }
-.skills dd { color: var(--ink-2); font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; line-height: 1.6; }
+.skills dd { color: var(--ink-2); font-family: 'Geist Mono', monospace; font-size: 8.5pt; line-height: 1.6; }
 .arch-security { background: #f4f7f9; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 8px 0 16px; font-size: 9.5pt; }
 .arch-security strong { color: var(--accent); }
 .certs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; font-size: 9.5pt; }
 .cert-row { display: flex; gap: 8px; align-items: baseline; }
 .cert-row .dot { color: var(--accent); }
-.cert-row .inflight { color: var(--ink-3); font-style: italic; font-size: 8.5pt; margin-left: auto; font-family: 'JetBrains Mono', monospace; }
-.foot { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--ink-3); display: flex; justify-content: space-between; }
+.cert-row .inflight { color: var(--ink-3); font-style: italic; font-size: 8.5pt; margin-left: auto; font-family: 'Geist Mono', monospace; }
+.foot { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--line); font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--ink-3); display: flex; justify-content: space-between; }
 @media print { body { background: white; padding: 0; } .sheet { box-shadow: none; margin: 0; max-width: none; padding: 18mm 16mm; } .no-print { display: none !important; } }
 .toolbar { position: fixed; top: 16px; right: 16px; display: flex; gap: 8px; z-index: 10; }
-.toolbar button { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 8px 12px; border: 1px solid var(--line); background: white; border-radius: 6px; cursor: pointer; }
+.toolbar button { font-family: 'Geist Mono', monospace; font-size: 11px; padding: 8px 12px; border: 1px solid var(--line); background: white; border-radius: 6px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -202,13 +205,17 @@ h2.section::before { content: attr(data-num); font-family: 'JetBrains Mono', mon
       <div style="color:var(--ink-2);font-size:9.5pt">Facultad de Ingeniería · UNAM · Ciudad de México</div>
     </div>
     <div class="certs">
-      <div class="cert-row"><span class="dot">●</span>AWS Cloud Practitioner</div>
       <div class="cert-row"><span class="dot">●</span>Google Developer</div>
       <div class="cert-row"><span class="dot">●</span>Meta Developer</div>
       <div class="cert-row"><span class="dot">●</span>Mobile Architecture</div>
-      <div class="cert-row"><span class="dot">○</span>AWS SA Professional <span class="inflight">en proceso</span></div>
-      <div class="cert-row"><span class="dot">○</span>AWS Security Specialty <span class="inflight">en proceso</span></div>
-      <div class="cert-row"><span class="dot">○</span>Ciberseguridad Avanzada (OSCP) <span class="inflight">en proceso</span></div>
+      <div class="cert-row"><span class="dot">○</span>AWS Solutions Architect, Professional <span class="inflight">en proceso</span></div>
+      <div class="cert-row"><span class="dot">○</span>AWS Security, Specialty <span class="inflight">en proceso</span></div>
+      <div class="cert-row"><span class="dot">○</span>CISSP (ISC2) <span class="inflight">en proceso</span></div>
+      <div class="cert-row"><span class="dot">○</span>Meta iOS Developer, Professional <span class="inflight">en proceso</span></div>
+      <div class="cert-row"><span class="dot">○</span>Meta Android Developer, Professional <span class="inflight">en proceso</span></div>
+      <div class="cert-row"><span class="dot">◇</span>AWS DevOps Engineer, Professional <span class="inflight">en el roadmap</span></div>
+      <div class="cert-row"><span class="dot">◇</span>AWS Generative AI Developer, Professional <span class="inflight">en el roadmap</span></div>
+      <div class="cert-row"><span class="dot">◇</span>ISSAP (ISC2) <span class="inflight">en el roadmap</span></div>
     </div>
   </div>
 

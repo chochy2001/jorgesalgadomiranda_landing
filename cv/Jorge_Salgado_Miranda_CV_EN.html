@@ -4,9 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Jorge Salgado Miranda, Software Architect · CV 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  @font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/instrument-serif.woff2') format('woff2'); }
+  @font-face { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-display: swap; src: url('../fonts/instrument-serif-italic.woff2') format('woff2'); }
+  @font-face { font-family: 'Geist'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('../fonts/geist.woff2') format('woff2'); }
+  @font-face { font-family: 'Geist Mono'; font-style: normal; font-weight: 400 500; font-display: swap; src: url('../fonts/geist-mono.woff2') format('woff2'); }
+</style>
 <style>
 :root {
   --ink: #0b0c0e;
@@ -21,7 +24,7 @@
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'Geist', -apple-system, sans-serif;
   font-size: 10.5pt;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -38,7 +41,7 @@ body {
 .header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 2px solid var(--ink); margin-bottom: 20px; gap: 24px; }
 .name-block h1 { font-family: 'Instrument Serif', serif; font-size: 38pt; line-height: 1; font-weight: 400; letter-spacing: -0.01em; }
 .name-block .role { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-size: 14pt; margin-top: 4px; }
-.contact { font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; color: var(--ink-2); text-align: right; line-height: 1.7; }
+.contact { font-family: 'Geist Mono', monospace; font-size: 8.5pt; color: var(--ink-2); text-align: right; line-height: 1.7; }
 .contact a { color: var(--ink-2); text-decoration: none; }
 .summary { font-size: 10.5pt; color: var(--ink-2); margin: 0 0 18px; line-height: 1.55; }
 .summary strong { color: var(--ink); }
@@ -55,7 +58,7 @@ h2.section {
 }
 h2.section::before {
   content: attr(data-num);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Geist Mono', monospace;
   font-size: 8pt;
   color: var(--accent);
   letter-spacing: 0.1em;
@@ -65,17 +68,17 @@ h2.section::before {
 .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .job-title { font-weight: 600; font-size: 11pt; }
 .job-title .company { color: var(--accent); font-weight: 500; }
-.job-meta { font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+.job-meta { font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
 .job-blurb { font-size: 10pt; color: var(--ink-2); margin: 4px 0 6px; font-style: italic; }
 .job ul { list-style: none; padding-left: 0; }
 .job li { position: relative; padding-left: 14px; margin-bottom: 3px; font-size: 10pt; color: var(--ink-2); line-height: 1.5; }
 .job li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 8pt; top: 2px; }
-.job .tech { font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--ink-3); margin-top: 5px; letter-spacing: 0.02em; }
+.job .tech { font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--ink-3); margin-top: 5px; letter-spacing: 0.02em; }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
 .skills { display: grid; grid-template-columns: 160px 1fr; gap: 4px 14px; font-size: 9.5pt; }
 .skills dt { font-weight: 600; color: var(--ink); }
-.skills dd { color: var(--ink-2); font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; line-height: 1.6; }
+.skills dd { color: var(--ink-2); font-family: 'Geist Mono', monospace; font-size: 8.5pt; line-height: 1.6; }
 
 .arch-security { background: #f4f7f9; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 8px 0 16px; font-size: 9.5pt; }
 .arch-security strong { color: var(--accent); }
@@ -83,9 +86,9 @@ h2.section::before {
 .certs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; font-size: 9.5pt; }
 .cert-row { display: flex; gap: 8px; align-items: baseline; }
 .cert-row .dot { color: var(--accent); }
-.cert-row .inflight { color: var(--ink-3); font-style: italic; font-size: 8.5pt; margin-left: auto; font-family: 'JetBrains Mono', monospace; }
+.cert-row .inflight { color: var(--ink-3); font-style: italic; font-size: 8.5pt; margin-left: auto; font-family: 'Geist Mono', monospace; }
 
-.foot { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--ink-3); display: flex; justify-content: space-between; }
+.foot { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--line); font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--ink-3); display: flex; justify-content: space-between; }
 
 @media print {
   body { background: white; padding: 0; }
@@ -93,7 +96,7 @@ h2.section::before {
   .no-print { display: none !important; }
 }
 .toolbar { position: fixed; top: 16px; right: 16px; display: flex; gap: 8px; z-index: 10; }
-.toolbar button { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 8px 12px; border: 1px solid var(--line); background: white; border-radius: 6px; cursor: pointer; }
+.toolbar button { font-family: 'Geist Mono', monospace; font-size: 11px; padding: 8px 12px; border: 1px solid var(--line); background: white; border-radius: 6px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -252,13 +255,17 @@ h2.section::before {
       <div style="color:var(--ink-2);font-size:9.5pt">Facultad de Ingeniería · UNAM · Mexico City</div>
     </div>
     <div class="certs">
-      <div class="cert-row"><span class="dot">●</span>AWS Cloud Practitioner</div>
       <div class="cert-row"><span class="dot">●</span>Google Developer</div>
       <div class="cert-row"><span class="dot">●</span>Meta Developer</div>
       <div class="cert-row"><span class="dot">●</span>Mobile Architecture</div>
-      <div class="cert-row"><span class="dot">○</span>AWS SA Professional <span class="inflight">in progress</span></div>
-      <div class="cert-row"><span class="dot">○</span>AWS Security Specialty <span class="inflight">in progress</span></div>
-      <div class="cert-row"><span class="dot">○</span>Advanced Cybersecurity (OSCP track) <span class="inflight">in progress</span></div>
+      <div class="cert-row"><span class="dot">○</span>AWS Solutions Architect, Professional <span class="inflight">in progress</span></div>
+      <div class="cert-row"><span class="dot">○</span>AWS Security, Specialty <span class="inflight">in progress</span></div>
+      <div class="cert-row"><span class="dot">○</span>CISSP (ISC2) <span class="inflight">in progress</span></div>
+      <div class="cert-row"><span class="dot">○</span>Meta iOS Developer, Professional <span class="inflight">in progress</span></div>
+      <div class="cert-row"><span class="dot">○</span>Meta Android Developer, Professional <span class="inflight">in progress</span></div>
+      <div class="cert-row"><span class="dot">◇</span>AWS DevOps Engineer, Professional <span class="inflight">on the roadmap</span></div>
+      <div class="cert-row"><span class="dot">◇</span>AWS Generative AI Developer, Professional <span class="inflight">on the roadmap</span></div>
+      <div class="cert-row"><span class="dot">◇</span>ISSAP (ISC2) <span class="inflight">on the roadmap</span></div>
     </div>
   </div>
 
