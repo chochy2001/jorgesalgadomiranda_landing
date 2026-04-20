@@ -222,8 +222,38 @@
       <svg aria-hidden="true" class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       <svg aria-hidden="true" class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
+    <button class="toggle nav-burger" id="nav-burger" aria-label="Open menu" aria-controls="nav-drawer" aria-expanded="false">
+      <span class="burger-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true" role="dialog" aria-label="Site navigation" aria-modal="true">
+  <div class="nav-drawer-backdrop" data-drawer-dismiss></div>
+  <aside class="nav-drawer-panel">
+    <header class="nav-drawer-head">
+      <span class="nav-brand-mark">js</span>
+      <button class="toggle nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+    <ul class="nav-drawer-links">
+      <li><a href="#about" data-drawer-link data-i18n="nav.about">About</a></li>
+      <li><a href="#experience" data-drawer-link data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#capdesis" data-drawer-link data-i18n="nav.capdesis">Capdesis</a></li>
+      <li><a href="#cases" data-drawer-link data-i18n="nav.cases">Cases</a></li>
+      <li><a href="#stack" data-drawer-link data-i18n="nav.stack">Stack</a></li>
+      <li><a href="#engineering" data-drawer-link data-i18n="nav.engineering">Engineering</a></li>
+      <li><a href="#oss" data-drawer-link data-i18n="nav.oss">Open Source</a></li>
+      <li><a href="#certifications" data-drawer-link data-i18n="nav.certs">Certifications</a></li>
+      <li><a href="#contact" data-drawer-link data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <footer class="nav-drawer-foot">
+      <span class="nav-drawer-role" data-i18n="nav.role">Software Architect</span>
+    </footer>
+  </aside>
+</div>
 
 <main id="main" tabindex="-1"><span id="top" aria-hidden="true"></span>
 
@@ -2048,6 +2078,107 @@
       el.style.transform = `translateY(${-y * f}px)`;
     });
   }, { passive: true });
+
+  // ============ JSON PANEL TYPEWRITER (max 5s) ============
+  (function () {
+    const panel = document.querySelector('.panel-body');
+    if (!panel) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Snapshot the text inside every text node, then clear them
+    const walker = document.createTreeWalker(panel, NodeFilter.SHOW_TEXT, null);
+    const nodes = [];
+    let n;
+    while ((n = walker.nextNode())) {
+      nodes.push({ node: n, text: n.nodeValue });
+    }
+    const total = nodes.reduce((s, r) => s + r.text.length, 0);
+    if (!total) return;
+    nodes.forEach(r => { r.node.nodeValue = ''; });
+
+    const maxDuration = 4800; // stay under 5s including tail
+    const duration = Math.min(maxDuration, 11 * total);
+    const perChar = duration / total;
+    panel.classList.add('is-typing');
+
+    const start = performance.now();
+    const tick = (t) => {
+      const chars = Math.min(total, Math.floor((t - start) / perChar));
+      let remaining = chars;
+      for (const rec of nodes) {
+        if (remaining <= 0) { rec.node.nodeValue = ''; continue; }
+        const take = Math.min(rec.text.length, remaining);
+        rec.node.nodeValue = rec.text.slice(0, take);
+        remaining -= take;
+      }
+      if (chars < total) {
+        requestAnimationFrame(tick);
+      } else {
+        nodes.forEach(r => { r.node.nodeValue = r.text; });
+        panel.classList.remove('is-typing');
+      }
+    };
+    // Tiny delay so the hero reveal catches up first
+    setTimeout(() => requestAnimationFrame(tick), 250);
+  })();
+
+  // ============ MOBILE NAV DRAWER ============
+  (function () {
+    const burger = document.getElementById('nav-burger');
+    const drawer = document.getElementById('nav-drawer');
+    if (!burger || !drawer) return;
+    const closeBtn = document.getElementById('nav-drawer-close');
+    const backdrop = drawer.querySelector('[data-drawer-dismiss]');
+    const panel = drawer.querySelector('.nav-drawer-panel');
+    const links = drawer.querySelectorAll('[data-drawer-link]');
+    let lastFocus = null;
+
+    const open = () => {
+      lastFocus = document.activeElement;
+      drawer.classList.add('is-open');
+      drawer.setAttribute('aria-hidden', 'false');
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'Close menu');
+      document.body.classList.add('drawer-open');
+      // focus first link shortly after transition starts
+      setTimeout(() => { if (links[0]) links[0].focus(); }, 80);
+    };
+    const close = () => {
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('aria-hidden', 'true');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+      document.body.classList.remove('drawer-open');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    };
+
+    burger.addEventListener('click', () => {
+      drawer.classList.contains('is-open') ? close() : open();
+    });
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    if (backdrop) backdrop.addEventListener('click', close);
+    links.forEach(l => l.addEventListener('click', () => setTimeout(close, 0)));
+    document.addEventListener('keydown', (e) => {
+      if (!drawer.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      // focus trap
+      if (e.key === 'Tab') {
+        const focusables = panel.querySelectorAll('button, a, [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    });
+    // Close automatically if viewport grows past mobile breakpoint
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1060 && drawer.classList.contains('is-open')) close();
+    });
+  })();
 
   // ============ TIMELINE EXPAND/COLLAPSE ============
   (function () {
