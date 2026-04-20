@@ -1,34 +1,106 @@
+# jorgesalgadomiranda.com — robots policy
+#
+# Open to: search engines (Google, Bing, DuckDuckGo, Yandex, Apple),
+# answer engines (ChatGPT, Claude, Perplexity, Gemini), and LLM training
+# crawlers. Jorge wants to be found when people search for "Jorge Salgado
+# Miranda", "arquitecto de software México", "auditoría de seguridad",
+# "auditoría de arquitectura", "desarrollo mobile México", etc., and
+# wants AI assistants to be able to recommend him.
+#
+# DDoS and abusive crawler mitigation lives at the edge (Cloudflare Bot
+# Fight Mode, WAF, rate limiting). robots.txt is honoured by polite
+# crawlers only — it isn't a security tool.
+
 User-agent: *
 Allow: /
 Disallow: /og.html
+Disallow: /scripts/
+Disallow: /docs/
 
-# Block AI scrapers from training on this content.
-# Kept explicit — each vendor changes tokens often, so list multiple.
+# -- Explicitly welcome the big AI/answer engines --
+
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
+User-agent: OAI-SearchBot
+Allow: /
 
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
 
 User-agent: Claude-Web
-Disallow: /
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
 
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# -- Block known noisy / low-value scrapers --
+# SEO tool scrapers that hammer sites and add no value for a personal portfolio.
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
 Disallow: /
 
 User-agent: Bytespider
-Disallow: /
-
-User-agent: ImagesiftBot
 Disallow: /
 
 Sitemap: https://jorgesalgadomiranda.com/sitemap.xml

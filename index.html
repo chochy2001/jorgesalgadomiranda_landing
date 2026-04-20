@@ -2345,7 +2345,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     </div>
 
     <h2 class="section-title section-title-wide">
-      <span data-reveal data-i18n="exp.title1">Eight years,</span>
+      <span data-reveal data-i18n="exp.title1">8 years,</span>
       <em data-reveal data-i18n="exp.title2">from native apps to distributed systems.</em>
     </h2>
 
@@ -3271,7 +3271,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <div class="cv-right" data-tilt>
         <div class="cv-preview">
           <div class="cv-preview-header">
-            <span>CV · 2026</span>
+            <span>CV · <span id="cv-preview-year">2026</span></span>
             <span class="cv-preview-dots"><i></i><i></i><i></i></span>
           </div>
           <div class="cv-preview-body">
@@ -3472,7 +3472,7 @@ const I18N = {
     "cap.clients.title": "Trusted by",
 
     "exp.kicker": "Experience",
-    "exp.title1": "Eight years,",
+    "exp.title1": "{{yearsSince:2018}} years,",
     "exp.title2": "from native apps to distributed systems.",
     "exp.present": "Present",
     "exp.j1.role": "Senior Mobile Engineer",
@@ -3748,7 +3748,7 @@ const I18N = {
     "cap.clients.title": "Con quién he trabajado",
 
     "exp.kicker": "Experiencia",
-    "exp.title1": "Ocho años,",
+    "exp.title1": "{{yearsSince:2018}} años,",
     "exp.title2": "desde apps nativas hasta sistemas distribuidos.",
     "exp.present": "Actual",
     "exp.j1.role": "Senior Mobile Engineer",
@@ -3988,6 +3988,8 @@ window.__I18N__ = I18N;
   const NOW_YEAR = new Date().getFullYear();
   const yearEl = document.getElementById('copyright-year');
   if (yearEl) yearEl.textContent = NOW_YEAR;
+  const cvPreviewYearEl = document.getElementById('cv-preview-year');
+  if (cvPreviewYearEl) cvPreviewYearEl.textContent = NOW_YEAR;
 
   // Replace every [data-years-since="YYYY"] span with the elapsed years.
   // Used for "8 years shipping" style numbers; auto-increments each Jan 1st.

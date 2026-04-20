@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Jorge Salgado Miranda, Software Architect · CV 2026</title>
+<title>Jorge Salgado Miranda - Software Architect - CV</title>
+<meta name="author" content="Jorge Salgado Miranda" />
+<meta name="description" content="CV of Jorge Salgado Miranda, Senior Software Architect: mobile (iOS, Android, Flutter), backend (Go, AWS), architecture and security. PayPal/Venmo, Capdesis, UNAM." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://jorgesalgadomiranda.com/cv/Jorge_Salgado_Miranda_CV_EN.html" />
+<!-- CV-specific favicon (document glyph, intentionally distinct from main site "js" monogram) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='18' y='10' width='64' height='80' rx='6' fill='%23006f8f'/%3E%3Crect x='26' y='26' width='48' height='4' fill='white'/%3E%3Crect x='26' y='38' width='48' height='3' fill='white' opacity='0.75'/%3E%3Crect x='26' y='48' width='36' height='3' fill='white' opacity='0.6'/%3E%3Crect x='26' y='58' width='40' height='3' fill='white' opacity='0.55'/%3E%3Crect x='26' y='68' width='30' height='3' fill='white' opacity='0.4'/%3E%3C/svg%3E" />
 <style>
   @font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/instrument-serif.woff2') format('woff2'); }
   @font-face { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-display: swap; src: url('../fonts/instrument-serif-italic.woff2') format('woff2'); }
@@ -24,7 +30,7 @@
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Geist', -apple-system, sans-serif;
+  font-family: 'Geist', Arial, Helvetica, sans-serif;
   font-size: 10.5pt;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -38,65 +44,166 @@ body {
   padding: 22mm 20mm;
   box-shadow: 0 6px 30px rgba(0,0,0,0.08);
 }
-.header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 2px solid var(--ink); margin-bottom: 20px; gap: 24px; }
-.name-block h1 { font-family: 'Instrument Serif', serif; font-size: 38pt; line-height: 1; font-weight: 400; letter-spacing: -0.01em; }
-.name-block .role { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-size: 14pt; margin-top: 4px; }
-.contact { font-family: 'Geist Mono', monospace; font-size: 8.5pt; color: var(--ink-2); text-align: right; line-height: 1.7; }
-.contact a { color: var(--ink-2); text-decoration: none; }
-.summary { font-size: 10.5pt; color: var(--ink-2); margin: 0 0 18px; line-height: 1.55; }
+
+/* ATS note: header stacks for reliable top-to-bottom parse order.
+   On screen we re-grid it into two columns via @media print exclusion. */
+.header {
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 18px;
+}
+.header h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 34pt;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.header .role {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 13pt;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+.contact-line {
+  font-family: 'Geist Mono', 'Courier New', monospace;
+  font-size: 8.5pt;
+  color: var(--ink-2);
+  line-height: 1.65;
+}
+.contact-line a { color: var(--ink-2); text-decoration: none; }
+.contact-label { color: var(--ink-3); font-weight: 500; }
+
+.summary {
+  font-size: 10.5pt;
+  color: var(--ink-2);
+  margin: 0 0 16px;
+  line-height: 1.55;
+}
 .summary strong { color: var(--ink); }
 
 h2.section {
-  font-family: 'Instrument Serif', serif;
-  font-size: 16pt;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 15pt;
   font-weight: 400;
   letter-spacing: -0.01em;
-  margin: 16px 0 10px;
+  margin: 16px 0 8px;
   padding-bottom: 4px;
   border-bottom: 1px solid var(--line);
-  display: flex; align-items: baseline; gap: 10px;
-}
-h2.section::before {
-  content: attr(data-num);
-  font-family: 'Geist Mono', monospace;
-  font-size: 8pt;
-  color: var(--accent);
-  letter-spacing: 0.1em;
+  color: var(--ink);
 }
 
-.job { margin-bottom: 14px; page-break-inside: avoid; }
-.job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.job-title { font-weight: 600; font-size: 11pt; }
-.job-title .company { color: var(--accent); font-weight: 500; }
-.job-meta { font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
-.job-blurb { font-size: 10pt; color: var(--ink-2); margin: 4px 0 6px; font-style: italic; }
-.job ul { list-style: none; padding-left: 0; }
-.job li { position: relative; padding-left: 14px; margin-bottom: 3px; font-size: 10pt; color: var(--ink-2); line-height: 1.5; }
-.job li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 8pt; top: 2px; }
-.job .tech { font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--ink-3); margin-top: 5px; letter-spacing: 0.02em; }
+.skills-list,
+.cert-list,
+.extra-list {
+  list-style: disc;
+  padding-left: 18px;
+  margin: 4px 0 8px;
+}
+.skills-list li,
+.cert-list li,
+.extra-list li {
+  font-size: 10pt;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+.skills-list li strong,
+.cert-list li strong,
+.extra-list li strong { color: var(--ink); }
 
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
-.skills { display: grid; grid-template-columns: 160px 1fr; gap: 4px 14px; font-size: 9.5pt; }
-.skills dt { font-weight: 600; color: var(--ink); }
-.skills dd { color: var(--ink-2); font-family: 'Geist Mono', monospace; font-size: 8.5pt; line-height: 1.6; }
-
-.arch-security { background: #f4f7f9; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 8px 0 16px; font-size: 9.5pt; }
+.arch-security {
+  background: #f4f7f9;
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  margin: 10px 0 14px;
+  font-size: 10pt;
+  color: var(--ink-2);
+}
 .arch-security strong { color: var(--accent); }
 
-.certs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; font-size: 9.5pt; }
-.cert-row { display: flex; gap: 8px; align-items: baseline; }
-.cert-row .dot { color: var(--accent); }
-.cert-row .inflight { color: var(--ink-3); font-style: italic; font-size: 8.5pt; margin-left: auto; font-family: 'Geist Mono', monospace; }
+.job { margin-bottom: 14px; page-break-inside: avoid; }
+.job-title {
+  font-weight: 600;
+  font-size: 11pt;
+  color: var(--ink);
+}
+.job-title .company { color: var(--accent); font-weight: 500; }
+.job-meta {
+  font-family: 'Geist Mono', 'Courier New', monospace;
+  font-size: 8.5pt;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  margin-top: 1px;
+}
+.job-blurb {
+  font-size: 10pt;
+  color: var(--ink-2);
+  margin: 4px 0 4px;
+  font-style: italic;
+}
+.job ul {
+  list-style: disc;
+  padding-left: 18px;
+  margin: 4px 0 6px;
+}
+.job li {
+  font-size: 10pt;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+.job .tech {
+  font-family: 'Geist Mono', 'Courier New', monospace;
+  font-size: 8.5pt;
+  color: var(--ink-3);
+  margin-top: 4px;
+  letter-spacing: 0.01em;
+}
 
-.foot { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--line); font-family: 'Geist Mono', monospace; font-size: 8pt; color: var(--ink-3); display: flex; justify-content: space-between; }
+.education-block { margin: 4px 0 12px; }
+.education-title { font-weight: 600; font-size: 11pt; color: var(--ink); }
+.education-sub { color: var(--ink-2); font-size: 10pt; margin-top: 2px; }
+
+.foot {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-family: 'Geist Mono', 'Courier New', monospace;
+  font-size: 8pt;
+  color: var(--ink-3);
+  display: flex;
+  justify-content: space-between;
+}
 
 @media print {
   body { background: white; padding: 0; }
-  .sheet { box-shadow: none; margin: 0; max-width: none; padding: 18mm 16mm; }
+  .sheet { box-shadow: none; margin: 0; max-width: none; padding: 14mm 14mm; }
   .no-print { display: none !important; }
+  .job, .education-block { page-break-inside: avoid; }
+  h2.section { page-break-after: avoid; }
+  a { color: var(--ink-2); text-decoration: none; }
 }
-.toolbar { position: fixed; top: 16px; right: 16px; display: flex; gap: 8px; z-index: 10; }
-.toolbar button { font-family: 'Geist Mono', monospace; font-size: 11px; padding: 8px 12px; border: 1px solid var(--line); background: white; border-radius: 6px; cursor: pointer; }
+
+.toolbar {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.toolbar button {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -107,189 +214,184 @@ h2.section::before {
 
 <article class="sheet">
   <header class="header">
-    <div class="name-block">
-      <h1>Jorge Salgado Miranda</h1>
-      <div class="role">Software Architect, Mobile, Web &amp; Security</div>
-    </div>
-    <div class="contact">
-      Mexico City, MX · Remote<br/>
-      jorgesalgadomiranda@protonmail.com<br/>
-      +52 55 2198 2449<br/>
-      <a href="https://jorgesalgadomiranda.com">jorgesalgadomiranda.com</a><br/>
-      <a href="https://linkedin.com/in/jorge-salgado-miranda-74023b181">linkedin.com/in/jorge-salgado-miranda</a><br/>
-      <a href="https://github.com/chochy2001">github.com/chochy2001</a><br/>
-      <a href="https://www.youtube.com/channel/UChoDyFV5T1t9qWymeTz8Gvg">youtube.com/@jorgesalgado</a>
+    <h1>Jorge Salgado Miranda</h1>
+    <div class="role">Software Architect - Mobile, Web &amp; Security</div>
+    <div class="contact-line">
+      <span class="contact-label">Location:</span> Mexico City, Mexico (Remote worldwide)<br/>
+      <span class="contact-label">Email:</span> jorgesalgadomiranda@protonmail.com<br/>
+      <span class="contact-label">Phone:</span> +52 55 2198 2449<br/>
+      <span class="contact-label">Website:</span> <a href="https://jorgesalgadomiranda.com">https://jorgesalgadomiranda.com</a><br/>
+      <span class="contact-label">LinkedIn:</span> <a href="https://linkedin.com/in/jorge-salgado-miranda-74023b181">https://linkedin.com/in/jorge-salgado-miranda-74023b181</a><br/>
+      <span class="contact-label">GitHub:</span> <a href="https://github.com/chochy2001">https://github.com/chochy2001</a><br/>
+      <span class="contact-label">YouTube:</span> <a href="https://www.youtube.com/channel/UChoDyFV5T1t9qWymeTz8Gvg">https://www.youtube.com/@jorgesalgado</a>
     </div>
   </header>
 
+  <h2 class="section">Professional Summary</h2>
   <p class="summary">
-    Senior Software Architect with <strong><span data-years-since="2018">8</span>+ years</strong> designing systems across mobile, web and backend. Currently at <strong>PayPal/Venmo</strong>, shipping financial features for 426M+ users with an <strong>"Exceeds Expectations"</strong> performance rating. Founder &amp; CEO of <strong>Capdesis</strong>: 34+ delivered projects, 51,000+ students reached, team of 4 to 6 engineers. Deep expertise in Kotlin, Swift, Flutter and Go; Clean Architecture, OAuth 2.0, biometric auth, multi-module systems. Actively pursuing <strong>AWS Solutions Architect Professional</strong> and advanced cybersecurity certifications. Instructor to 54,000+ developers on Udemy.
+    Senior Software Architect with <strong><span data-years-since="2018">8</span>+ years</strong> designing and shipping systems across mobile (iOS, Android, Flutter), backend (Go, Node) and cloud (AWS). Currently Senior Mobile Engineer at <strong>PayPal/Venmo</strong>, delivering financial features for 426M+ users with an <strong>"Exceeds Expectations"</strong> performance rating. Founder and CEO of <strong>Capdesis</strong>, a Mexico-based consultancy: 34+ projects delivered, 51,000+ students reached, 97% client satisfaction, team of 4 to 6 engineers. Target roles: Staff / Principal Mobile Engineer, Mobile Architect, Cloud Architect, Security Architect, Tech Lead, Fractional CTO. Deep expertise in Clean Architecture, multi-module systems, OAuth 2.0, biometric authentication, OWASP MASVS and threat modeling. Actively pursuing AWS Solutions Architect Professional and advanced cybersecurity certifications. Instructor to 54,000+ developers on Udemy.
   </p>
 
-  <h2 class="section" data-num="01">Technical Skills</h2>
-  <dl class="skills">
-    <dt>Mobile Native</dt><dd>Kotlin · Swift · Jetpack Compose · SwiftUI · UIKit · Android SDK · iOS SDK</dd>
-    <dt>Cross-Platform</dt><dd>Flutter · Dart · React Native</dd>
-    <dt>Backend &amp; Cloud</dt><dd>Go · Python · Node · REST · GraphQL · gRPC · AWS · GCP · Firebase · Docker · Kubernetes · Kafka · Redis</dd>
-    <dt>State &amp; Reactive</dt><dd>BLoC · Riverpod · Provider · GetX · RxJava · RxSwift · Combine · Kotlin Flows</dd>
-    <dt>Architecture</dt><dd>Clean Architecture · MVVM · Multi-module · Repository Pattern · SOLID · DDD · High-Level Design</dd>
-    <dt>Security</dt><dd>Biometric Auth (Face ID, Fingerprint) · OAuth 2.0 · JWT · Secure Storage · Encryption · Threat Modeling · mTLS</dd>
-    <dt>Testing &amp; Quality</dt><dd>JUnit · Mockito · Espresso · XCTest · Flutter Test · UI &amp; Automation Testing · 85%+ coverage</dd>
-    <dt>DevOps &amp; CI/CD</dt><dd>GitHub Actions · GitLab CI · Jenkins · Fastlane · Terraform · Datadog</dd>
-    <dt>Tools &amp; Env</dt><dd>Linux (Arch) · macOS · Neovim · tmux · Android Studio · Xcode · Figma · Git · AI pair (Claude, Cursor)</dd>
-    <dt>Databases</dt><dd>PostgreSQL · MySQL · SQLite · Firebase Firestore · Redis</dd>
-    <dt>Feature Mgmt</dt><dd>Feature Flags · Fake Responses · A/B Testing · Remote Config</dd>
-    <dt>Languages</dt><dd>Spanish (Native) · English (C1 Professional)</dd>
-  </dl>
+  <h2 class="section">Technical Skills</h2>
+  <ul class="skills-list">
+    <li><strong>Mobile - Native:</strong> iOS (Swift, SwiftUI, UIKit, Combine, Core Data, CoreLocation), Android (Kotlin, Jetpack Compose, Android SDK, Coroutines, Flow, Room)</li>
+    <li><strong>Mobile - Cross-platform:</strong> Flutter, Dart, BLoC, Riverpod, Provider, GetX, React Native</li>
+    <li><strong>Backend &amp; APIs:</strong> Go (Golang), Python, Node.js, REST, GraphQL, gRPC, microservices, event-driven architecture, Kafka, Redis</li>
+    <li><strong>Cloud &amp; Infrastructure:</strong> AWS (EC2, S3, RDS, Lambda, CloudFront, IAM), GCP, Firebase, Docker, Kubernetes, Terraform, Hostinger, Tailscale</li>
+    <li><strong>Architecture:</strong> Clean Architecture, MVVM, MVI, Multi-module, Repository Pattern, SOLID, Domain-Driven Design (DDD), Hexagonal, High-Level Design (HLD), observability, SRE practices</li>
+    <li><strong>Security:</strong> OAuth 2.0, OpenID Connect, JWT, biometric auth (Face ID, Touch ID, Fingerprint), Keychain, Android Keystore, Secure Enclave, Certificate Pinning, App Attest, Play Integrity, SafetyNet, mTLS, threat modeling, OWASP MASVS, OWASP MASTG, OWASP Top 10</li>
+    <li><strong>Compliance:</strong> PCI DSS awareness, SOC 2 controls familiarity, GDPR, accessibility (VoiceOver, TalkBack, WCAG 2.1)</li>
+    <li><strong>Testing &amp; Quality:</strong> JUnit, Mockito, Espresso, XCTest, Flutter Test, UI and automation testing, 85%+ coverage on production code, contract testing, load testing</li>
+    <li><strong>DevOps &amp; CI/CD:</strong> GitHub Actions, GitLab CI, Jenkins, Fastlane, Bitrise, Datadog, Sentry, Grafana, Prometheus</li>
+    <li><strong>State &amp; Reactive:</strong> Kotlin Flows, Combine, RxJava, RxSwift, LiveData</li>
+    <li><strong>Databases:</strong> PostgreSQL, MySQL, SQLite, Firebase Firestore, Redis, DynamoDB</li>
+    <li><strong>Feature Management:</strong> Feature Flags, remote config, A/B testing, fake responses, controlled rollouts</li>
+    <li><strong>Tooling:</strong> Git, Linux (Arch), macOS, Neovim, tmux, Android Studio, Xcode, Figma, AI pair programming (Claude, Cursor)</li>
+    <li><strong>Languages:</strong> Spanish (Native), English (C1 Professional)</li>
+  </ul>
 
   <div class="arch-security">
-    <strong>Architecture &amp; Security focus.</strong> I design systems, not just features. My HLDs cover auth flows, data boundaries, failure modes, observability and threat models, not just the happy path. Currently preparing <strong>AWS Solutions Architect Professional</strong> and <strong>OSCP / AWS Security Specialty</strong>.
+    <strong>Architecture &amp; Security focus.</strong> I design systems, not just features. My HLDs cover authentication flows, data boundaries, failure modes, observability and threat models, not just the happy path. Currently preparing AWS Solutions Architect Professional and OSCP / AWS Security Specialty.
   </div>
 
-  <h2 class="section" data-num="02">Experience</h2>
+  <h2 class="section">Professional Experience</h2>
 
   <div class="job">
-    <div class="job-head">
-      <div class="job-title">Senior Mobile Engineer · <span class="company">PayPal / Venmo</span></div>
-      <div class="job-meta">May 2024-Present · Remote · Fintech</div>
-    </div>
-    <div class="job-blurb">Financial features for 426M+ users · "Exceeds Expectations" rating</div>
+    <div class="job-title">Senior Mobile Engineer, <span class="company">PayPal / Venmo</span></div>
+    <div class="job-meta">May 2024 – Present | Remote | Fintech (consumer payments)</div>
+    <div class="job-blurb">Shipping financial features for 426M+ users. Performance rating: Exceeds Expectations.</div>
     <ul>
-      <li>Authored High-Level Designs (HLDs) for Push Provisioning, Auth Users and security-critical features</li>
-      <li>Led Push Provisioning in Kotlin &amp; Swift, credit card addition to Apple Wallet &amp; Google Pay</li>
-      <li>Architected Auth Users (6 users/card) with a complete refactor to Clean Architecture</li>
-      <li>Implemented biometric authentication (Face ID, Fingerprint) for secure card management</li>
-      <li>Delivered 50/50 on Android &amp; iOS simultaneously · Maintained 85%+ test coverage</li>
-      <li>Shipped Feature Flags and Fake Responses for controlled rollouts &amp; deterministic testing</li>
-      <li>Enhanced accessibility compliance (VoiceOver, TalkBack) across feature set</li>
-      <li>Mentor 2 to 5 engineers on mobile best practices, code reviews and architecture</li>
+      <li>Author High-Level Designs (HLDs) for Push Provisioning, Auth Users and other security-critical features</li>
+      <li>Led Push Provisioning implementation in Kotlin and Swift: credit card addition to Apple Wallet and Google Pay</li>
+      <li>Architected Auth Users (6 users per card) with a complete refactor to Clean Architecture, including authorization rules and audit logging</li>
+      <li>Implemented biometric authentication (Face ID, Touch ID, Fingerprint) for secure card management flows</li>
+      <li>Ship features 50 / 50 on Android and iOS in the same release cycle; maintain 85%+ unit and UI test coverage</li>
+      <li>Delivered Feature Flags and deterministic Fake Responses infrastructure for controlled rollouts and integration testing</li>
+      <li>Improved accessibility compliance (VoiceOver, TalkBack, dynamic type) across the owned feature set</li>
+      <li>Mentor 2 to 5 engineers on mobile best practices, code reviews, testing strategy and architecture decisions</li>
     </ul>
-    <div class="tech">Tech · Kotlin · Swift · Jetpack Compose · SwiftUI · RxJava · Combine · GraphQL · OAuth 2.0 · JWT · Biometrics · Feature Flags · Datadog</div>
+    <div class="tech">Tools: Kotlin, Swift, Jetpack Compose, SwiftUI, Kotlin Flows, Combine, GraphQL, OAuth 2.0, JWT, Biometrics, Feature Flags, Datadog, GitHub Actions</div>
   </div>
 
   <div class="job">
-    <div class="job-head">
-      <div class="job-title">CEO &amp; Founder · <span class="company">Capdesis</span></div>
-      <div class="job-meta">Jan 2019-Present · CDMX · EdTech &amp; Consulting</div>
-    </div>
-    <div class="job-blurb">Founded a software studio: 34+ projects delivered, 51,000+ students reached, 97% client satisfaction</div>
+    <div class="job-title">Founder &amp; CEO, <span class="company">Capdesis</span></div>
+    <div class="job-meta">Jan 2019 – Present | Mexico City, Mexico | EdTech &amp; Consulting</div>
+    <div class="job-blurb">Founded a software studio: 34+ projects delivered, 51,000+ students reached, 97% client satisfaction.</div>
     <ul>
-      <li>Lead a team of 4 to 6 engineers shipping Flutter, Go backends and web for clients across Mexico</li>
-      <li><strong>IngenieríaTracker</strong> (10k+ MAU), offline-first Flutter + Go backend (22+ APIs, 66% latency reduction)</li>
-      <li><strong>Formulae Pro &amp; Community</strong> (40k+ users), math/chemistry learning, ChatGPT integration</li>
-      <li><strong>CapMenu, Cap Living, Lo Más Fresh</strong>: restaurant, property and marketplace apps</li>
-      <li>Web projects for León Entertainment, OPUS Asesores, Artipublimex, Ancare (Analogic Care) and Apiario Xun-kaab · Work for Banco Multiva, Scotiabank, Hospital Ángeles</li>
-      <li>Strategic direction, technical advisory, hiring · Mentored 20+ developers through courses &amp; workshops</li>
+      <li>Lead a team of 4 to 6 engineers shipping Flutter apps, Go backends and web for clients across Mexico and the US</li>
+      <li><strong>IngenieriaTracker</strong> (10,000+ MAU): offline-first Flutter client with Go backend, 22+ APIs, 66% latency reduction after database migration</li>
+      <li><strong>Formulae Pro and Community</strong> (40,000+ users): math and chemistry learning platform with ChatGPT integration</li>
+      <li><strong>CapMenu, Cap Living, Lo Mas Fresh, CapTienda</strong>: restaurant, property, marketplace and POS mobile applications</li>
+      <li>Web projects delivered for Leon Entertainment, OPUS Asesores, Artipublimex, Ancare (Analogic Care) and Apiario Xun-kaab; additional work completed for Banco Multiva, Scotiabank, Hospital Angeles</li>
+      <li>Strategic direction, technical advisory, hiring, and team structure; mentored 20+ developers through courses and internal workshops</li>
+      <li>Fractional CTO engagements: architecture reviews, security audits, performance audits, cloud cost optimization</li>
     </ul>
-    <div class="tech">Tech · Flutter · Dart · BLoC · Riverpod · Go · Python · Firebase · RevenueCat · Docker</div>
+    <div class="tech">Tools: Flutter, Dart, BLoC, Riverpod, Go, Python, Firebase, RevenueCat, Docker, AWS, PostgreSQL</div>
   </div>
 
   <div class="job">
-    <div class="job-head">
-      <div class="job-title">Senior Native Mobile Developer · <span class="company">Tienda UNAM</span></div>
-      <div class="job-meta">Sep 2022 - Apr 2024 · Hybrid · E-commerce</div>
-    </div>
-    <div class="job-blurb">Modernized university commerce platform for thousands of students &amp; staff</div>
+    <div class="job-title">Senior Native Mobile Developer, <span class="company">Tienda UNAM</span></div>
+    <div class="job-meta">Sep 2022 – Apr 2024 | Mexico City, Hybrid | E-commerce</div>
+    <div class="job-blurb">Modernized the university commerce platform serving thousands of students and staff.</div>
     <ul>
       <li>Integrated AI-powered chat via OpenAI API for customer support automation</li>
-      <li>Optimized QR scanning, <strong>3× faster</strong> with Kotlin coroutines</li>
-      <li>Implemented Universal Links &amp; App Links for deep linking across web and app</li>
-      <li>Redesigned UX with Figma + Design Systems, <strong>+40% engagement</strong></li>
-      <li>Built companion web app; owned full App Store &amp; Play Store release cycle</li>
+      <li>Optimized QR scanning, <strong>3x faster</strong> with Kotlin coroutines and camera pipeline tuning</li>
+      <li>Implemented Universal Links (iOS) and App Links (Android) for deep linking across web and mobile</li>
+      <li>Redesigned UX with Figma and a design system, driving <strong>+40% engagement</strong></li>
+      <li>Built companion web application; owned full App Store and Play Store release cycle end to end</li>
     </ul>
-    <div class="tech">Tech · Kotlin · Swift · SwiftUI · Jetpack Compose · OpenAI API · CoreLocation · Firebase</div>
+    <div class="tech">Tools: Kotlin, Swift, SwiftUI, Jetpack Compose, OpenAI API, CoreLocation, Firebase</div>
   </div>
 
   <div class="job">
-    <div class="job-head">
-      <div class="job-title">Senior Backend Engineer · <span class="company">Flexera</span></div>
-      <div class="job-meta">Jan 2022 - Aug 2022 · Remote · Enterprise</div>
-    </div>
-    <div class="job-blurb">Monolith → microservices migration with Go, Kubernetes and AWS</div>
+    <div class="job-title">Senior Backend Engineer, <span class="company">Flexera</span></div>
+    <div class="job-meta">Jan 2022 – Aug 2022 | Remote | Enterprise SaaS</div>
+    <div class="job-blurb">Monolith to microservices migration with Go, Kubernetes and AWS.</div>
     <ul>
-      <li>Led database migration improving performance and reliability</li>
+      <li>Led database migration improving query performance and reliability</li>
       <li>Built CI/CD pipelines with GitLab CI, Jenkins and GitHub Actions</li>
       <li>Implemented Kafka and Redis for real-time streaming and caching</li>
     </ul>
-    <div class="tech">Tech · Go · Kubernetes · AWS (S3, EC2, RDS) · PostgreSQL · MySQL · Docker · Terraform · Kafka · Redis</div>
+    <div class="tech">Tools: Go, Kubernetes, AWS (S3, EC2, RDS), PostgreSQL, MySQL, Docker, Terraform, Kafka, Redis</div>
   </div>
 
   <div class="job">
-    <div class="job-head">
-      <div class="job-title">Mobile Developer &amp; Project Lead · <span class="company">iOS Development Lab, UNAM</span></div>
-      <div class="job-meta">Jan 2020 - Dec 2021 · CDMX · Education</div>
-    </div>
+    <div class="job-title">Mobile Developer &amp; Project Lead, <span class="company">iOS Development Lab, UNAM</span></div>
+    <div class="job-meta">Jan 2020 – Dec 2021 | Mexico City | Education</div>
     <ul>
-      <li>Developed iOS and Flutter applications for university geolocation &amp; navigation</li>
-      <li>Led team of developers; hackathon honorable mentions</li>
+      <li>Developed iOS and Flutter applications for university geolocation and navigation</li>
+      <li>Led team of developers; honorable mentions at multiple hackathons</li>
       <li>Implemented GitHub Actions CI/CD for automated testing and deployment</li>
     </ul>
-    <div class="tech">Tech · Swift · Flutter · Dart · MySQL · iOS SDK · CoreLocation</div>
+    <div class="tech">Tools: Swift, Flutter, Dart, MySQL, iOS SDK, CoreLocation</div>
   </div>
 
   <div class="job">
-    <div class="job-head">
-      <div class="job-title">Senior Instructor · <span class="company">Udemy</span></div>
-      <div class="job-meta">Jan 2020 - Dec 2023 · Remote · Online Education</div>
-    </div>
+    <div class="job-title">Senior Instructor, <span class="company">Udemy</span></div>
+    <div class="job-meta">Jan 2020 – Dec 2023 | Remote | Online Education</div>
     <ul>
-      <li>Created 6 courses (C, C++, Flutter, Kotlin), educated <strong>54,000+ developers</strong> worldwide</li>
-      <li>Maintained high engagement with practical projects and updated content</li>
+      <li>Created 6 courses (C, C++, Kotlin, Git and GitHub) educating <strong>54,000+ developers</strong> worldwide</li>
+      <li>Maintained high engagement with practical projects, assessments and regularly updated content</li>
     </ul>
   </div>
 
   <div class="job">
-    <div class="job-head">
-      <div class="job-title">Project Manager · <span class="company">Audiovisuell</span></div>
-      <div class="job-meta">Jan 2018 - Dec 2019 · CDMX · Media</div>
-    </div>
+    <div class="job-title">Project Manager, <span class="company">Audiovisuell</span></div>
+    <div class="job-meta">Jan 2018 – Dec 2019 | Mexico City | Media</div>
     <ul>
       <li>Managed audiovisual projects, brand experiences and educational content</li>
       <li>Led cross-functional teams and coordinated multi-stakeholder deliverables</li>
     </ul>
   </div>
 
-  <h2 class="section" data-num="03">Education &amp; Certifications</h2>
-  <div class="grid-2">
-    <div>
-      <div style="font-weight:600">B.S. Computer Engineering</div>
-      <div style="color:var(--ink-2);font-size:9.5pt">Facultad de Ingeniería · UNAM · Mexico City</div>
-    </div>
-    <div class="certs">
-      <div class="cert-row"><span class="dot">●</span>Google Play Store Listing <span class="inflight">Google Play Academy, 2026</span></div>
-      <div class="cert-row"><span class="dot">●</span>Google Developer</div>
-      <div class="cert-row"><span class="dot">●</span>Meta Developer</div>
-      <div class="cert-row"><span class="dot">●</span>Mobile Architecture</div>
-      <div class="cert-row"><span class="dot">○</span>AWS Solutions Architect, Professional <span class="inflight">in progress</span></div>
-      <div class="cert-row"><span class="dot">○</span>AWS Security, Specialty <span class="inflight">in progress</span></div>
-      <div class="cert-row"><span class="dot">○</span>CISSP (ISC2) <span class="inflight">in progress</span></div>
-      <div class="cert-row"><span class="dot">○</span>Meta iOS Developer, Professional <span class="inflight">in progress</span></div>
-      <div class="cert-row"><span class="dot">○</span>Meta Android Developer, Professional <span class="inflight">in progress</span></div>
-      <div class="cert-row"><span class="dot">◇</span>AWS DevOps Engineer, Professional <span class="inflight">on the roadmap</span></div>
-      <div class="cert-row"><span class="dot">◇</span>AWS Generative AI Developer, Professional <span class="inflight">on the roadmap</span></div>
-      <div class="cert-row"><span class="dot">◇</span>ISSAP (ISC2) <span class="inflight">on the roadmap</span></div>
-    </div>
+  <h2 class="section">Education</h2>
+  <div class="education-block">
+    <div class="education-title">Bachelor of Science in Computer Engineering</div>
+    <div class="education-sub">Facultad de Ingenieria, Universidad Nacional Autonoma de Mexico (UNAM), Mexico City</div>
   </div>
 
-  <h2 class="section" data-num="04">Additional</h2>
-  <ul style="font-size:9.5pt; color:var(--ink-2); padding-left:18px;">
-    <li><strong>Speaking:</strong> Tech conferences (UNAM), hackathons (honorable mentions), webinars</li>
-    <li><strong>Projects:</strong> Home automation IoT, ARKit applications, open source tools</li>
-    <li><strong>Leadership:</strong> Founded and scaled Capdesis · Mentored 20+ engineers · Hands-on hiring &amp; team structure</li>
+  <h2 class="section">Certifications</h2>
+  <ul class="cert-list">
+    <li>Google Play Store Listing Certificate, Google Play Academy (2026)</li>
+    <li>Google Developer</li>
+    <li>Meta Developer</li>
+    <li>Mobile Architecture</li>
+    <li>AWS Solutions Architect, Professional (in progress)</li>
+    <li>AWS Security, Specialty (in progress)</li>
+    <li>CISSP, ISC2 (in progress)</li>
+    <li>Meta iOS Developer, Professional (in progress)</li>
+    <li>Meta Android Developer, Professional (in progress)</li>
+    <li>AWS DevOps Engineer, Professional (on the roadmap)</li>
+    <li>AWS Generative AI Developer, Professional (on the roadmap)</li>
+    <li>ISSAP, ISC2 (on the roadmap)</li>
+  </ul>
+
+  <h2 class="section">Projects &amp; Leadership</h2>
+  <ul class="extra-list">
+    <li><strong>Open Source:</strong> <a href="https://github.com/chochy2001/omnimon">OmniMon</a> macOS system monitor (contributor); <a href="https://github.com/chochy2001/ubuntu2kali">ubuntu2kali</a> installer tooling; <a href="https://github.com/chochy2001/openai-kotlin">openai-kotlin</a> Kotlin client; <a href="https://github.com/chochy2001/Neovim-Vim_Configuration">Neovim-Vim_Configuration</a>; 60+ public repositories at <a href="https://github.com/chochy2001">github.com/chochy2001</a></li>
+    <li><strong>Speaking:</strong> Tech conferences at UNAM, multiple hackathons (honorable mentions), industry webinars</li>
+    <li><strong>Personal projects:</strong> Home automation IoT, ARKit prototypes, open source developer tooling</li>
+    <li><strong>Leadership:</strong> Founded and scaled Capdesis from solo founder to a team of 4-6 engineers; mentored 20+ engineers; hands-on hiring and team structure</li>
   </ul>
 
   <div class="foot">
-    <span>Jorge Salgado Miranda · CV · 2026</span>
+    <span>Jorge Salgado Miranda - CV - <span id="cv-current-year">2026</span></span>
     <span>jorgesalgadomiranda.com</span>
   </div>
 </article>
+
 <script>
   (function () {
     var y = new Date().getFullYear();
+    // [data-years-since="YYYY"] -> elapsed integer
     document.querySelectorAll('[data-years-since]').forEach(function (el) {
       var since = parseInt(el.getAttribute('data-years-since'), 10);
       if (!isNaN(since)) el.textContent = String(y - since);
     });
+    // Footer year
+    var cvYearEl = document.getElementById('cv-current-year');
+    if (cvYearEl) cvYearEl.textContent = String(y);
+    // Title year: keep ATS parseable; no year in title at all now.
   })();
 </script>
 </body>
