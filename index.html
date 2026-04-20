@@ -892,10 +892,10 @@
         <ul class="stack-list">
           <li><span>Kotlin · Jetpack Compose</span><span class="stack-level" data-lv="core" data-i18n="lv.core">Core</span><span class="stack-tip" role="tooltip"><strong>Android core</strong>Front Android de la <b>tarjeta de crédito de Venmo</b> (Auth Users, Push Provisioning, VCC 2.0). Migración XML→Compose. También <b>Tienda UNAM</b>.</span>
           <li><span>Swift · SwiftUI · UIKit</span><span class="stack-level" data-lv="core" data-i18n="lv.core">Core</span><span class="stack-tip" role="tooltip"><strong>iOS core</strong>iOS nativo en <b>Venmo</b>, <b>Tienda UNAM</b>, <b>NutriOptimize</b>, <b>EarthReadyMX</b>. Combine para streams; UIKit cuando el scroll lo exige.</span>
-          <li><span>Flutter · Dart · BLoC</span><span class="stack-level" data-lv="core" data-i18n="lv.core">Core</span><span class="stack-tip" role="tooltip"><strong>Cross-platform</strong><b>IngenieríaTracker</b> Free/Pro, <b>Formulae Pro/Community</b>, <b>CapMenu</b>, <b>CapLiving</b>, <b>Lo Más Fresh</b>, <b>CapTienda</b>, <b>Pentability</b>, <b>GestiónInventarioQR</b>. BLoC + Provider.</span>
+          <li><span>Flutter · Dart · BLoC · Riverpod</span><span class="stack-level" data-lv="core" data-i18n="lv.core">Core</span><span class="stack-tip" role="tooltip"><strong>Cross-platform</strong><b>IngenieríaTracker</b> Free/Pro, <b>Formulae Pro/Community</b>, <b>CapMenu</b>, <b>CapLiving</b>, <b>Lo Más Fresh</b>, <b>CapTienda</b>, <b>Pentability</b>, <b>GestiónInventarioQR</b>. BLoC + Provider en apps legacy; <b>Riverpod</b> en apps nuevas cuando necesito compile-time safety.</span>
           <li><span>Accessibility · VoiceOver · TalkBack</span><span class="stack-level" data-lv="core" data-i18n="lv.core">Core</span><span class="stack-tip" role="tooltip"><strong>Accessibility</strong>Accessibility pass en Venmo: Dynamic Type, contraste AA, flujo completo con TalkBack. Requerido para Play Store review.</span>
           <li><span>Dynamic Type · Contrast · Low vision</span><span class="stack-level" data-lv="daily" data-i18n="lv.daily">Daily</span><span class="stack-tip" role="tooltip"><strong>Accessibility</strong>Tokens de tipografía escalable + contraste AA en Venmo y Tienda UNAM. Soporte a lectores de pantalla end-to-end.</span>
-          <li><span>RxJava · Combine · Flows</span><span class="stack-level" data-lv="daily" data-i18n="lv.daily">Daily</span><span class="stack-tip" role="tooltip"><strong>Reactive streams</strong>Kotlin Flows y Coroutines en Venmo, Combine en iOS, Provider streams en Flutter.</span>
+          <li><span>RxJava · RxSwift · Flows · Combine</span><span class="stack-level" data-lv="daily" data-i18n="lv.daily">Daily</span><span class="stack-tip" role="tooltip"><strong>Reactive streams</strong><b>Kotlin Flows</b> y Coroutines en Venmo (legacy RxJava sigue vivo en módulos heredados), <b>Combine</b> en iOS, <b>RxSwift</b> en código iOS legacy, Provider streams en Flutter.</span>
         </ul>
       </div>
 
@@ -2090,7 +2090,7 @@
     const nodes = [];
     let n;
     while ((n = walker.nextNode())) {
-      nodes.push({ node: n, text: n.nodeValue });
+      nodes.push({ node: n, text: n.nodeValue, shown: 0 });
     }
     const total = nodes.reduce((s, r) => s + r.text.length, 0);
     if (!total) return;
@@ -2099,27 +2099,37 @@
     const maxDuration = 4800; // stay under 5s including tail
     const duration = Math.min(maxDuration, 11 * total);
     const perChar = duration / total;
-    panel.classList.add('is-typing');
 
-    const start = performance.now();
-    const tick = (t) => {
-      const chars = Math.min(total, Math.floor((t - start) / perChar));
-      let remaining = chars;
-      for (const rec of nodes) {
-        if (remaining <= 0) { rec.node.nodeValue = ''; continue; }
-        const take = Math.min(rec.text.length, remaining);
-        rec.node.nodeValue = rec.text.slice(0, take);
-        remaining -= take;
-      }
-      if (chars < total) {
-        requestAnimationFrame(tick);
-      } else {
-        nodes.forEach(r => { r.node.nodeValue = r.text; });
-        panel.classList.remove('is-typing');
-      }
+    const start = () => {
+      panel.classList.add('is-typing');
+      const t0 = performance.now();
+      const tick = (t) => {
+        const targetChars = Math.min(total, Math.floor((t - t0) / perChar));
+        let budget = targetChars;
+        // Only touch nodes whose shown length needs to change.
+        for (const rec of nodes) {
+          if (budget <= 0) {
+            if (rec.shown !== 0) { rec.node.nodeValue = ''; rec.shown = 0; }
+            continue;
+          }
+          const want = Math.min(rec.text.length, budget);
+          if (want !== rec.shown) {
+            rec.node.nodeValue = rec.text.slice(0, want);
+            rec.shown = want;
+          }
+          budget -= want;
+        }
+        if (targetChars < total) requestAnimationFrame(tick);
+        else panel.classList.remove('is-typing');
+      };
+      requestAnimationFrame(tick);
     };
-    // Tiny delay so the hero reveal catches up first
-    setTimeout(() => requestAnimationFrame(tick), 250);
+
+    // Wait until the hero scramble animation is done so the two motion
+    // surfaces do not fight for layout/frame budget. Max scramble
+    // duration is ~1.8s for the longest line ("web & security."),
+    // plus the reveal intersection-observer lag.
+    setTimeout(start, 2000);
   })();
 
   // ============ MOBILE NAV DRAWER ============

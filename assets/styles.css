@@ -49,6 +49,11 @@
   --accent: oklch(0.82 0.14 210);
   --accent-hi: oklch(0.90 0.15 210);
   --accent-dim: oklch(0.55 0.12 210);
+  /* Secondary warm accent for callouts, live pills, subtle gradients.
+     Cyan stays primary; warm reinforces status and hot CTAs. */
+  --accent-warm: oklch(0.78 0.14 60);
+  --accent-warm-hi: oklch(0.86 0.15 60);
+  --accent-warm-dim: oklch(0.55 0.14 60);
   --shadow: 0 20px 60px -20px oklch(0 0 0 / 0.6);
   --shadow-soft: 0 8px 28px -12px oklch(0 0 0 / 0.5);
 
@@ -73,6 +78,9 @@
   --accent: oklch(0.52 0.15 210);
   --accent-hi: oklch(0.44 0.16 210);
   --accent-dim: oklch(0.68 0.12 210);
+  --accent-warm: oklch(0.62 0.16 60);
+  --accent-warm-hi: oklch(0.52 0.17 60);
+  --accent-warm-dim: oklch(0.72 0.14 60);
   --shadow: 0 20px 50px -24px oklch(0.2 0.02 250 / 0.2);
   --shadow-soft: 0 6px 20px -10px oklch(0.2 0.02 250 / 0.14);
 }
@@ -424,7 +432,9 @@ body.drawer-open { overflow: hidden; }
   position: relative;
   min-height: 92vh;
   display: grid;
-  grid-template-columns: 1fr 400px;
+  /* minmax(0, 1fr) stops the hero-title scramble from pushing the
+     fixed 400px panel column around as characters swap widths. */
+  grid-template-columns: minmax(0, 1fr) 400px;
   gap: 72px;
 }
 @media (max-width: 1100px) { .hero { grid-template-columns: 1fr; } }
@@ -492,10 +502,14 @@ body.drawer-open { overflow: hidden; }
 }
 .btn svg { transition: transform 0.3s cubic-bezier(.2, .8, .2, 1); }
 .btn:hover svg { transform: translate(3px, -3px); }
+.btn:active { transform: scale(0.97); transition-duration: 0.08s; }
 .btn-primary { background: var(--fg); color: var(--bg); }
 .btn-primary:hover { background: var(--accent); color: var(--bg); }
 .btn-ghost { border: 1px solid var(--border); color: var(--fg); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.cal-cta:active,
+.form-submit:active,
+.test-arrow:active { transform: scale(0.96); transition-duration: 0.08s; }
 
 .hero-stats {
   display: grid; grid-template-columns: repeat(4, 1fr);
@@ -547,7 +561,10 @@ body.drawer-open { overflow: hidden; }
 
 .hero-panel {
   align-self: start;
-  background: var(--bg-elev);
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, var(--accent) 8%, transparent) 0%, transparent 55%),
+    radial-gradient(120% 80% at 100% 100%, color-mix(in oklab, var(--accent-warm) 6%, transparent) 0%, transparent 55%),
+    var(--bg-elev);
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
@@ -556,6 +573,9 @@ body.drawer-open { overflow: hidden; }
   margin-top: 60px;
   min-width: 0;
   max-width: 100%;
+  /* Isolate layout so the hero-title scramble next door cannot reflow
+     the panel while the typewriter is writing into it. */
+  contain: layout paint style;
 }
 .panel-header {
   display: flex; align-items: center; gap: 6px;
@@ -796,13 +816,25 @@ body.drawer-open { overflow: hidden; }
   margin-top: 0;
 }
 .tl-body-inner { overflow: hidden; }
+.tl-body-inner > * {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(.2, .8, .2, 1);
+}
 .tl-item.is-open .tl-body {
   grid-template-rows: 1fr;
   opacity: 1;
   margin-top: 14px;
 }
+.tl-item.is-open .tl-body-inner > * { opacity: 1; transform: translateY(0); }
+.tl-item.is-open .tl-body-inner > *:nth-child(1) { transition-delay: 0.12s; }
+.tl-item.is-open .tl-body-inner > *:nth-child(2) { transition-delay: 0.20s; }
+.tl-item.is-open .tl-body-inner > *:nth-child(3) { transition-delay: 0.28s; }
+.tl-item.is-open .tl-body-inner > *:nth-child(4) { transition-delay: 0.36s; }
+.tl-item.is-open .tl-body-inner > *:nth-child(n+5) { transition-delay: 0.44s; }
 @media (prefers-reduced-motion: reduce) {
   .tl-body, .tl-content, .tl-content::after { transition: none; }
+  .tl-body-inner > * { transition: none; opacity: 1; transform: none; }
 }
 .tl-meta {
   display: flex; flex-wrap: wrap; gap: 16px;
@@ -904,10 +936,11 @@ body.drawer-open { overflow: hidden; }
   border-radius: 16px;
   padding: 28px;
   display: flex; flex-direction: column; gap: 18px;
-  transition: border-color 0.3s, transform 0.3s;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   transform-style: preserve-3d;
   min-height: 280px;
 }
+.app-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
 .app-card:hover { border-color: var(--accent); }
 .app-icon {
   width: 56px; height: 56px;
@@ -973,9 +1006,9 @@ body.drawer-open { overflow: hidden; }
   border: 1px solid color-mix(in oklab, oklch(0.82 0.17 150) 40%, transparent);
 }
 .app-status-dev {
-  color: var(--fg-muted);
-  background: color-mix(in oklab, var(--fg-muted) 10%, transparent);
-  border: 1px solid var(--border);
+  color: var(--accent-warm);
+  background: color-mix(in oklab, var(--accent-warm) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--accent-warm) 45%, transparent);
 }
 .app-desc {
   font-size: 13.5px;
