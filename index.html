@@ -1601,6 +1601,158 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .tech-strip img:hover { opacity: 1; transform: scale(1.06); filter: grayscale(0%); }
 [data-theme="light"] .tech-strip img { filter: grayscale(0%); }
 
+/* OPEN SOURCE */
+.oss-featured {
+  position: relative;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 36px 32px;
+  margin-bottom: 48px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+}
+.oss-featured::before {
+  content: '';
+  position: absolute; inset: 0 auto auto 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--accent), transparent 70%);
+}
+.oss-featured:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 24px 56px -28px color-mix(in oklab, var(--accent) 55%, transparent);
+}
+.oss-featured-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+  margin-bottom: 20px; flex-wrap: wrap;
+}
+.oss-featured-brand {
+  display: flex; align-items: center; gap: 16px;
+}
+.oss-featured-icon {
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.oss-featured-icon svg { width: 30px; height: 30px; }
+.oss-featured-brand h3 {
+  font-family: var(--font-serif);
+  font-size: 34px; font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.oss-featured-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-top: 4px;
+}
+.oss-featured-meta {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.oss-featured-meta span {
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  letter-spacing: 0.04em;
+}
+.oss-featured-meta b { color: var(--accent); font-weight: 500; }
+.oss-featured-desc {
+  font-size: 17px; line-height: 1.6;
+  color: var(--fg-muted);
+  max-width: 78ch;
+  margin-bottom: 20px;
+}
+.oss-featured-desc strong { color: var(--fg); font-weight: 500; }
+.oss-featured-cta {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.oss-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-mono); font-size: 13px;
+  font-weight: 500; letter-spacing: 0.02em;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.oss-btn:hover { transform: translateY(-1px); opacity: 0.92; }
+.oss-btn-ghost {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--border);
+}
+.oss-btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.oss-sub {
+  font-family: var(--font-mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--fg-muted);
+  margin-bottom: 16px;
+}
+.oss-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+@media (max-width: 900px) { .oss-grid { grid-template-columns: 1fr; } }
+.oss-card {
+  display: block;
+  padding: 20px 22px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: inherit;
+  transition: border-color 0.3s, transform 0.3s;
+  transform-style: preserve-3d;
+}
+.oss-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.oss-card-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.oss-card h4 {
+  font-family: var(--font-serif);
+  font-size: 20px; font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.oss-lang {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.oss-card p {
+  font-size: 14px; line-height: 1.55;
+  color: var(--fg-muted);
+}
+.oss-more-link {
+  text-align: right;
+  font-family: var(--font-mono); font-size: 13px;
+}
+.oss-more-link a {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--accent);
+  padding: 8px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, gap 0.3s;
+}
+.oss-more-link a:hover { border-color: var(--accent); gap: 12px; }
+
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1639,6 +1791,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     <li><a href="#capdesis" data-i18n="nav.capdesis">Capdesis</a></li>
     <li><a href="#stack" data-i18n="nav.stack">Stack</a></li>
     <li><a href="#engineering" data-i18n="nav.engineering">Engineering</a></li>
+    <li><a href="#oss" data-i18n="nav.oss">Open Source</a></li>
     <li><a href="#certifications" data-i18n="nav.certs">Certifications</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
@@ -2417,10 +2570,88 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
   </section>
 
+  <!-- OPEN SOURCE -->
+  <section id="oss" class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <span class="section-kicker" data-i18n="oss.kicker">Open Source</span>
+    </div>
+
+    <h2 class="section-title section-title-wide">
+      <span data-reveal data-i18n="oss.title1">Open source,</span>
+      <em data-reveal data-i18n="oss.title2">shipped in production.</em>
+    </h2>
+
+    <p class="eng-intro" data-reveal data-i18n="oss.intro">Not just private projects. Real OSS that people download, run and fork. <strong>60+ public repos on GitHub</strong>, here's the one I'm proudest of.</p>
+
+    <article class="oss-featured" data-tilt data-reveal>
+      <div class="oss-featured-head">
+        <div class="oss-featured-brand">
+          <div class="oss-featured-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M6 7h.01M10 7h.01"/><path d="M6 12h4l2-3 2 6 2-3h2"/></svg>
+          </div>
+          <div>
+            <h3>OmniMon</h3>
+            <p class="oss-featured-tag">Rust · Tauri 2 · Svelte 5 · macOS · Windows · Linux</p>
+          </div>
+        </div>
+        <div class="oss-featured-meta" aria-label="Repository metadata">
+          <span><b>v6.6.6</b></span>
+          <span>MIT</span>
+          <span>474+ commits</span>
+        </div>
+      </div>
+      <p class="oss-featured-desc" data-i18n="oss.omnimon.desc">Cross-platform system monitor with real-time process telemetry, per-process network inspection, <strong>MITRE ATT&amp;CK threat detection</strong> and AI-powered analysis. Other monitors show you numbers, OmniMon tells you what those numbers mean.</p>
+      <div class="oss-featured-cta">
+        <a href="https://omnimon.com.mx/" target="_blank" rel="noopener noreferrer" class="oss-btn">
+          <span>omnimon.com.mx</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+        <a href="https://github.com/chochy2001/omnimon" target="_blank" rel="noopener noreferrer" class="oss-btn oss-btn-ghost">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.78-.25.78-.56v-2c-3.21.7-3.88-1.4-3.88-1.4-.53-1.33-1.29-1.68-1.29-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.78 2.71 1.26 3.37.96.1-.75.4-1.27.73-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.28 5.69.41.36.78 1.05.78 2.12v3.14c0 .31.2.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          <span>github.com/chochy2001/omnimon</span>
+        </a>
+      </div>
+    </article>
+
+    <h3 class="oss-sub" data-reveal data-i18n="oss.sub.more">Also public</h3>
+    <div class="oss-grid">
+      <a class="oss-card" href="https://github.com/chochy2001/ubuntu2kali" target="_blank" rel="noopener noreferrer" data-tilt data-reveal>
+        <div class="oss-card-head">
+          <h4>ubuntu2kali</h4>
+          <span class="oss-lang">Shell</span>
+        </div>
+        <p data-i18n="oss.ubuntu2kali.desc">Transform Ubuntu 24.04 into a full pentesting workstation with 500+ Kali Linux tools.</p>
+      </a>
+      <a class="oss-card" href="https://github.com/chochy2001/openai-kotlin" target="_blank" rel="noopener noreferrer" data-tilt data-reveal>
+        <div class="oss-card-head">
+          <h4>openai-kotlin</h4>
+          <span class="oss-lang">Kotlin</span>
+        </div>
+        <p data-i18n="oss.openaikotlin.desc">OpenAI API client for Kotlin with multiplatform support and coroutines.</p>
+      </a>
+      <a class="oss-card" href="https://github.com/chochy2001/Neovim-Vim_Configuration" target="_blank" rel="noopener noreferrer" data-tilt data-reveal>
+        <div class="oss-card-head">
+          <h4>Neovim config</h4>
+          <span class="oss-lang">Lua</span>
+        </div>
+        <p data-i18n="oss.nvim.desc">My daily editor setup: LSP, treesitter, fuzzy-find, tmux integration.</p>
+      </a>
+    </div>
+
+    <p class="oss-more-link" data-reveal>
+      <a href="https://github.com/chochy2001?tab=repositories" target="_blank" rel="noopener noreferrer">
+        <span data-i18n="oss.see.all">See all 60+ public repos on GitHub</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </p>
+
+  </section>
+
   <!-- CERTIFICATIONS -->
   <section id="certifications" class="section">
     <div class="section-head">
-      <span class="section-num">06</span>
+      <span class="section-num">07</span>
       <span class="section-kicker" data-i18n="cert.kicker">Certifications · Learning path</span>
     </div>
 
@@ -2566,7 +2797,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- UDEMY -->
   <section id="udemy" class="section section-udemy">
     <div class="section-head">
-      <span class="section-num">07</span>
+      <span class="section-num">08</span>
       <span class="section-kicker" data-i18n="udemy.kicker">Teaching</span>
     </div>
 
@@ -2607,7 +2838,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- TESTIMONIALS -->
   <section id="testimonials" class="section">
     <div class="section-head">
-      <span class="section-num">08</span>
+      <span class="section-num">09</span>
       <span class="section-kicker" data-i18n="test.kicker">Testimonials</span>
     </div>
 
@@ -2696,7 +2927,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- CONTACT -->
   <section id="contact" class="section section-contact">
     <div class="section-head">
-      <span class="section-num">09</span>
+      <span class="section-num">10</span>
       <span class="section-kicker" data-i18n="contact.kicker">Contact</span>
     </div>
 
@@ -2750,6 +2981,7 @@ const I18N = {
     "nav.capdesis": "Capdesis",
     "nav.stack": "Stack",
     "nav.engineering": "Engineering",
+    "nav.oss": "Open Source",
     "nav.certs": "Certifications",
     "nav.contact": "Contact",
 
@@ -2915,6 +3147,16 @@ const I18N = {
     "eng.card6.p1": "Real-time metrics, logs and request traces in dashboards the team actually opens",
     "eng.card6.p2": "Multi-channel alerting before users notice; crash and performance reporting on every device",
     "eng.card6.p3": "Automated daily backups with point-in-time recovery, never lose a row",
+    "oss.kicker": "Open Source",
+    "oss.title1": "Open source,",
+    "oss.title2": "shipped in production.",
+    "oss.intro": "Not just private projects. Real OSS that people download, run and fork. <strong>60+ public repos on GitHub</strong>, here's the one I'm proudest of.",
+    "oss.omnimon.desc": "Cross-platform system monitor with real-time process telemetry, per-process network inspection, <strong>MITRE ATT&amp;CK threat detection</strong> and AI-powered analysis. Other monitors show you numbers, OmniMon tells you what those numbers mean.",
+    "oss.sub.more": "Also public",
+    "oss.ubuntu2kali.desc": "Transform Ubuntu 24.04 into a full pentesting workstation with 500+ Kali Linux tools.",
+    "oss.openaikotlin.desc": "OpenAI API client for Kotlin with multiplatform support and coroutines.",
+    "oss.nvim.desc": "My daily editor setup: LSP, treesitter, fuzzy-find, tmux integration.",
+    "oss.see.all": "See all 60+ public repos on GitHub",
     "cert.kicker": "Certifications · Learning path",
     "cert.title1": "Always leveling up.",
     "cert.title2": "Architecture, security, mobile.",
@@ -2974,6 +3216,7 @@ const I18N = {
     "nav.capdesis": "Capdesis",
     "nav.stack": "Stack",
     "nav.engineering": "Ingeniería",
+    "nav.oss": "Open Source",
     "nav.certs": "Certificaciones",
     "nav.contact": "Contacto",
 
@@ -3139,6 +3382,16 @@ const I18N = {
     "eng.card6.p1": "Métricas, logs y trazas de request en tiempo real, en dashboards que el equipo realmente abre",
     "eng.card6.p2": "Alertas multi-canal antes de que el usuario lo note; reporte de crashes y performance por dispositivo",
     "eng.card6.p3": "Backups diarios automáticos con recuperación point-in-time, sin perder un solo registro",
+    "oss.kicker": "Open Source",
+    "oss.title1": "Open source,",
+    "oss.title2": "entregado en producción.",
+    "oss.intro": "No solo proyectos privados. OSS real que la gente descarga, corre y forkea. <strong>60+ repos públicos en GitHub</strong>, aquí está el que más me enorgullece.",
+    "oss.omnimon.desc": "Monitor de sistema multiplataforma con telemetría de procesos en tiempo real, inspección de red por proceso, <strong>detección de amenazas con MITRE ATT&amp;CK</strong> y análisis asistido por IA. Otros monitores te muestran números, OmniMon te dice qué significan.",
+    "oss.sub.more": "También públicos",
+    "oss.ubuntu2kali.desc": "Transforma Ubuntu 24.04 en una estación de pentesting completa con 500+ herramientas de Kali Linux.",
+    "oss.openaikotlin.desc": "Cliente de la API de OpenAI para Kotlin con soporte multiplataforma y coroutines.",
+    "oss.nvim.desc": "Mi setup de editor diario: LSP, treesitter, fuzzy-find, integración con tmux.",
+    "oss.see.all": "Ver los 60+ repos públicos en GitHub",
     "cert.kicker": "Certificaciones · Camino de aprendizaje",
     "cert.title1": "Siempre subiendo de nivel.",
     "cert.title2": "Arquitectura, seguridad, mobile.",

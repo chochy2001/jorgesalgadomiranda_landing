@@ -4,6 +4,40 @@ Reverse-chronological log of what shipped, why, and what to verify next time.
 
 ---
 
+## 2026-04-19 - Open Source section (OmniMon + GitHub)
+
+**New section 06: Open Source** between Engineering and Certifications.
+The old concern was that the page made Jorge look like someone who only
+ships private work for clients. Now a dedicated section proves real
+OSS activity.
+
+**Featured card: OmniMon** (`omnimon.com.mx` + `github.com/chochy2001/omnimon`)
+- Cross-platform system monitor built with Rust, Tauri 2 and Svelte 5.
+- Metadata badges: `v6.6.6`, `MIT`, `474+ commits`.
+- Description highlights MITRE ATT&CK threat detection and AI analysis.
+- Two CTAs: primary button to the live site, ghost button with GitHub
+  icon to the repo.
+
+**Three secondary cards** (all linking to their GitHub repo):
+- `ubuntu2kali` (Shell) - Transforms Ubuntu 24.04 into a pentesting
+  workstation with 500+ Kali tools.
+- `openai-kotlin` (Kotlin) - OpenAI API client for Kotlin, multiplatform.
+- `Neovim config` (Lua) - daily editor setup.
+
+**Footer link** to `github.com/chochy2001?tab=repositories`: "See all
+60+ public repos on GitHub".
+
+**Renumber subsequent sections**: Certifications 06->07, Udemy 07->08,
+Testimonials 08->09, Contact 09->10. Added nav link "Open Source" /
+"Open Source" (same word in ES, technical term).
+
+**Security sweep**: confirmed no secrets, no internal IPs, no private
+emails, no `.env` staged. Repo is safe to keep public.
+
+i18n parity: adds 10 new keys per dict.
+
+---
+
 ## 2026-04-19 - Auto-update tenure, CapTienda, YouTube, GitHub Actions deploy
 
 **Tenure auto-updates each new year**
