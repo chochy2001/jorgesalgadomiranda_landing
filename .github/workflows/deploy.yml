@@ -17,14 +17,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy via FTP
+      - name: Pre-flight check (hostname resolves)
+        env:
+          HOST: ${{ secrets.FTP_HOST }}
+        run: |
+          set -e
+          if [ -z "$HOST" ]; then
+            echo "::error::FTP_HOST secret is empty. Set it under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          echo "Resolving FTP host (value is masked in logs) ..."
+          if getent hosts "$HOST" > /dev/null; then
+            echo "DNS OK"
+          else
+            echo "::error::FTP_HOST does not resolve. Check the value in hPanel > Files > FTP Accounts. It should be a bare hostname (e.g. ftp.example.com) or an IPv4, with no scheme (no ftp://) and no path."
+            exit 1
+          fi
+
+      - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}/
-          protocol: ftp
+          protocol: ftps
           port: 21
           timeout: 60000
           log-level: standard

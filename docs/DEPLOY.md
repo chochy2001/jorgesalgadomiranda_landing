@@ -45,12 +45,41 @@ Typical duration: 30-60 seconds.
 Watch the run live at
 `github.com/chochy2001/jorgesalgadomiranda_landing/actions`.
 
-If a run fails, the most common causes are:
-- Wrong secret value (typo in the password, trailing whitespace).
-- Hostinger FTP account temporarily rate-limited. The action retries
-  within the same run.
-- Concurrency lock from a still-running deploy. The `concurrency` block
-  in the workflow serializes deploys so you won't race yourself.
+### Finding the exact FTP host value
+
+This is the #1 cause of deploy failures. In Hostinger:
+
+**hPanel > Files > FTP Accounts > your account**
+
+Look for the field labeled **"Hostname"** or **"FTP hostname"**. Common formats:
+
+- `ftp.yourdomain.com` (works only after DNS has an `ftp.` A record)
+- `files.XXXXX.hostingersite.com`
+- A plain IPv4 address like `46.202.194.123`
+- `srv123.hosting.com` (specific Hostinger server)
+
+**Paste that value verbatim** into the `FTP_HOST` secret. Do not include:
+- A scheme (no `ftp://` prefix)
+- A trailing slash or path (no `/public_html`)
+- A port (port goes in the workflow file, currently 21)
+
+If the workflow fails with `ENOTFOUND`, the pre-flight check will tell
+you the DNS didn't resolve. Double-check the value in hPanel.
+
+### Other common deploy failures
+
+- **ENOTFOUND**: wrong `FTP_HOST` value (see above).
+- **530 Login incorrect**: wrong `FTP_USER` or `FTP_PASSWORD`.
+  Double-check in hPanel, especially for trailing whitespace when you
+  paste.
+- **550 Permission denied**: `FTP_REMOTE_DIR` is wrong. Hostinger's
+  default is `public_html` (no leading slash).
+- **FTPS handshake failure**: if your account doesn't support FTPS,
+  change `protocol: ftps` back to `protocol: ftp` in
+  `.github/workflows/deploy.yml`. Hostinger supports FTPS on port 21
+  (explicit TLS); some older accounts may still be plain FTP only.
+- **Concurrency lock** from a still-running deploy. The `concurrency`
+  block in the workflow serializes deploys so you won't race yourself.
 
 ## Manual deploy (fallback)
 
