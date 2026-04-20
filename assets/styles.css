@@ -778,6 +778,28 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   letter-spacing: 0.04em;
   margin-bottom: 12px;
 }
+.app-status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-left: 10px;
+  vertical-align: middle;
+  font-weight: 500;
+}
+.app-status-live {
+  color: oklch(0.82 0.17 150);
+  background: color-mix(in oklab, oklch(0.82 0.17 150) 12%, transparent);
+  border: 1px solid color-mix(in oklab, oklch(0.82 0.17 150) 40%, transparent);
+}
+.app-status-dev {
+  color: var(--fg-muted);
+  background: color-mix(in oklab, var(--fg-muted) 10%, transparent);
+  border: 1px solid var(--border);
+}
 .app-desc {
   font-size: 13.5px;
   color: var(--fg-muted);
@@ -1222,6 +1244,43 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   letter-spacing: -0.03em;
   color: var(--fg);
 }
+.udemy-courses {
+  list-style: none;
+  margin-top: 48px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.udemy-courses li { border-bottom: 1px solid var(--border-soft); }
+.udemy-courses li:first-child { border-top: 1px solid var(--border-soft); }
+.udemy-courses a {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 24px; padding: 16px 4px 16px 0;
+  color: inherit;
+  transition: padding-left 0.3s, background 0.3s;
+}
+.udemy-courses a:hover {
+  padding-left: 10px;
+  background: color-mix(in oklab, var(--accent) 5%, transparent);
+}
+.udemy-course-name {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  transition: color 0.2s;
+}
+.udemy-courses a:hover .udemy-course-name { color: var(--accent); }
+.udemy-course-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .udemy-courses a { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .udemy-course-meta { font-size: 10px; }
+}
 .udemy-lbl {
   font-family: var(--font-mono); font-size: 11px;
   text-transform: uppercase; letter-spacing: 0.1em;
@@ -1230,6 +1289,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 /* TESTIMONIALS (editorial rotator) */
+.test-lede {
+  max-width: 62ch;
+  color: var(--fg-muted);
+  font-size: 14px;
+  line-height: 1.55;
+  margin-top: -8px;
+  margin-bottom: 16px;
+  font-style: italic;
+}
 .test-stage {
   position: relative;
   max-width: 860px;
