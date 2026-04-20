@@ -114,20 +114,39 @@
 }
 </script>
 
-<!-- Analytics: Umami (self-hosted, privacy-friendly, no cookies) -->
+<!-- Analytics loader (inlined so placeholders don't waste a 400 per pageview) -->
 <!-- Replace YOUR_UMAMI_WEBSITE_ID with the ID from stats.capdesis.com > Settings > Websites -->
-<script async defer data-website-id="YOUR_UMAMI_WEBSITE_ID" src="https://stats.capdesis.com/script.js"></script>
-
-<!-- Analytics: Cloudflare Web Analytics (zero-cookie, edge-native) -->
 <!-- Replace YOUR_CF_BEACON_TOKEN with the token from Cloudflare > Analytics & Logs > Web Analytics -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_CF_BEACON_TOKEN"}'></script>
+<script>
+(function () {
+  var UMAMI_ID = 'YOUR_UMAMI_WEBSITE_ID';
+  var CF_TOKEN = 'YOUR_CF_BEACON_TOKEN';
+  var inject = function (attrs, src) {
+    var s = document.createElement('script');
+    for (var k in attrs) s.setAttribute(k, attrs[k]);
+    s.src = src;
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  };
+  if (UMAMI_ID && UMAMI_ID.indexOf('YOUR_') !== 0) {
+    inject({ 'data-website-id': UMAMI_ID }, 'https://stats.capdesis.com/script.js');
+  }
+  if (CF_TOKEN && CF_TOKEN.indexOf('YOUR_') !== 0) {
+    var c = document.createElement('script');
+    c.defer = true;
+    c.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    c.setAttribute('data-cf-beacon', JSON.stringify({ token: CF_TOKEN }));
+    document.head.appendChild(c);
+  }
+})();
+</script>
 
 <link rel="preconnect" href="https://assets.zyrosite.com" crossorigin />
 <link rel="preconnect" href="https://capdesis.com" crossorigin />
 <link rel="preconnect" href="https://stats.capdesis.com" crossorigin />
 <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
-<link rel="preconnect" href="https://api.web3forms.com" crossorigin />
-<link rel="preconnect" href="https://app.cal.com" crossorigin />
+<link rel="dns-prefetch" href="https://api.web3forms.com" />
+<link rel="dns-prefetch" href="https://cal.com" />
 <link rel="preload" href="fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -2101,6 +2120,88 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .welcome-modal, .welcome-card { transition: none; }
 }
 
+/* CASE STUDIES */
+.cases-intro {
+  max-width: 64ch;
+  color: var(--fg-muted);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+.cases-intro strong { color: var(--fg); font-weight: 500; }
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1100px) { .cases-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) { .cases-grid { grid-template-columns: 1fr; } }
+.case-card {
+  position: relative;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 28px 26px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.case-card::before {
+  content: '';
+  position: absolute; inset: 0 auto auto 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.case-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--accent) 50%, transparent);
+}
+.case-card:hover::before { opacity: 1; }
+.case-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.case-card h4 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--fg);
+  margin-bottom: 14px;
+}
+.case-body {
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 18px;
+}
+.case-body strong { color: var(--fg); font-weight: 500; }
+.case-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.case-metric {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
 </style>
 </head>
 <body data-origin="jsm">
@@ -2154,6 +2255,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     <li><a href="#about" data-i18n="nav.about">About</a></li>
     <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
     <li><a href="#capdesis" data-i18n="nav.capdesis">Capdesis</a></li>
+    <li><a href="#cases" data-i18n="nav.cases">Cases</a></li>
     <li><a href="#stack" data-i18n="nav.stack">Stack</a></li>
     <li><a href="#engineering" data-i18n="nav.engineering">Engineering</a></li>
     <li><a href="#oss" data-i18n="nav.oss">Open Source</a></li>
@@ -2309,7 +2411,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       </div>
 
       <div class="about-side">
-        <img class="about-portrait" data-reveal src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=600,h=750,fit=cover,trim=76.8;0;44.8;0/mjE2xGMQ20iKRBEE/foto_perfil-AQEJje1oJvHLpXzJ.jpeg" alt="Jorge Salgado Miranda" loading="eager" fetchpriority="high" decoding="async" width="600" height="750" />
+        <img class="about-portrait" data-reveal src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=600,h=750,fit=cover,trim=76.8;0;44.8;0/mjE2xGMQ20iKRBEE/foto_perfil-AQEJje1oJvHLpXzJ.jpeg" alt="Jorge Salgado Miranda" loading="lazy" fetchpriority="auto" decoding="async" width="600" height="750" />
       </div>
     </div>
 
@@ -2357,7 +2459,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
             <span class="tl-date">2024, <span data-i18n="exp.present">Present</span></span>
             <span class="tl-loc" data-i18n="exp.j1.loc">Remote · Fintech</span>
           </div>
-          <h3 class="tl-role"><img class="tl-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=80,h=80,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j1.role">Senior Mobile Engineer</span> · <span class="tl-company">PayPal / Venmo</span></h3>
+          <h3 class="tl-role"><img class="tl-logo" width="24" height="24"src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=80,h=80,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j1.role">Senior Mobile Engineer</span> · <span class="tl-company">PayPal / Venmo</span></h3>
           <p class="tl-blurb" data-i18n="exp.j1.blurb">Critical financial features for 426M+ users. "Exceeds Expectations" rating.</p>
           <ul class="tl-points">
             <li data-i18n="exp.j1.p1">Authored High-Level Designs for Push Provisioning, Auth Users and security features</li>
@@ -2378,7 +2480,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
             <span class="tl-date">2019, <span data-i18n="exp.present">Present</span></span>
             <span class="tl-loc" data-i18n="exp.j2.loc">Mexico City · Founder</span>
           </div>
-          <h3 class="tl-role"><img class="tl-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=120,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j2.role">CEO &amp; Founder</span> · <span class="tl-company">Capdesis</span></h3>
+          <h3 class="tl-role"><img class="tl-logo" width="24" height="24"src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=120,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j2.role">CEO &amp; Founder</span> · <span class="tl-company">Capdesis</span></h3>
           <p class="tl-blurb" data-i18n="exp.j2.blurb">EdTech & custom software consultancy. 51,000+ students, 34+ projects, 97% satisfaction.</p>
           <ul class="tl-points">
             <li data-i18n="exp.j2.p1">Lead a team of 4 to 6 developers shipping Flutter, Go backends and web across iOS/Android/Web</li>
@@ -2398,7 +2500,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
             <span class="tl-date">2022-2024</span>
             <span class="tl-loc" data-i18n="exp.j3.loc">Hybrid · E-commerce</span>
           </div>
-          <h3 class="tl-role"><img class="tl-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=80,h=80,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j3.role">Senior Native Mobile Developer</span> · <span class="tl-company">Tienda UNAM</span></h3>
+          <h3 class="tl-role"><img class="tl-logo" width="24" height="24"src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=80,h=80,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j3.role">Senior Native Mobile Developer</span> · <span class="tl-company">Tienda UNAM</span></h3>
           <p class="tl-blurb" data-i18n="exp.j3.blurb">Modernized university commerce platform serving thousands of students and staff.</p>
           <ul class="tl-points">
             <li data-i18n="exp.j3.p1">Integrated AI-powered chat via OpenAI API for customer support</li>
@@ -2418,7 +2520,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
             <span class="tl-date">2022</span>
             <span class="tl-loc" data-i18n="exp.j4.loc">Remote · Enterprise</span>
           </div>
-          <h3 class="tl-role"><img class="tl-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=120,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j4.role">Senior Backend Engineer</span> · <span class="tl-company">Flexera</span></h3>
+          <h3 class="tl-role"><img class="tl-logo" width="24" height="24"src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=120,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j4.role">Senior Backend Engineer</span> · <span class="tl-company">Flexera</span></h3>
           <p class="tl-blurb" data-i18n="exp.j4.blurb">Monolith → microservices with Go, Kubernetes and AWS.</p>
           <ul class="tl-points">
             <li data-i18n="exp.j4.p1">Led database migration improving performance and reliability</li>
@@ -2438,7 +2540,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
             <span class="tl-date">2020-2021</span>
             <span class="tl-loc" data-i18n="exp.j5.loc">Mexico City · Education</span>
           </div>
-          <h3 class="tl-role"><img class="tl-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=120,fit=contain/mjE2xGMQ20iKRBEE/ios-YBgpM5QrVwHGLral.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j5.role">Mobile Developer &amp; Project Lead</span> · <span class="tl-company">iOS Development Lab, UNAM</span></h3>
+          <h3 class="tl-role"><img class="tl-logo" width="24" height="24"src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=120,fit=contain/mjE2xGMQ20iKRBEE/ios-YBgpM5QrVwHGLral.png" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j5.role">Mobile Developer &amp; Project Lead</span> · <span class="tl-company">iOS Development Lab, UNAM</span></h3>
           <p class="tl-blurb" data-i18n="exp.j5.blurb">iOS & Flutter apps for university geolocation and navigation. Hackathon honorable mentions.</p>
           <div class="tl-chips">
             <span>Swift</span><span>Flutter</span><span>MySQL</span><span>CoreLocation</span>
@@ -2453,7 +2555,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
             <span class="tl-date">2020-2023</span>
             <span class="tl-loc" data-i18n="exp.j6.loc">Remote · Education</span>
           </div>
-          <h3 class="tl-role"><img class="tl-logo" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=120,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j6.role">Senior Instructor</span> · <span class="tl-company">Udemy</span></h3>
+          <h3 class="tl-role"><img class="tl-logo" width="24" height="24"src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=120,h=120,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async"><span data-i18n="exp.j6.role">Senior Instructor</span> · <span class="tl-company">Udemy</span></h3>
           <p class="tl-blurb" data-i18n="exp.j6.blurb">6 courses on C, C++, Kotlin and Git &amp; GitHub, 54,000+ developers worldwide.</p>
         </div>
       </li>
@@ -2482,7 +2584,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-it">
           <span class="app-icon-inner" aria-hidden="true">IT</span>
-          <img class="app-icon-img" src="https://capdesis.com/images/products/ingenieriatracker_logo.svg" alt="" loading="lazy" decoding="async" />
+          <img class="app-icon-img" width="56" height="56"src="https://capdesis.com/images/products/ingenieriatracker_logo.svg" alt="" loading="lazy" decoding="async" />
         </div>
         <div class="app-body">
           <h4>IngenieríaTracker</h4>
@@ -2501,7 +2603,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-fo">
           <span class="app-icon-inner" aria-hidden="true">Σ</span>
-          <img class="app-icon-img" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=160,h=160,fit=contain/m5KW4JlJkDuWQ66y/icono512px-YX4ZOgXl82hZWo12.png" alt="" loading="lazy" decoding="async" />
+          <img class="app-icon-img" width="56" height="56"src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=160,h=160,fit=contain/m5KW4JlJkDuWQ66y/icono512px-YX4ZOgXl82hZWo12.png" alt="" loading="lazy" decoding="async" />
         </div>
         <div class="app-body">
           <h4>Formulae Pro &amp; Community</h4>
@@ -2520,7 +2622,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-cm">
           <span class="app-icon-inner" aria-hidden="true">CM</span>
-          <img class="app-icon-img" src="https://capdesis.com/images/products/capmenu_logo.webp" alt="" loading="lazy" decoding="async" />
+          <img class="app-icon-img" width="56" height="56"src="https://capdesis.com/images/products/capmenu_logo.webp" alt="" loading="lazy" decoding="async" />
         </div>
         <div class="app-body">
           <h4>CapMenu</h4>
@@ -2539,7 +2641,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-cl">
           <span class="app-icon-inner" aria-hidden="true">CL</span>
-          <img class="app-icon-img" src="https://capdesis.com/images/products/capliving_logo.webp" alt="" loading="lazy" decoding="async" />
+          <img class="app-icon-img" width="56" height="56"src="https://capdesis.com/images/products/capliving_logo.webp" alt="" loading="lazy" decoding="async" />
         </div>
         <div class="app-body">
           <h4>Cap Living</h4>
@@ -2558,7 +2660,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-lf">
           <span class="app-icon-inner" aria-hidden="true">LF</span>
-          <img class="app-icon-img" src="https://capdesis.com/images/products/lomasfresh_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
+          <img class="app-icon-img" width="56" height="56"src="https://capdesis.com/images/products/lomasfresh_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
         </div>
         <div class="app-body">
           <h4>Lo Más Fresh</h4>
@@ -2577,7 +2679,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="app-card" data-tilt data-reveal>
         <div class="app-icon app-icon-ct">
           <span class="app-icon-inner" aria-hidden="true">CT</span>
-          <img class="app-icon-img" src="https://capdesis.com/images/products/captienda_logo.svg" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
+          <img class="app-icon-img" width="56" height="56"src="https://capdesis.com/images/products/captienda_logo.svg" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
         </div>
         <div class="app-body">
           <h4>CapTienda</h4>
@@ -2605,7 +2707,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="web-card" data-tilt data-reveal>
         <a href="https://capdesis.com/clientes/leon-entertainment/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="León Entertainment"></a>
         <div class="web-thumb web-thumb-1">
-          <div class="web-monogram"><img src="https://capdesis.com/images/clients/logo_leon_entertainment.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='LE'" /></div>
+          <div class="web-monogram"><img width="64" height="64"src="https://capdesis.com/images/clients/logo_leon_entertainment.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='LE'" /></div>
           <span class="web-thumb-tag">EVENTS · BOOKING</span>
         </div>
         <div class="web-body">
@@ -2620,7 +2722,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="web-card" data-tilt data-reveal>
         <a href="https://capdesis.com/clientes/opus-asesores/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="OPUS Asesores"></a>
         <div class="web-thumb web-thumb-2">
-          <div class="web-monogram"><img src="https://capdesis.com/images/clients/logo_opus_asesores.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='OP'" /></div>
+          <div class="web-monogram"><img width="64" height="64"src="https://capdesis.com/images/clients/logo_opus_asesores.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='OP'" /></div>
           <span class="web-thumb-tag">ASESORES · CRM</span>
         </div>
         <div class="web-body">
@@ -2635,7 +2737,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="web-card" data-tilt data-reveal>
         <a href="https://capdesis.com/clientes/artipublimex/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Artipublimex"></a>
         <div class="web-thumb web-thumb-3">
-          <div class="web-monogram"><img src="https://capdesis.com/images/clients/logo_artimetmex.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='AP'" /></div>
+          <div class="web-monogram"><img width="64" height="64"src="https://capdesis.com/images/clients/logo_artimetmex.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='AP'" /></div>
           <span class="web-thumb-tag">PRINT · BRAND</span>
         </div>
         <div class="web-body">
@@ -2650,7 +2752,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="web-card" data-tilt data-reveal>
         <a href="https://capdesis.com/clientes/ancare/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Ancare, Analogic Care"></a>
         <div class="web-thumb web-thumb-4">
-          <div class="web-monogram"><img src="https://capdesis.com/images/clients/ancare_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='AN'" /></div>
+          <div class="web-monogram"><img width="64" height="64"src="https://capdesis.com/images/clients/ancare_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='AN'" /></div>
           <span class="web-thumb-tag">HEALTH · CARE</span>
         </div>
         <div class="web-body">
@@ -2665,7 +2767,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="web-card" data-tilt data-reveal>
         <a href="https://capdesis.com/clientes/xunkaab/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Apiario Xun-kaab"></a>
         <div class="web-thumb web-thumb-5">
-          <div class="web-monogram"><img src="https://capdesis.com/images/clients/xunkaab_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='XK'" /></div>
+          <div class="web-monogram"><img width="64" height="64"src="https://capdesis.com/images/clients/xunkaab_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='XK'" /></div>
           <span class="web-thumb-tag">APIARY · SHOP</span>
         </div>
         <div class="web-body">
@@ -2680,7 +2782,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <article class="web-card" data-tilt data-reveal>
         <a href="https://capdesis.com/clientes/finca-sanro/" target="_blank" rel="noopener noreferrer" class="web-card-link" aria-label="Finca SANRO"></a>
         <div class="web-thumb web-thumb-6">
-          <div class="web-monogram"><img src="https://capdesis.com/images/clients/finca_sanro_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='SR'" /></div>
+          <div class="web-monogram"><img width="64" height="64"src="https://capdesis.com/images/clients/finca_sanro_logo.webp" alt="" loading="lazy" decoding="async" onerror="this.parentElement.textContent='SR'" /></div>
           <span class="web-thumb-tag">ESTATE · HOSPITALITY</span>
         </div>
         <div class="web-body">
@@ -2714,10 +2816,61 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     </div>
   </section>
 
+  <!-- CASE STUDIES -->
+  <section id="cases" class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <span class="section-kicker" data-i18n="cases.kicker">Case studies</span>
+    </div>
+
+    <h2 class="section-title section-title-wide">
+      <span data-reveal data-i18n="cases.title1">Real outcomes,</span>
+      <em data-reveal data-i18n="cases.title2">from production systems.</em>
+    </h2>
+
+    <p class="cases-intro" data-reveal data-i18n="cases.intro">Three shipped projects, picked for the metrics that matter: users reached, latency shaved, devices supported. No slides, no hypotheticals, each one is running in production today.</p>
+
+    <div class="cases-grid">
+
+      <article class="case-card" data-tilt data-reveal>
+        <span class="case-kicker" data-i18n="cases.c1.kicker">FINTECH AUTH</span>
+        <h4 data-i18n="cases.c1.title">Rewriting card auth for 426M users.</h4>
+        <p class="case-body" data-i18n="cases.c1.body">Authored the High-Level Designs for <strong>Push Provisioning</strong> and <strong>Auth Users</strong> at Venmo. Led a 50/50 ship on iOS and Android, refactored to Clean Architecture and wired biometric auth: Face ID, Touch ID, Fingerprint. Delivery rated "Exceeds Expectations".</p>
+        <div class="case-metrics">
+          <span class="case-metric" data-i18n="cases.c1.m1">426M+ users</span>
+          <span class="case-metric" data-i18n="cases.c1.m2">50/50 iOS &amp; Android</span>
+          <span class="case-metric" data-i18n="cases.c1.m3">Exceeds Expectations</span>
+        </div>
+      </article>
+
+      <article class="case-card" data-tilt data-reveal>
+        <span class="case-kicker" data-i18n="cases.c2.kicker">BACKEND SCALE</span>
+        <h4 data-i18n="cases.c2.title">From monolith to microservices.</h4>
+        <p class="case-body" data-i18n="cases.c2.body">Led the <strong>database migration</strong> and built the CI/CD backbone with GitLab CI, Jenkins and GitHub Actions. Added <strong>Kafka</strong> for event streaming and <strong>Redis</strong> for caching. Services on Go, Kubernetes and AWS, shipped with versioned APIs and rollbacks.</p>
+        <div class="case-metrics">
+          <span class="case-metric" data-i18n="cases.c2.m1">66% latency reduction</span>
+          <span class="case-metric" data-i18n="cases.c2.m2">Go + K8s + AWS</span>
+        </div>
+      </article>
+
+      <article class="case-card" data-tilt data-reveal>
+        <span class="case-kicker" data-i18n="cases.c3.kicker">MOBILE OFFLINE-FIRST</span>
+        <h4 data-i18n="cases.c3.title">10,000 engineers, offline by default.</h4>
+        <p class="case-body" data-i18n="cases.c3.body">Built <strong>IngenieríaTracker</strong> end to end: Flutter client, Go backend with 22+ APIs, offline-first architecture for campuses with patchy connectivity. Shipped across Mexico through Capdesis and still maintained weekly.</p>
+        <div class="case-metrics">
+          <span class="case-metric" data-i18n="cases.c3.m1">10K+ MAU</span>
+          <span class="case-metric" data-i18n="cases.c3.m2">22 APIs</span>
+          <span class="case-metric" data-i18n="cases.c3.m3">Offline-first</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
   <!-- STACK -->
   <section id="stack" class="section">
     <div class="section-head">
-      <span class="section-num">04</span>
+      <span class="section-num">05</span>
       <span class="section-kicker" data-i18n="stack.kicker">Stack</span>
     </div>
 
@@ -2813,7 +2966,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- ENGINEERING PRACTICE -->
   <section id="engineering" class="section">
     <div class="section-head">
-      <span class="section-num">05</span>
+      <span class="section-num">06</span>
       <span class="section-kicker" data-i18n="eng.kicker">Engineering practice</span>
     </div>
 
@@ -2938,7 +3091,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- OPEN SOURCE -->
   <section id="oss" class="section">
     <div class="section-head">
-      <span class="section-num">06</span>
+      <span class="section-num">07</span>
       <span class="section-kicker" data-i18n="oss.kicker">Open Source</span>
     </div>
 
@@ -3016,7 +3169,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- CERTIFICATIONS -->
   <section id="certifications" class="section">
     <div class="section-head">
-      <span class="section-num">07</span>
+      <span class="section-num">08</span>
       <span class="section-kicker" data-i18n="cert.kicker">Certifications · Learning path</span>
     </div>
 
@@ -3162,7 +3315,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- UDEMY -->
   <section id="udemy" class="section section-udemy">
     <div class="section-head">
-      <span class="section-num">08</span>
+      <span class="section-num">09</span>
       <span class="section-kicker" data-i18n="udemy.kicker">Teaching</span>
     </div>
 
@@ -3203,7 +3356,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- TESTIMONIALS -->
   <section id="testimonials" class="section">
     <div class="section-head">
-      <span class="section-num">09</span>
+      <span class="section-num">10</span>
       <span class="section-kicker" data-i18n="test.kicker">Testimonials</span>
     </div>
 
@@ -3292,7 +3445,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- CONTACT -->
   <section id="contact" class="section section-contact">
     <div class="section-head">
-      <span class="section-num">10</span>
+      <span class="section-num">11</span>
       <span class="section-kicker" data-i18n="contact.kicker">Contact</span>
     </div>
 
@@ -3425,6 +3578,7 @@ const I18N = {
     "nav.about": "About",
     "nav.experience": "Experience",
     "nav.capdesis": "Capdesis",
+    "nav.cases": "Cases",
     "nav.stack": "Stack",
     "nav.engineering": "Engineering",
     "nav.oss": "Open Source",
@@ -3539,6 +3693,28 @@ const I18N = {
     "cap.web.6": "Estate and hospitality site, editorial storytelling, availability and inquiries for a private venue.",
     "cap.web.6.kind": "Estate · Hospitality",
     "cap.web.more": "Plus delivered work for Banco Multiva, Hospital Ángeles, Scotiabank, Finca SANRO, La Punta, Colinas del Bosque and Alboa.",
+
+    "cases.kicker": "Case studies",
+    "cases.title1": "Real outcomes,",
+    "cases.title2": "from production systems.",
+    "cases.intro": "Three shipped projects, picked for the metrics that matter: users reached, latency shaved, devices supported. No slides, no hypotheticals, each one is running in production today.",
+    "cases.c1.kicker": "FINTECH AUTH",
+    "cases.c1.title": "Rewriting card auth for 426M users.",
+    "cases.c1.body": "Authored the High-Level Designs for <strong>Push Provisioning</strong> and <strong>Auth Users</strong> at Venmo. Led a 50/50 ship on iOS and Android, refactored to Clean Architecture and wired biometric auth: Face ID, Touch ID, Fingerprint. Delivery rated \"Exceeds Expectations\".",
+    "cases.c1.m1": "426M+ users",
+    "cases.c1.m2": "50/50 iOS &amp; Android",
+    "cases.c1.m3": "Exceeds Expectations",
+    "cases.c2.kicker": "BACKEND SCALE",
+    "cases.c2.title": "From monolith to microservices.",
+    "cases.c2.body": "Led the <strong>database migration</strong> and built the CI/CD backbone with GitLab CI, Jenkins and GitHub Actions. Added <strong>Kafka</strong> for event streaming and <strong>Redis</strong> for caching. Services on Go, Kubernetes and AWS, shipped with versioned APIs and rollbacks.",
+    "cases.c2.m1": "66% latency reduction",
+    "cases.c2.m2": "Go + K8s + AWS",
+    "cases.c3.kicker": "MOBILE OFFLINE-FIRST",
+    "cases.c3.title": "10,000 engineers, offline by default.",
+    "cases.c3.body": "Built <strong>IngenieríaTracker</strong> end to end: Flutter client, Go backend with 22+ APIs, offline-first architecture for campuses with patchy connectivity. Shipped across Mexico through Capdesis and still maintained weekly.",
+    "cases.c3.m1": "10K+ MAU",
+    "cases.c3.m2": "22 APIs",
+    "cases.c3.m3": "Offline-first",
 
     "stack.kicker": "Stack",
     "stack.title1": "Tools I reach for,",
@@ -3701,6 +3877,7 @@ const I18N = {
     "nav.about": "Sobre mí",
     "nav.experience": "Experiencia",
     "nav.capdesis": "Capdesis",
+    "nav.cases": "Casos",
     "nav.stack": "Stack",
     "nav.engineering": "Ingeniería",
     "nav.oss": "Open Source",
@@ -3815,6 +3992,28 @@ const I18N = {
     "cap.web.6": "Sitio de finca y hospitalidad, storytelling editorial, disponibilidad y solicitudes para un recinto privado.",
     "cap.web.6.kind": "Finca · Hospitalidad",
     "cap.web.more": "Además, trabajo entregado para Banco Multiva, Hospital Ángeles, Scotiabank, Finca SANRO, La Punta, Colinas del Bosque y Alboa.",
+
+    "cases.kicker": "Case studies",
+    "cases.title1": "Resultados reales,",
+    "cases.title2": "de sistemas en producción.",
+    "cases.intro": "Tres proyectos enviados, elegidos por las métricas que importan: usuarios alcanzados, latencia recortada, dispositivos soportados. Nada de slides ni hipótesis, cada uno corre en producción hoy.",
+    "cases.c1.kicker": "FINTECH AUTH",
+    "cases.c1.title": "Rediseñando el auth de tarjetas para 426M de usuarios.",
+    "cases.c1.body": "Escribí los High-Level Designs de <strong>Push Provisioning</strong> y <strong>Auth Users</strong> en Venmo. Lideré entrega 50/50 en iOS y Android, refactoricé a Clean Architecture y conecté auth biométrica: Face ID, Touch ID, huella. Entrega calificada \"Exceeds Expectations\".",
+    "cases.c1.m1": "426M+ usuarios",
+    "cases.c1.m2": "50/50 iOS y Android",
+    "cases.c1.m3": "Exceeds Expectations",
+    "cases.c2.kicker": "BACKEND SCALE",
+    "cases.c2.title": "De monolito a microservicios.",
+    "cases.c2.body": "Lideré la <strong>migración de base de datos</strong> y armé el CI/CD con GitLab CI, Jenkins y GitHub Actions. Sumé <strong>Kafka</strong> para streaming de eventos y <strong>Redis</strong> para cacheo. Servicios en Go, Kubernetes y AWS, enviados con APIs versionadas y rollbacks.",
+    "cases.c2.m1": "66% menos latencia",
+    "cases.c2.m2": "Go + K8s + AWS",
+    "cases.c3.kicker": "MOBILE OFFLINE-FIRST",
+    "cases.c3.title": "10,000 ingenieros, offline por defecto.",
+    "cases.c3.body": "Construí <strong>IngenieríaTracker</strong> de punta a punta: cliente Flutter, backend Go con 22+ APIs, arquitectura offline-first para campus con conectividad intermitente. Desplegado en toda México vía Capdesis y mantenido cada semana.",
+    "cases.c3.m1": "10K+ MAU",
+    "cases.c3.m2": "22 APIs",
+    "cases.c3.m3": "Offline-first",
 
     "stack.kicker": "Stack",
     "stack.title1": "Las herramientas que uso,",
@@ -4238,6 +4437,8 @@ window.__I18N__ = I18N;
       modal.dataset.open = 'true';
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      // Move focus inside the modal so Escape and Tab are captured.
+      document.getElementById('welcome-close')?.focus();
     };
 
     // Schedule reveal
@@ -4251,7 +4452,16 @@ window.__I18N__ = I18N;
     document.getElementById('welcome-accept')?.addEventListener('click', () => closeModal(true));
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(true); });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.dataset.open === 'true') closeModal(true);
+      if (modal.dataset.open !== 'true') return;
+      if (e.key === 'Escape') { closeModal(true); return; }
+      if (e.key !== 'Tab') return;
+      // Keyboard focus trap so Tab cycles only through modal children.
+      const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
   }
 

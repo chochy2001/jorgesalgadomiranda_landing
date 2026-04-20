@@ -8,6 +8,8 @@
 <meta name="description" content="CV of Jorge Salgado Miranda, Senior Software Architect: mobile (iOS, Android, Flutter), backend (Go, AWS), architecture and security. PayPal/Venmo, Capdesis, UNAM." />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://jorgesalgadomiranda.com/cv/Jorge_Salgado_Miranda_CV_EN.html" />
+<link rel="preload" href="../fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
 <!-- CV-specific favicon (document glyph, intentionally distinct from main site "js" monogram) -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='18' y='10' width='64' height='80' rx='6' fill='%23006f8f'/%3E%3Crect x='26' y='26' width='48' height='4' fill='white'/%3E%3Crect x='26' y='38' width='48' height='3' fill='white' opacity='0.75'/%3E%3Crect x='26' y='48' width='36' height='3' fill='white' opacity='0.6'/%3E%3Crect x='26' y='58' width='40' height='3' fill='white' opacity='0.55'/%3E%3Crect x='26' y='68' width='30' height='3' fill='white' opacity='0.4'/%3E%3C/svg%3E" />
 <style>
@@ -20,7 +22,7 @@
 :root {
   --ink: #0b0c0e;
   --ink-2: #3b3f46;
-  --ink-3: #6b7180;
+  --ink-3: #585d68;
   --line: #d9dde3;
   --accent: #006f8f;
   --bg: #fff;
@@ -179,11 +181,20 @@ h2.section {
 }
 
 @media print {
-  body { background: white; padding: 0; }
-  .sheet { box-shadow: none; margin: 0; max-width: none; padding: 14mm 14mm; }
+  body { background: white; padding: 0; font-size: 9.8pt; line-height: 1.38; }
+  .sheet { box-shadow: none; margin: 0; max-width: none; padding: 10mm 12mm; }
   .no-print { display: none !important; }
-  .job, .education-block { page-break-inside: avoid; }
-  h2.section { page-break-after: avoid; }
+  .job { margin-bottom: 9px; page-break-inside: avoid; }
+  .education-block { margin: 2px 0 8px; page-break-inside: avoid; }
+  h2.section { font-size: 13pt; margin: 10px 0 5px; page-break-after: avoid; }
+  .header { padding-bottom: 8px; margin-bottom: 10px; }
+  .header h1 { font-size: 26pt; }
+  .header .role { font-size: 11pt; margin-bottom: 6px; }
+  .summary { margin: 0 0 10px; line-height: 1.42; }
+  .skills-list, .cert-list, .extra-list { margin: 2px 0 6px; }
+  .skills-list li, .cert-list li, .extra-list li, .job li { margin-bottom: 1px; line-height: 1.38; }
+  .job-blurb { margin: 2px 0; }
+  .foot { margin-top: 10px; padding-top: 6px; }
   a { color: var(--ink-2); text-decoration: none; }
 }
 
@@ -229,30 +240,19 @@ h2.section {
 
   <h2 class="section">Professional Summary</h2>
   <p class="summary">
-    Senior Software Architect with <strong><span data-years-since="2018">8</span>+ years</strong> designing and shipping systems across mobile (iOS, Android, Flutter), backend (Go, Node) and cloud (AWS). Currently Senior Mobile Engineer at <strong>PayPal/Venmo</strong>, delivering financial features for 426M+ users with an <strong>"Exceeds Expectations"</strong> performance rating. Founder and CEO of <strong>Capdesis</strong>, a Mexico-based consultancy: 34+ projects delivered, 51,000+ students reached, 97% client satisfaction, team of 4 to 6 engineers. Target roles: Staff / Principal Mobile Engineer, Mobile Architect, Cloud Architect, Security Architect, Tech Lead, Fractional CTO. Deep expertise in Clean Architecture, multi-module systems, OAuth 2.0, biometric authentication, OWASP MASVS and threat modeling. Actively pursuing AWS Solutions Architect Professional and advanced cybersecurity certifications. Instructor to 54,000+ developers on Udemy.
+    Senior Software Architect with <strong><span data-years-since="2018">8</span>+ years</strong> shipping systems across mobile (iOS, Android, Flutter), backend (Go) and cloud (AWS). Currently Senior Mobile Engineer at <strong>PayPal/Venmo</strong>, delivering financial features for 426M+ users with an <strong>"Exceeds Expectations"</strong> rating. Founder and CEO of <strong>Capdesis</strong>: 34+ projects, 51,000+ students reached, team of 4 to 6 engineers. Target roles: Staff / Principal Mobile Engineer, Software Architect, Mobile Architect, Security Architect, Fractional CTO. Deep expertise in Clean Architecture, OAuth 2.0, biometric auth, Keychain, Keystore, Certificate Pinning, OWASP MASVS, PCI DSS, SOC 2.
   </p>
 
   <h2 class="section">Technical Skills</h2>
   <ul class="skills-list">
-    <li><strong>Mobile Native:</strong> iOS (Swift, SwiftUI, UIKit, Combine, Core Data, CoreLocation), Android (Kotlin, Jetpack Compose, Android SDK, Coroutines, Flow, Room)</li>
-    <li><strong>Mobile Cross-platform:</strong> Flutter, Dart, BLoC, Riverpod, Provider, GetX, React Native</li>
-    <li><strong>Backend &amp; APIs:</strong> Go (Golang), Python, Node.js, REST, GraphQL, gRPC, microservices, event-driven architecture, Kafka, Redis</li>
-    <li><strong>Cloud &amp; Infrastructure:</strong> AWS (EC2, S3, RDS, Lambda, CloudFront, IAM), GCP, Firebase, Docker, Kubernetes, Terraform, Hostinger, Tailscale</li>
-    <li><strong>Architecture:</strong> Clean Architecture, MVVM, MVI, Multi-module, Repository Pattern, SOLID, Domain-Driven Design (DDD), Hexagonal, High-Level Design (HLD), observability, SRE practices</li>
-    <li><strong>Security:</strong> OAuth 2.0, OpenID Connect, JWT, biometric auth (Face ID, Touch ID, Fingerprint), Keychain, Android Keystore, Secure Enclave, Certificate Pinning, App Attest, Play Integrity, SafetyNet, mTLS, threat modeling, OWASP MASVS, OWASP MASTG, OWASP Top 10</li>
-    <li><strong>Compliance:</strong> PCI DSS awareness, SOC 2 controls familiarity, GDPR, accessibility (VoiceOver, TalkBack, WCAG 2.1)</li>
-    <li><strong>Testing &amp; Quality:</strong> JUnit, Mockito, Espresso, XCTest, Flutter Test, UI and automation testing, 85%+ coverage on production code, contract testing, load testing</li>
-    <li><strong>DevOps &amp; CI/CD:</strong> GitHub Actions, GitLab CI, Jenkins, Fastlane, Bitrise, Datadog, Sentry, Grafana, Prometheus</li>
-    <li><strong>State &amp; Reactive:</strong> Kotlin Flows, Combine, RxJava, RxSwift, LiveData</li>
-    <li><strong>Databases:</strong> PostgreSQL, MySQL, SQLite, Firebase Firestore, Redis, DynamoDB</li>
-    <li><strong>Feature Management:</strong> Feature Flags, remote config, A/B testing, fake responses, controlled rollouts</li>
-    <li><strong>Tooling:</strong> Git, Linux (Arch), macOS, Neovim, tmux, Android Studio, Xcode, Figma, AI pair programming (Claude, Cursor)</li>
+    <li><strong>Mobile:</strong> iOS (Swift, SwiftUI, UIKit, Combine, Core Data), Android (Kotlin, Jetpack Compose, Coroutines, Flow, Room), Flutter, Dart, BLoC, Riverpod, React Native, Kotlin Flows, RxJava, RxSwift, LiveData</li>
+    <li><strong>Backend &amp; Cloud:</strong> Go (Golang), Python, Node.js, REST, GraphQL, gRPC, microservices, Kafka, AWS (EC2, S3, RDS, Lambda, IAM), GCP, Firebase, Docker, Kubernetes, Terraform</li>
+    <li><strong>Architecture:</strong> Clean Architecture, MVVM, MVI, Multi-module, Repository Pattern, SOLID, DDD, Hexagonal, High-Level Design (HLD), observability, SRE practices</li>
+    <li><strong>Security &amp; Compliance:</strong> OAuth 2.0, OpenID Connect, JWT, biometric auth (Face ID, Touch ID, Fingerprint), Keychain, Android Keystore, Secure Enclave, Certificate Pinning, App Attest, Play Integrity, mTLS, threat modeling, OWASP MASVS, OWASP MASTG, OWASP Top 10, PCI DSS, SOC 2, GDPR, WCAG 2.1 (VoiceOver, TalkBack)</li>
+    <li><strong>Testing &amp; DevOps:</strong> JUnit, Mockito, Espresso, XCTest, Flutter Test, 85%+ coverage, contract testing, GitHub Actions, GitLab CI, Jenkins, Fastlane, Bitrise, Datadog, Sentry, Grafana, Feature Flags, A/B testing</li>
+    <li><strong>Databases &amp; Tooling:</strong> PostgreSQL, MySQL, SQLite, Firebase Firestore, Redis, DynamoDB. Git, Linux (Arch), macOS, Neovim, Android Studio, Xcode, Figma, AI pair programming (Claude, Cursor)</li>
     <li><strong>Languages:</strong> Spanish (Native), English (C1 Professional)</li>
   </ul>
-
-  <div class="arch-security">
-    <strong>Architecture &amp; Security focus.</strong> I design systems, not just features. My HLDs cover authentication flows, data boundaries, failure modes, observability and threat models, not just the happy path. Currently preparing AWS Solutions Architect Professional and OSCP / AWS Security Specialty.
-  </div>
 
   <h2 class="section">Professional Experience</h2>
 
@@ -262,13 +262,10 @@ h2.section {
     <div class="job-blurb">Shipping financial features for 426M+ users. Performance rating: Exceeds Expectations.</div>
     <ul>
       <li>Author High-Level Designs (HLDs) for Push Provisioning, Auth Users and other security-critical features</li>
-      <li>Led Push Provisioning implementation in Kotlin and Swift: credit card addition to Apple Wallet and Google Pay</li>
-      <li>Architected Auth Users (6 users per card) with a complete refactor to Clean Architecture, including authorization rules and audit logging</li>
-      <li>Implemented biometric authentication (Face ID, Touch ID, Fingerprint) for secure card management flows</li>
-      <li>Ship features 50 / 50 on Android and iOS in the same release cycle; maintain 85%+ unit and UI test coverage</li>
-      <li>Delivered Feature Flags and deterministic Fake Responses infrastructure for controlled rollouts and integration testing</li>
-      <li>Improved accessibility compliance (VoiceOver, TalkBack, dynamic type) across the owned feature set</li>
-      <li>Mentor 2 to 5 engineers on mobile best practices, code reviews, testing strategy and architecture decisions</li>
+      <li>Led Push Provisioning in Kotlin and Swift: credit card addition to Apple Wallet and Google Pay</li>
+      <li>Architected Auth Users (6 users per card) with a refactor to Clean Architecture, authorization rules and audit logging</li>
+      <li>Implemented biometric authentication (Face ID, Touch ID, Fingerprint) and Keychain / Keystore storage for secure card flows</li>
+      <li>Ship features 50 / 50 on Android and iOS; maintain 85%+ unit and UI test coverage; delivered Feature Flags and Fake Responses for controlled rollouts</li>
     </ul>
     <div class="tech">Tools: Kotlin, Swift, Jetpack Compose, SwiftUI, Kotlin Flows, Combine, GraphQL, OAuth 2.0, JWT, Biometrics, Feature Flags, Datadog, GitHub Actions</div>
   </div>
@@ -361,17 +358,13 @@ h2.section {
     <li>CISSP, ISC2 (in progress)</li>
     <li>Meta iOS Developer, Professional (in progress)</li>
     <li>Meta Android Developer, Professional (in progress)</li>
-    <li>AWS DevOps Engineer, Professional (on the roadmap)</li>
-    <li>AWS Generative AI Developer, Professional (on the roadmap)</li>
-    <li>ISSAP, ISC2 (on the roadmap)</li>
   </ul>
 
   <h2 class="section">Projects &amp; Leadership</h2>
   <ul class="extra-list">
-    <li><strong>Open Source:</strong> <a href="https://github.com/chochy2001/omnimon">OmniMon</a> macOS system monitor (contributor); <a href="https://github.com/chochy2001/ubuntu2kali">ubuntu2kali</a> installer tooling; <a href="https://github.com/chochy2001/openai-kotlin">openai-kotlin</a> Kotlin client; <a href="https://github.com/chochy2001/Neovim-Vim_Configuration">Neovim-Vim_Configuration</a>; 60+ public repositories at <a href="https://github.com/chochy2001">github.com/chochy2001</a></li>
+    <li><strong>Open Source:</strong> OmniMon, ubuntu2kali, openai-kotlin, Neovim config. 60+ public repos at <a href="https://github.com/chochy2001">github.com/chochy2001</a></li>
     <li><strong>Speaking:</strong> Tech conferences at UNAM, multiple hackathons (honorable mentions), industry webinars</li>
-    <li><strong>Personal projects:</strong> Home automation IoT, ARKit prototypes, open source developer tooling</li>
-    <li><strong>Leadership:</strong> Founded and scaled Capdesis from solo founder to a team of 4 to 6 engineers; mentored 20+ engineers; hands-on hiring and team structure</li>
+    <li><strong>Leadership:</strong> Scaled Capdesis from solo founder to team of 4 to 6 engineers; mentored 20+ engineers; hiring and team structure</li>
   </ul>
 
   <div class="foot">

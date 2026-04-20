@@ -82,7 +82,7 @@
 # -------- Nice URL handling --------
 DirectoryIndex index.html
 
-# -------- Custom 404 fallback to index (single-page style) --------
-# Keep commented unless you add SPA routing. As a static multi-page site,
-# a real 404 is more honest.
-# ErrorDocument 404 /index.html
+# -------- Custom 404 page --------
+# Branded, bilingual (EN + ES stacked, no JS needed) recovery page with
+# links home and to both CVs. Served for any path Apache cannot resolve.
+ErrorDocument 404 /404.html
