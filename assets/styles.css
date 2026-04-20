@@ -1249,10 +1249,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .test-viewport {
   position: relative;
-  min-height: 360px;
-  margin-bottom: 56px;
+  min-height: 260px;
+  margin-bottom: 40px;
 }
-@media (max-width: 700px) { .test-viewport { min-height: 440px; } }
+@media (max-width: 700px) { .test-viewport { min-height: 380px; } }
 .test-slide {
   position: absolute;
   inset: 0;
