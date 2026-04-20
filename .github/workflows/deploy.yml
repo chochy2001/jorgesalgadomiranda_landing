@@ -93,6 +93,7 @@ jobs:
             **/bun.lockb
             **/README.md
             **/CLAUDE.md
+            **/HANDOFF.md
             **/og.html
             **/verify-*.png
             **/*.log
