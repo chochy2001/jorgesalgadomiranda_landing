@@ -1,15 +1,28 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark" data-lang="es">
+<!--
+  ─────────────────────────────────────────────────────────────
+  Jorge Salgado Miranda · Portfolio
+  Originally built at https://jorgesalgadomiranda.com/
+  Source: https://github.com/chochy2001/jorgesalgadomiranda_landing
+  Free to fork — attribution appreciated.
+  ─────────────────────────────────────────────────────────────
+-->
+<html lang="es" data-theme="dark" data-lang="es" data-origin="jsm">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- SEO primary -->
-<title data-i18n-title>Jorge Salgado Miranda, Software Architect · Mobile, Web & Security</title>
-<meta name="description" content="Jorge Salgado Miranda, Senior Software Architect specialized in Mobile, Web and Security. CEO of Capdesis. Currently at PayPal/Venmo. {{yearsSince:2018}}+ years building native Android, iOS, Flutter and Go backends for 426M+ users." data-i18n-desc />
+<title data-i18n-title>Jorge Salgado Miranda · Auditoría de Arquitectura, Seguridad y Performance · Mobile & Web</title>
+<meta name="description" content="Jorge Salgado Miranda, Software Architect. Auditorías de arquitectura, seguridad, performance y costos para producto mobile y web. CEO de Capdesis, senior engineer en PayPal/Venmo. 8+ años construyendo sistemas en producción para 426M+ usuarios." data-i18n-desc />
 <meta name="author" content="Jorge Salgado Miranda" />
-<meta name="keywords" content="Jorge Salgado Miranda, Software Architect, Mobile Engineer, iOS Developer, Android Developer, Flutter, Kotlin, Swift, PayPal, Venmo, Capdesis, CEO Capdesis, UNAM, Mexico City, Cybersecurity, AWS Architect, Full Stack, Backend Go, GraphQL, Clean Architecture, IngenieriaTracker, Formulae" />
+<meta name="keywords" content="Jorge Salgado Miranda, auditoría arquitectura software, auditoría seguridad software, auditoría performance, optimización costos cloud, Software Architect México, Mobile Engineer, iOS Developer, Android Developer, Flutter, Kotlin, Swift, consultoría software México, arquitectura mobile, desarrollador senior, Capdesis, CEO Capdesis, PayPal Venmo, UNAM, Mexico City, Cybersecurity, AWS Architect, Backend Go, Clean Architecture, revisión de arquitectura, pentesting arquitectura, optimización AWS, desarrollo mobile México, desarrollo web México" />
 <link rel="canonical" href="https://jorgesalgadomiranda.com/" />
+<link rel="alternate" hreflang="es-MX" href="https://jorgesalgadomiranda.com/" />
+<link rel="alternate" hreflang="en" href="https://jorgesalgadomiranda.com/?lang=en" />
+<link rel="alternate" hreflang="x-default" href="https://jorgesalgadomiranda.com/" />
+<meta name="template-origin" content="jsm-portfolio-v1" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -24,23 +37,24 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Jorge Salgado Miranda, Software Architect" />
-<meta name="twitter:description" content="Senior Software Architect, Mobile, Web & Security. CEO of Capdesis." />
+<meta name="twitter:title" content="Jorge Salgado Miranda · Software Architect · Audits & Consulting" />
+<meta name="twitter:description" content="Auditorías de arquitectura, seguridad, performance y costos para mobile y web. CEO de Capdesis, senior engineer en PayPal/Venmo." />
 <meta name="twitter:image" content="https://jorgesalgadomiranda.com/og.png" />
 
-<!-- JSON-LD -->
+<!-- JSON-LD: Person -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://jorgesalgadomiranda.com/#person",
   "name": "Jorge Salgado Miranda",
   "url": "https://jorgesalgadomiranda.com/",
   "image": "https://jorgesalgadomiranda.com/og.png",
-  "jobTitle": "Software Architect, Mobile, Web & Security",
+  "jobTitle": "Software Architect · Mobile, Web & Security",
+  "description": "Software Architect ofreciendo auditorías de arquitectura, seguridad, performance y optimización de costos para productos mobile y web.",
   "worksFor": [
     { "@type": "Organization", "name": "PayPal / Venmo" },
-    { "@type": "Organization", "name": "Capdesis", "url": "https://capdesis.com" },
-    { "@type": "Organization", "name": "Universidad Nacional Autónoma de México" }
+    { "@type": "Organization", "name": "Capdesis", "url": "https://capdesis.com" }
   ],
   "alumniOf": { "@type": "CollegeOrUniversity", "name": "Facultad de Ingeniería, UNAM" },
   "address": { "@type": "PostalAddress", "addressLocality": "Mexico City", "addressCountry": "MX" },
@@ -53,12 +67,67 @@
     "https://developers.google.com/profile/u/chochy",
     "https://capdesis.com"
   ],
-  "knowsAbout": ["Mobile Architecture", "iOS Development", "Android Development", "Flutter", "Kotlin", "Swift", "Cybersecurity", "Clean Architecture", "AWS", "Go", "Backend Engineering"]
+  "knowsAbout": ["Mobile Architecture", "iOS Development", "Android Development", "Flutter", "Kotlin", "Swift", "Cybersecurity", "Clean Architecture", "AWS", "Go", "Backend Engineering", "Software Audits", "Performance Engineering", "Cloud Cost Optimization"]
 }
 </script>
 
+<!-- JSON-LD: ProfessionalService (SEO for "auditoría arquitectura", "auditoría seguridad", "consultoría software México") -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://jorgesalgadomiranda.com/#service",
+  "name": "Jorge Salgado Miranda · Software Architecture & Security Audits",
+  "url": "https://jorgesalgadomiranda.com/",
+  "image": "https://jorgesalgadomiranda.com/og.png",
+  "provider": { "@id": "https://jorgesalgadomiranda.com/#person" },
+  "areaServed": [
+    { "@type": "Country", "name": "Mexico" },
+    { "@type": "Country", "name": "United States" },
+    { "@type": "Place", "name": "Remote, global" }
+  ],
+  "serviceType": ["Software architecture audit", "Security audit", "Performance audit", "Cloud cost optimization", "Mobile development (iOS, Android, Flutter)", "Web development", "Senior IC consulting", "Fractional CTO"],
+  "priceRange": "$$-$$$",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Audits & Consulting",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Architecture review", "description": "End-to-end review of architecture, data flow, scalability, boundaries." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Security audit", "description": "Threat modelling, authentication review, credential/secret handling, OWASP top 10 surfaces." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Performance audit", "description": "Profiling, caching strategy, database indexes, rendering pipeline, client bundle." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud cost optimization", "description": "AWS/Hostinger/other — rightsizing, reserved capacity, egress, log retention, stateful vs stateless split." } }
+    ]
+  }
+}
+</script>
+
+<!-- JSON-LD: WebSite (hreflang/alternate hints for search engines) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://jorgesalgadomiranda.com/#website",
+  "url": "https://jorgesalgadomiranda.com/",
+  "name": "Jorge Salgado Miranda",
+  "inLanguage": ["es-MX", "en"],
+  "publisher": { "@id": "https://jorgesalgadomiranda.com/#person" }
+}
+</script>
+
+<!-- Analytics: Umami (self-hosted, privacy-friendly, no cookies) -->
+<!-- Replace YOUR_UMAMI_WEBSITE_ID with the ID from stats.capdesis.com > Settings > Websites -->
+<script async defer data-website-id="YOUR_UMAMI_WEBSITE_ID" src="https://stats.capdesis.com/script.js"></script>
+
+<!-- Analytics: Cloudflare Web Analytics (zero-cookie, edge-native) -->
+<!-- Replace YOUR_CF_BEACON_TOKEN with the token from Cloudflare > Analytics & Logs > Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"YOUR_CF_BEACON_TOKEN"}'></script>
+
 <link rel="preconnect" href="https://assets.zyrosite.com" crossorigin />
 <link rel="preconnect" href="https://capdesis.com" crossorigin />
+<link rel="preconnect" href="https://stats.capdesis.com" crossorigin />
+<link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
+<link rel="preconnect" href="https://api.web3forms.com" crossorigin />
+<link rel="preconnect" href="https://app.cal.com" crossorigin />
 <link rel="preload" href="fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -104,6 +173,7 @@
 }
 
 :root {
+  --jsm-origin: "jorgesalgadomiranda.com";
   --bg: oklch(0.14 0.008 240);
   --bg-elev: oklch(0.17 0.01 240);
   --bg-elev-2: oklch(0.20 0.012 240);
@@ -1763,9 +1833,277 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   [data-reveal] { opacity: 1; transform: none; }
 }
 
+/* =========================================
+   OFFER CHIPS (Architecture · Security · Performance · Costs)
+   ========================================= */
+.offer-chips {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin: 18px 0 32px 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.offer-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklch, var(--bg-elev) 60%, transparent);
+  color: var(--fg-muted);
+  transition: border-color 0.3s, color 0.3s, transform 0.3s cubic-bezier(.2, .8, .2, 1);
+}
+.offer-chip::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+.offer-chip:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   CONTACT FORM (Web3Forms)
+   ========================================= */
+.contact-form {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 28px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  box-shadow: var(--shadow-soft);
+}
+.contact-form h3 {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--fg);
+}
+.contact-form .form-lede {
+  color: var(--fg-muted);
+  font-size: 14px;
+  line-height: 1.55;
+  margin-bottom: 4px;
+}
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field label {
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.form-field input,
+.form-field textarea,
+.form-field select {
+  font: inherit;
+  color: var(--fg);
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklch, var(--bg) 60%, var(--bg-elev));
+  transition: border-color 0.25s, background 0.25s;
+  font-size: 14.5px;
+}
+.form-field textarea { resize: vertical; min-height: 110px; font-family: var(--font-sans); }
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg);
+}
+.form-field input[aria-invalid="true"],
+.form-field textarea[aria-invalid="true"] {
+  border-color: oklch(0.62 0.2 28);
+}
+.form-hint {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--fg-dim);
+  min-height: 14px;
+}
+.form-hint[data-state="error"] { color: oklch(0.72 0.19 28); }
+.form-hint[data-state="ok"] { color: oklch(0.78 0.16 160); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+.form-honeypot {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.form-submit {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-mono); font-size: 12.5px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s cubic-bezier(.2, .8, .2, 1);
+  cursor: pointer;
+}
+.form-submit:hover { background: var(--accent-hi); transform: translateY(-2px); }
+.form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.form-status {
+  font-family: var(--font-mono); font-size: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+  color: var(--fg-muted);
+  display: none;
+}
+.form-status[data-state="ok"] {
+  display: block;
+  border-color: oklch(0.65 0.16 160);
+  color: oklch(0.78 0.16 160);
+}
+.form-status[data-state="error"] {
+  display: block;
+  border-color: oklch(0.62 0.2 28);
+  color: oklch(0.72 0.19 28);
+}
+
+/* =========================================
+   CAL.COM & TIER CARD
+   ========================================= */
+.contact-tier {
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px dashed var(--border);
+  background: color-mix(in oklch, var(--bg-elev) 70%, transparent);
+}
+.contact-tier-kicker {
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent);
+}
+.contact-tier h4 {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 20px; font-weight: 400;
+  color: var(--fg);
+}
+.contact-tier p { color: var(--fg-muted); font-size: 14px; line-height: 1.55; }
+.contact-tier a { color: var(--accent); font-weight: 500; }
+.contact-tier a:hover { text-decoration: underline; }
+
+.cal-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  background: var(--fg);
+  color: var(--bg);
+  font-family: var(--font-mono); font-size: 12.5px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s cubic-bezier(.2, .8, .2, 1);
+  width: fit-content;
+}
+.cal-cta:hover { background: var(--accent); color: var(--bg); transform: translateY(-2px); }
+
+.contact-enhanced { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(24px, 3vw, 40px); margin-top: 8px; }
+@media (max-width: 900px) { .contact-enhanced { grid-template-columns: 1fr; } }
+
+/* =========================================
+   WELCOME MODAL (30-min free review)
+   ========================================= */
+.welcome-modal {
+  position: fixed; inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 20px;
+  background: color-mix(in oklch, var(--bg) 72%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(.2, .8, .2, 1);
+}
+.welcome-modal[data-open="true"] { display: flex; opacity: 1; }
+.welcome-card {
+  position: relative;
+  max-width: 520px; width: 100%;
+  padding: clamp(28px, 3.5vw, 42px);
+  border-radius: 18px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transform: translateY(24px) scale(0.96);
+  transition: transform 0.5s cubic-bezier(.2, .8, .2, 1);
+}
+.welcome-modal[data-open="true"] .welcome-card { transform: translateY(0) scale(1); }
+.welcome-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  color: var(--fg-muted);
+  transition: background 0.25s, color 0.25s, transform 0.25s;
+}
+.welcome-close:hover { background: color-mix(in oklch, var(--border) 50%, transparent); color: var(--fg); transform: rotate(90deg); }
+.welcome-kicker {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.welcome-card h3 {
+  font-family: var(--font-serif); font-style: italic;
+  font-weight: 400;
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.1;
+  color: var(--fg);
+  margin-bottom: 14px;
+}
+.welcome-card p {
+  color: var(--fg-muted);
+  font-size: 15px;
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+.welcome-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.welcome-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--accent) 12%, transparent);
+  color: var(--accent);
+  border: 1px solid color-mix(in oklch, var(--accent) 30%, transparent);
+}
+.welcome-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.welcome-actions .btn-primary,
+.welcome-actions .btn-ghost {
+  font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 10px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s cubic-bezier(.2, .8, .2, 1);
+}
+.welcome-actions .btn-primary { background: var(--accent); color: var(--bg); }
+.welcome-actions .btn-primary:hover { background: var(--accent-hi); transform: translateY(-2px); }
+.welcome-actions .btn-ghost { border: 1px solid var(--border); color: var(--fg-muted); }
+.welcome-actions .btn-ghost:hover { border-color: var(--accent); color: var(--fg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-modal, .welcome-card { transition: none; }
+}
+
 </style>
 </head>
-<body>
+<body data-origin="jsm">
 
 <!-- Skip link (a11y) -->
 <a href="#main" class="skip-link" data-i18n="a11y.skip">Skip to content</a>
@@ -1776,6 +2114,32 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 <!-- SCROLL INDICATOR -->
 <div id="scroll-indicator" aria-hidden="true"><div id="scroll-indicator-fill"></div></div>
+
+<!-- WELCOME MODAL (free 30-min audit CTA) -->
+<div class="welcome-modal" id="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title" aria-hidden="true">
+  <div class="welcome-card">
+    <button class="welcome-close" id="welcome-close" type="button" aria-label="Close">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="welcome-kicker" data-i18n="welcome.kicker">Free 30-min review</div>
+    <h3 id="welcome-title" data-i18n="welcome.title">Solicita una revisión de arquitectura, seguridad o performance, 30 min sin costo.</h3>
+    <p data-i18n="welcome.body">Una llamada corta para diagnosticar tu sistema y darte una lista de acciones concretas. Sin compromiso, sin pitch de venta.</p>
+    <div class="welcome-chips">
+      <span class="welcome-chip" data-i18n="welcome.chip1">Architecture</span>
+      <span class="welcome-chip" data-i18n="welcome.chip2">Security</span>
+      <span class="welcome-chip" data-i18n="welcome.chip3">Performance</span>
+      <span class="welcome-chip" data-i18n="welcome.chip4">Costs</span>
+    </div>
+    <div class="welcome-actions">
+      <a href="#contact" class="btn-primary" id="welcome-accept" data-magnetic>
+        <span data-i18n="welcome.cta1">Book my slot</span>
+      </a>
+      <button type="button" class="btn-ghost" id="welcome-dismiss" data-magnetic>
+        <span data-i18n="welcome.cta2">Maybe later</span>
+      </button>
+    </div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav class="nav" aria-label="Primary">
@@ -2933,14 +3297,94 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     </div>
 
     <h2 class="section-title section-title-huge">
-      <span data-reveal data-i18n="contact.title1">Let's build</span>
-      <em data-reveal data-i18n="contact.title2">something that lasts.</em>
+      <span data-reveal data-i18n="contact.title1">Book a free</span>
+      <em data-reveal data-i18n="contact.title2">30-min technical review.</em>
     </h2>
 
-    <div class="contact-grid">
-      <div class="contact-main" data-reveal>
-        <p data-i18n="contact.p">Open to architecture consulting, senior IC roles, or strategic advisory for mobile-first products. Reply time is usually under a day.</p>
+    <div class="offer-chips" data-reveal>
+      <span class="offer-chip" data-i18n="offer.chip1">Architecture audit</span>
+      <span class="offer-chip" data-i18n="offer.chip2">Security audit</span>
+      <span class="offer-chip" data-i18n="offer.chip3">Performance audit</span>
+      <span class="offer-chip" data-i18n="offer.chip4">Cost optimization</span>
+    </div>
 
+    <div class="contact-enhanced">
+      <div class="contact-main" data-reveal>
+        <p data-i18n="contact.p">A short call to diagnose your system and leave you with a concrete list of actions. No pitch, no pressure — just a senior engineer reading your code.</p>
+
+        <a href="https://cal.com/jorgesalgadomiranda/30min" target="_blank" rel="noopener noreferrer" class="cal-cta" id="cal-cta" data-magnetic>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <span data-i18n="contact.calcta">Book a 30-min slot</span>
+        </a>
+
+        <div class="contact-tier" data-reveal>
+          <span class="contact-tier-kicker" data-i18n="contact.tier.kicker">For companies</span>
+          <h4 data-i18n="contact.tier.title">Need something bigger?</h4>
+          <p data-i18n="contact.tier.body">For ongoing engagements, team augmentation, or corporate invoicing, work directly through <a href="https://capdesis.com" target="_blank" rel="noopener noreferrer">Capdesis</a> — my consultancy. Full contracts, invoicing in MX and US, and a team of senior engineers behind every project.</p>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contact-form" data-reveal autocomplete="on" novalidate>
+        <h3 data-i18n="form.title">Or send me a message.</h3>
+        <p class="form-lede" data-i18n="form.lede">Goes straight to my inbox. I reply within a day. Real email required — disposable addresses are rejected.</p>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-name" data-i18n="form.label.name">Name</label>
+            <input type="text" id="cf-name" name="name" required minlength="2" maxlength="80" autocomplete="name" />
+          </div>
+          <div class="form-field">
+            <label for="cf-company" data-i18n="form.label.company">Company (optional)</label>
+            <input type="text" id="cf-company" name="company" maxlength="120" autocomplete="organization" />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="cf-email" data-i18n="form.label.email">Email</label>
+          <input type="email" id="cf-email" name="email" required maxlength="120" autocomplete="email" inputmode="email" />
+          <span class="form-hint" id="cf-email-hint" data-state="idle"></span>
+        </div>
+
+        <div class="form-field">
+          <label for="cf-topic" data-i18n="form.label.topic">Topic</label>
+          <select id="cf-topic" name="topic">
+            <option value="architecture" data-i18n="form.topic.architecture">Architecture audit</option>
+            <option value="security" data-i18n="form.topic.security">Security audit</option>
+            <option value="performance" data-i18n="form.topic.performance">Performance audit</option>
+            <option value="costs" data-i18n="form.topic.costs">Cost optimization</option>
+            <option value="mobile" data-i18n="form.topic.mobile">Mobile / web development</option>
+            <option value="other" data-i18n="form.topic.other">Something else</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="cf-message" data-i18n="form.label.message">Message</label>
+          <textarea id="cf-message" name="message" required minlength="10" maxlength="2000"></textarea>
+        </div>
+
+        <!-- Honeypot (invisible to humans, bots fill it and get rejected) -->
+        <div class="form-honeypot" aria-hidden="true">
+          <label for="cf-website">Do not fill</label>
+          <input type="text" id="cf-website" name="botcheck" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Web3Forms access key — replace placeholder with value from web3forms.com/ -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="New lead from jorgesalgadomiranda.com" />
+        <input type="hidden" name="from_name" value="jorgesalgadomiranda.com" />
+        <input type="hidden" name="redirect" value="false" />
+
+        <button type="submit" class="form-submit" id="cf-submit">
+          <span data-i18n="form.submit">Send message</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+
+        <div class="form-status" id="cf-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <div class="contact-grid" style="margin-top: 32px;">
+      <div class="contact-main" data-reveal>
         <a href="mailto:jorgesalgadomiranda@protonmail.com" class="contact-email">
           <span>jorgesalgadomiranda@protonmail.com</span>
           <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
@@ -3200,15 +3644,56 @@ const I18N = {
     "cv.p": "An updated CV, in both Spanish and English. Fully revamped, new summary, dedicated architecture and security sections, concrete metrics on every role.",
 
     "contact.kicker": "Contact",
-    "contact.title1": "Let's build",
-    "contact.title2": "something that lasts.",
-    "contact.p": "Open to architecture consulting, senior IC roles, or strategic advisory for mobile-first products. Reply time is usually under a day.",
+    "contact.title1": "Book a free",
+    "contact.title2": "30-min technical review.",
+    "contact.p": "A short call to diagnose your system and leave you with a concrete list of actions. No pitch, no pressure — just a senior engineer reading your code.",
+    "contact.calcta": "Book a 30-min slot",
+    "contact.tier.kicker": "For companies",
+    "contact.tier.title": "Need something bigger?",
+    "contact.tier.body": "For ongoing engagements, team augmentation, or corporate invoicing, work directly through <a href=\"https://capdesis.com\" target=\"_blank\" rel=\"noopener noreferrer\">Capdesis</a> — my consultancy. Full contracts, invoicing in MX and US, and a team of senior engineers behind every project.",
+
+    "offer.chip1": "Architecture audit",
+    "offer.chip2": "Security audit",
+    "offer.chip3": "Performance audit",
+    "offer.chip4": "Cost optimization",
+
+    "welcome.kicker": "Free 30-min review",
+    "welcome.title": "Get a free 30-min review of your architecture, security or performance.",
+    "welcome.body": "A short call to diagnose your system and leave you with a concrete list of actions. No strings, no sales pitch.",
+    "welcome.chip1": "Architecture",
+    "welcome.chip2": "Security",
+    "welcome.chip3": "Performance",
+    "welcome.chip4": "Costs",
+    "welcome.cta1": "Book my slot",
+    "welcome.cta2": "Maybe later",
+
+    "form.title": "Or send me a message.",
+    "form.lede": "Goes straight to my inbox. I reply within a day. Real email required — disposable addresses are rejected.",
+    "form.label.name": "Name",
+    "form.label.company": "Company (optional)",
+    "form.label.email": "Email",
+    "form.label.topic": "Topic",
+    "form.label.message": "Message",
+    "form.topic.architecture": "Architecture audit",
+    "form.topic.security": "Security audit",
+    "form.topic.performance": "Performance audit",
+    "form.topic.costs": "Cost optimization",
+    "form.topic.mobile": "Mobile / web development",
+    "form.topic.other": "Something else",
+    "form.submit": "Send message",
+    "form.err.required": "This field is required.",
+    "form.err.email": "Please enter a valid email address.",
+    "form.err.disposable": "Disposable or temporary emails are not accepted. Please use a real address.",
+    "form.err.short": "Message is too short — tell me a bit more.",
+    "form.err.submit": "Something went wrong sending your message. Try again, or email me directly.",
+    "form.ok": "Got it! I'll reply within a day — check your inbox (and spam just in case).",
+    "form.sending": "Sending…",
 
     "footer.made": "Designed & built by me, CDMX",
     "footer.top": "Back to top",
 
-    "title": "Jorge Salgado Miranda, Software Architect · Mobile, Web & Security",
-    "desc": "Jorge Salgado Miranda, Senior Software Architect specialized in Mobile, Web and Security. CEO of Capdesis. Currently at PayPal/Venmo. {{yearsSince:2018}}+ years building native Android, iOS, Flutter and Go backends for 426M+ users."
+    "title": "Jorge Salgado Miranda · Software Architect · Mobile, Web & Security Audits",
+    "desc": "Jorge Salgado Miranda, Software Architect. Architecture, security, performance and cost audits for mobile and web products. CEO of Capdesis, senior engineer at PayPal/Venmo. {{yearsSince:2018}}+ years shipping to 426M+ users."
   },
 
   es: {
@@ -3435,15 +3920,56 @@ const I18N = {
     "cv.p": "Un CV actualizado, en español e inglés. Completamente renovado, nuevo resumen, secciones dedicadas de arquitectura y seguridad, métricas concretas en cada rol.",
 
     "contact.kicker": "Contacto",
-    "contact.title1": "Construyamos",
-    "contact.title2": "algo que perdure.",
-    "contact.p": "Abierto a consultoría de arquitectura, roles senior IC o asesoría estratégica para productos mobile-first. Suelo responder en menos de un día.",
+    "contact.title1": "Agenda una revisión",
+    "contact.title2": "técnica gratis de 30 min.",
+    "contact.p": "Una llamada corta para diagnosticar tu sistema y dejarte con una lista concreta de acciones. Sin pitch, sin presión — un ingeniero senior leyendo tu código.",
+    "contact.calcta": "Agendar 30 min",
+    "contact.tier.kicker": "Para empresas",
+    "contact.tier.title": "¿Necesitas algo más grande?",
+    "contact.tier.body": "Para proyectos continuos, team augmentation o facturación corporativa, la contratación es directa vía <a href=\"https://capdesis.com\" target=\"_blank\" rel=\"noopener noreferrer\">Capdesis</a> — mi consultora. Contratos completos, facturación en MX y US, y un equipo de ingenieros senior detrás de cada proyecto.",
+
+    "offer.chip1": "Auditoría de arquitectura",
+    "offer.chip2": "Auditoría de seguridad",
+    "offer.chip3": "Auditoría de performance",
+    "offer.chip4": "Optimización de costos",
+
+    "welcome.kicker": "Revisión gratis 30 min",
+    "welcome.title": "Solicita una revisión gratis de arquitectura, seguridad o performance, 30 min.",
+    "welcome.body": "Una llamada corta para diagnosticar tu sistema y darte una lista concreta de acciones. Sin compromiso, sin pitch de venta.",
+    "welcome.chip1": "Arquitectura",
+    "welcome.chip2": "Seguridad",
+    "welcome.chip3": "Performance",
+    "welcome.chip4": "Costos",
+    "welcome.cta1": "Agendar mi espacio",
+    "welcome.cta2": "Después",
+
+    "form.title": "O escríbeme un mensaje.",
+    "form.lede": "Llega directo a mi bandeja. Respondo en menos de un día. Correo real obligatorio — correos desechables son rechazados.",
+    "form.label.name": "Nombre",
+    "form.label.company": "Empresa (opcional)",
+    "form.label.email": "Correo",
+    "form.label.topic": "Tema",
+    "form.label.message": "Mensaje",
+    "form.topic.architecture": "Auditoría de arquitectura",
+    "form.topic.security": "Auditoría de seguridad",
+    "form.topic.performance": "Auditoría de performance",
+    "form.topic.costs": "Optimización de costos",
+    "form.topic.mobile": "Desarrollo mobile / web",
+    "form.topic.other": "Otro",
+    "form.submit": "Enviar mensaje",
+    "form.err.required": "Este campo es requerido.",
+    "form.err.email": "Ingresa un correo válido.",
+    "form.err.disposable": "No aceptamos correos temporales o desechables. Usa un correo real, por favor.",
+    "form.err.short": "El mensaje es muy corto — cuéntame un poco más.",
+    "form.err.submit": "Algo falló al enviar tu mensaje. Intenta de nuevo, o escríbeme directo por correo.",
+    "form.ok": "¡Recibido! Te respondo en menos de un día — revisa tu bandeja (y spam por si acaso).",
+    "form.sending": "Enviando…",
 
     "footer.made": "Diseñado y construido por mí, CDMX",
     "footer.top": "Volver arriba",
 
-    "title": "Jorge Salgado Miranda, Arquitecto de Software · Mobile, Web y Seguridad",
-    "desc": "Jorge Salgado Miranda, Senior Software Architect especializado en Mobile, Web y Seguridad. CEO de Capdesis. Actualmente en PayPal/Venmo. {{yearsSince:2018}}+ años construyendo Android nativo, iOS, Flutter y backends en Go para 426M+ usuarios."
+    "title": "Jorge Salgado Miranda · Auditoría de Arquitectura, Seguridad y Performance · Mobile y Web",
+    "desc": "Jorge Salgado Miranda, Arquitecto de Software. Auditorías de arquitectura, seguridad, performance y costos para producto mobile y web. CEO de Capdesis, senior engineer en PayPal/Venmo. {{yearsSince:2018}}+ años construyendo sistemas en producción para 426M+ usuarios."
   }
 };
 
@@ -3683,6 +4209,188 @@ window.__I18N__ = I18N;
       el.style.transform = `translateY(${-y * f}px)`;
     });
   }, { passive: true });
+
+  // ============ WELCOME MODAL (free 30-min review CTA) ============
+  // Shows after 12s once per 7 days. Dismiss persists in localStorage.
+  const modal = document.getElementById('welcome-modal');
+  if (modal) {
+    const STORAGE_KEY = 'jsm_welcome_v1';
+    const DISMISS_DAYS = 7;
+    const SHOW_DELAY_MS = 12000;
+
+    const now = Date.now();
+    const raw = (() => { try { return localStorage.getItem(STORAGE_KEY); } catch (_) { return null; } })();
+    const dismissed = raw ? parseInt(raw, 10) : 0;
+    const stillHidden = dismissed && (now - dismissed) < DISMISS_DAYS * 86400000;
+
+    const closeModal = (persist) => {
+      modal.dataset.open = 'false';
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (persist) {
+        try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch (_) { /* ignore */ }
+      }
+    };
+    const openModal = () => {
+      if (stillHidden) return;
+      modal.dataset.open = 'true';
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    // Schedule reveal
+    if (!stillHidden) {
+      setTimeout(openModal, SHOW_DELAY_MS);
+    }
+
+    // Close triggers
+    document.getElementById('welcome-close')?.addEventListener('click', () => closeModal(true));
+    document.getElementById('welcome-dismiss')?.addEventListener('click', () => closeModal(true));
+    document.getElementById('welcome-accept')?.addEventListener('click', () => closeModal(true));
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(true); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.dataset.open === 'true') closeModal(true);
+    });
+  }
+
+  // ============ CONTACT FORM (Web3Forms + disposable email filter) ============
+  const form = document.getElementById('contact-form');
+  if (form) {
+    // Inline list of common disposable / temporary email providers (~70 of the highest-volume).
+    // Not exhaustive — catches the lazy bots; real bad actors can still register real mailboxes.
+    const DISPOSABLE = new Set([
+      '10minutemail.com','10minutemail.net','20minutemail.com','30minutemail.com','mailinator.com','mailinator.net','mailinator2.com',
+      'guerrillamail.com','guerrillamail.net','guerrillamail.org','guerrillamail.biz','guerrillamail.de','sharklasers.com','grr.la',
+      'yopmail.com','yopmail.fr','yopmail.net','cool.fr.nf','jetable.fr.nf','nospam.ze.tc','nomail.xl.cx','mega.zik.dj',
+      'trashmail.com','trashmail.net','trashmail.org','trashmail.io','trashmail.de','trash-mail.com','trashinbox.com',
+      'throwawaymail.com','throwawayemail.com','dispostable.com','getnada.com','nada.email','maildrop.cc','mailcatch.com',
+      'fakeinbox.com','fakemailgenerator.com','fake-email.com','tempail.com','tempmail.com','tempmail.net','tempmailaddress.com',
+      'tempr.email','tmpmail.org','tmpmail.net','tmpeml.com','temp-mail.org','temp-mail.io','temp-mail.ru',
+      'mohmal.com','emailondeck.com','moakt.com','mailnesia.com','mailnull.com','mytemp.email','discard.email','burnermail.io',
+      'mailtemp.info','emailfake.com','10mail.org','anonbox.net','boun.cr','inboxbear.com','inboxkitten.com','mintemail.com',
+      'mvrht.com','spamgourmet.com','spambog.com','spambox.us','guerrillamailblock.com','sneakemail.com','tempemail.co',
+      'throwam.com','yopmail.org','zetmail.com'
+    ]);
+    // Conservative RFC5322-ish regex — good enough for client-side UX gating.
+    const EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,24}$/;
+
+    const emailInput = form.querySelector('#cf-email');
+    const emailHint = form.querySelector('#cf-email-hint');
+    const messageInput = form.querySelector('#cf-message');
+    const submitBtn = form.querySelector('#cf-submit');
+    const submitLabel = submitBtn?.querySelector('[data-i18n="form.submit"]');
+    const status = form.querySelector('#cf-status');
+    const honeypot = form.querySelector('input[name="botcheck"]');
+
+    const t = (key, fallback) => {
+      try { return (window.__I18N__ && window.__I18N__[document.documentElement.dataset.lang || 'es']?.[key]) || fallback; }
+      catch (_) { return fallback; }
+    };
+
+    const setEmailState = (state, key) => {
+      if (!emailHint) return;
+      emailHint.dataset.state = state;
+      emailHint.textContent = key ? t(key, '') : '';
+      if (emailInput) emailInput.setAttribute('aria-invalid', state === 'error' ? 'true' : 'false');
+    };
+
+    const validateEmail = (raw) => {
+      const value = (raw || '').trim().toLowerCase();
+      if (!value) return { ok: false, key: 'form.err.required' };
+      if (!EMAIL_RE.test(value)) return { ok: false, key: 'form.err.email' };
+      const domain = value.split('@')[1];
+      if (DISPOSABLE.has(domain)) return { ok: false, key: 'form.err.disposable' };
+      return { ok: true };
+    };
+
+    emailInput?.addEventListener('blur', () => {
+      const r = validateEmail(emailInput.value);
+      if (r.ok) setEmailState('idle', null);
+      else setEmailState('error', r.key);
+    });
+    emailInput?.addEventListener('input', () => {
+      if (emailHint?.dataset.state === 'error') {
+        const r = validateEmail(emailInput.value);
+        if (r.ok) setEmailState('idle', null);
+      }
+    });
+
+    const setStatus = (state, key) => {
+      if (!status) return;
+      status.dataset.state = state;
+      status.textContent = key ? t(key, '') : '';
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      setStatus('idle', null);
+
+      // Honeypot tripped → silently succeed so bots don't learn
+      if (honeypot && honeypot.value) {
+        setStatus('ok', 'form.ok');
+        form.reset();
+        return;
+      }
+
+      // Email gate
+      const emailCheck = validateEmail(emailInput?.value);
+      if (!emailCheck.ok) {
+        setEmailState('error', emailCheck.key);
+        emailInput?.focus();
+        return;
+      }
+
+      // Message length
+      if ((messageInput?.value || '').trim().length < 10) {
+        setStatus('error', 'form.err.short');
+        messageInput?.focus();
+        return;
+      }
+
+      // Access key guard (fail fast if user hasn't configured Web3Forms yet)
+      const accessKeyInput = form.querySelector('input[name="access_key"]');
+      if (!accessKeyInput || accessKeyInput.value === 'YOUR_WEB3FORMS_ACCESS_KEY' || !accessKeyInput.value) {
+        setStatus('error', 'form.err.submit');
+        return;
+      }
+
+      // Submit
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitLabel) submitLabel.textContent = t('form.sending', 'Sending…');
+
+      try {
+        const fd = new FormData(form);
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: fd
+        });
+        const body = await res.json().catch(() => ({}));
+        if (res.ok && body.success !== false) {
+          setStatus('ok', 'form.ok');
+          form.reset();
+        } else {
+          setStatus('error', 'form.err.submit');
+        }
+      } catch (_) {
+        setStatus('error', 'form.err.submit');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitLabel) submitLabel.textContent = t('form.submit', 'Send message');
+      }
+    });
+  }
+
+  // ============ ATTRIBUTION SIGNATURE ============
+  // Visible to anyone who opens DevTools. Please keep this if you fork — the
+  // source is at https://github.com/chochy2001/jorgesalgadomiranda_landing.
+  try {
+    console.info(
+      '%cBuilt by Jorge Salgado Miranda%c · jorgesalgadomiranda.com',
+      'font: italic 14px serif; color:#00d4ff',
+      'color:#888; font-size:12px'
+    );
+  } catch (_) { /* ignore in non-browser env */ }
 
 })();
 

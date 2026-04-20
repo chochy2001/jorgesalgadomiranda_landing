@@ -76,6 +76,7 @@ jobs:
             **/.git*
             **/.git*/**
             **/.github/**
+            **/.remember/**
             **/node_modules/**
             **/scripts/**
             **/docs/**
@@ -88,3 +89,5 @@ jobs:
             **/bun.lockb
             **/README.md
             **/og.html
+            **/verify-*.png
+            **/.playwright-mcp/**

@@ -27,13 +27,17 @@ mirror --reverse \
   --parallel=4 \
   --exclude-glob .git \
   --exclude-glob .git/ \
+  --exclude-glob .github/ \
   --exclude-glob .env \
   --exclude-glob .env.example \
   --exclude-glob .gitignore \
+  --exclude-glob .remember/ \
   --exclude-glob node_modules/ \
   --exclude-glob scripts/ \
   --exclude-glob docs/ \
   --exclude-glob package.json \
+  --exclude-glob package-lock.json \
+  --exclude-glob bun.lockb \
   --exclude-glob README.md \
   --exclude-glob og.html \
   --exclude-glob .DS_Store \
