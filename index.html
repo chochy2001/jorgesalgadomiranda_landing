@@ -724,14 +724,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .about-quick-v { color: var(--fg); }
 
 .about-card {
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-  transform-style: preserve-3d;
-  transition: border-color 0.3s, background 0.3s;
+  padding: 20px 24px 20px 0;
+  border-left: 2px solid var(--border);
+  padding-left: 22px;
+  transition: border-color 0.3s;
 }
-.about-card:hover { border-color: var(--accent); }
+.about-card:hover { border-left-color: var(--accent); }
 .about-card-label {
   font-family: var(--font-mono); font-size: 10px;
   text-transform: uppercase; letter-spacing: 0.1em;
@@ -1652,50 +1650,44 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-@media (max-width: 1100px) { .eng-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 680px) { .eng-grid { grid-template-columns: 1fr; } }
+.eng-grid { gap: 48px 32px; }
+@media (max-width: 1100px) { .eng-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 28px; } }
+@media (max-width: 680px) { .eng-grid { grid-template-columns: 1fr; gap: 32px; } }
 .eng-card {
   position: relative;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 28px 26px;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  padding: 4px 0 32px;
+  border-top: 1px solid var(--border);
+  transition: border-color 0.3s;
   display: flex; flex-direction: column;
-  overflow: hidden;
 }
 .eng-card::before {
   content: '';
-  position: absolute; inset: 0 auto auto 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  opacity: 0; transition: opacity 0.4s ease;
+  position: absolute; top: -1px; left: 0;
+  width: 48px; height: 1px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.4s ease, width 0.4s ease;
 }
-.eng-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--accent) 50%, transparent);
-}
-.eng-card:hover::before { opacity: 1; }
+.eng-card:hover::before { opacity: 1; width: 100%; }
+.eng-card:hover h4 { color: var(--accent); }
 .eng-card-head {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
-  column-gap: 14px;
-  row-gap: 4px;
+  column-gap: 12px;
+  row-gap: 2px;
   align-items: start;
-  margin-bottom: 18px;
+  margin: 20px 0 18px;
 }
 .eng-icon {
   grid-row: 1 / span 2;
-  width: 42px; height: 42px;
+  width: 28px; height: 28px;
   display: grid; place-items: center;
-  border-radius: 12px;
-  background: color-mix(in oklab, var(--accent) 14%, transparent);
   color: var(--accent);
   align-self: center;
 }
 .eng-icon svg { width: 22px; height: 22px; }
+.eng-card h4 { transition: color 0.2s; }
 .eng-outcome {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -1861,18 +1853,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 900px) { .oss-grid { grid-template-columns: 1fr; } }
 .oss-card {
   display: block;
-  padding: 20px 22px;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+  padding: 18px 0 20px;
+  border-top: 1px solid var(--border-soft);
   color: inherit;
-  transition: border-color 0.3s, transform 0.3s;
-  transform-style: preserve-3d;
+  transition: padding-left 0.3s, border-color 0.3s;
 }
 .oss-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
+  padding-left: 8px;
+  border-top-color: var(--accent);
 }
+.oss-card:hover h4 { color: var(--accent); }
+.oss-card h4 { transition: color 0.2s; }
 .oss-card-head {
   display: flex; justify-content: space-between; align-items: baseline;
   gap: 12px;
@@ -2056,10 +2047,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    ========================================= */
 .contact-tier {
   display: flex; flex-direction: column; gap: 12px;
-  padding: 22px;
-  border-radius: 14px;
-  border: 1px dashed var(--border);
-  background: color-mix(in oklch, var(--bg-elev) 70%, transparent);
+  padding: 4px 0 4px 22px;
+  border-left: 2px solid var(--accent);
+  background: none;
 }
 .contact-tier-kicker {
   font-family: var(--font-mono); font-size: 10.5px;
@@ -2195,33 +2185,31 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .cases-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 40px 32px;
 }
-@media (max-width: 1100px) { .cases-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 900px) { .cases-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .cases-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 28px; } }
+@media (max-width: 900px) { .cases-grid { grid-template-columns: 1fr; gap: 32px; } }
 .case-card {
   position: relative;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 28px 26px;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  padding: 28px 0 20px;
+  border-top: 1px solid var(--border);
+  transition: padding-left 0.3s, border-color 0.3s;
   display: flex; flex-direction: column;
-  overflow: hidden;
 }
 .case-card::before {
   content: '';
-  position: absolute; inset: 0 auto auto 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  opacity: 0; transition: opacity 0.4s ease;
+  position: absolute; top: -1px; left: 0;
+  width: 48px; height: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.4s ease, width 0.4s ease;
 }
 .case-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--accent) 50%, transparent);
+  padding-left: 8px;
 }
-.case-card:hover::before { opacity: 1; }
+.case-card:hover::before { opacity: 1; width: 100%; }
+.case-card:hover h4 { color: var(--accent); }
+.case-card h4 { transition: color 0.2s; }
 .case-kicker {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -2250,19 +2238,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .case-metrics {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
+  gap: 14px 18px;
+  padding-top: 12px;
 }
 .case-metric {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.04em;
-  color: var(--fg);
-  background: color-mix(in oklab, var(--accent) 12%, transparent);
-  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
-  padding: 5px 10px;
-  border-radius: 999px;
+  color: var(--accent);
+  padding: 0;
+  border: none;
+  background: none;
+}
+.case-metric::before {
+  content: '→  ';
+  color: var(--fg-muted);
+  margin-right: 2px;
 }
 
 </style>
