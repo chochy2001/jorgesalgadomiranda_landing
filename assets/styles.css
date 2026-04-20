@@ -253,8 +253,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 [data-theme="dark"] .icon-sun { display: none; }
 [data-theme="light"] .icon-moon { display: none; }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+  .nav-links a { padding: 8px 10px; font-size: 10.5px; letter-spacing: 0.05em; }
+}
+@media (max-width: 1060px) {
   .nav-links { display: none; }
+}
+@media (max-width: 620px) {
   .nav-brand-text { display: none; }
 }
 
@@ -271,7 +276,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   text-transform: uppercase; letter-spacing: 0.14em;
   color: var(--fg-muted);
   margin-bottom: 40px;
-  white-space: nowrap;
+  flex-wrap: wrap;
+}
+@media (max-width: 480px) {
+  .section-head { font-size: 10px; letter-spacing: 0.1em; gap: 10px; }
 }
 .section-num {
   color: var(--accent);
@@ -904,15 +912,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding: 6px;
   display: block;
 }
-.web-thumb-tag {
-  position: absolute;
-  bottom: 22px; left: 24px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: rgba(255,255,255,0.65);
-}
-
 .web-alt {
   font-family: var(--font-serif);
   font-style: italic;
@@ -1495,6 +1494,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   align-items: start;
 }
 @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-main { display: flex; flex-direction: column; gap: 0; }
 .contact-main p {
   font-size: 18px;
   color: var(--fg-muted);
@@ -1589,6 +1589,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding-top: 2px;
 }
 .contact-link-icon svg { width: 22px; height: 22px; }
+.contact-link-icon-img img {
+  width: 26px; height: 26px;
+  object-fit: contain;
+  border-radius: 4px;
+  background: var(--bg);
+  padding: 1px;
+}
 .contact-link-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .contact-link-name {
   font-family: var(--font-serif);
@@ -2230,6 +2237,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-weight: 600;
   transition: background 0.3s, transform 0.2s cubic-bezier(.2, .8, .2, 1);
   width: fit-content;
+  margin-bottom: 36px;
 }
 .cal-cta:hover { background: var(--accent); color: var(--bg); transform: translateY(-2px); }
 
