@@ -5,6 +5,38 @@ It exists so the next session starts fast and no context is lost.
 Keep this file updated at the end of each session; delete entries that
 ship.
 
+## Latest round (2026-04-20, continuation)
+
+Shipped in commits `3b64f8f` + anchor whitespace fix follow-up.
+
+- **Mobile horizontal scroll fixed.** Root cause: `.tech-tip` tooltip
+  (280px wide, centered on 108px chip) extended past the viewport in
+  the engineering section, pushing `documentElement.scrollWidth` to
+  410 on a 390 viewport. Fix: `html` and `body` now both use
+  `overflow-x: clip` instead of only `body { overflow-x: hidden }`.
+  Verified 375 on 390 iPhone 12 viewport post-fix.
+- **Hamburger drawer for mobile nav.** New `.nav-burger` button appears
+  at `<=1060px` alongside the existing language/theme toggles. Opens a
+  right-side `.nav-drawer` with backdrop blur, 9 section links in serif
+  large type, focus trap, Escape to close, backdrop click to close,
+  auto-close on resize back to desktop. Hamburger icon animates into an
+  X when expanded. `prefers-reduced-motion` honored.
+- **JSON panel typewriter.** The `.panel-body` now reveals characters
+  one by one via a text-node walker that preserves the existing span
+  coloring (accent for keys, fg for strings, number color for nums).
+  Total duration capped at 4.8s, measured 3.45s for current 313-char
+  content. Caret blinks faster while typing, slower when done. Old
+  per-span stagger fade-in CSS removed to avoid competing with the
+  char reveal.
+- **Section anchor top whitespace fix.** Click-to-section was leaving
+  ~170px of dead space between the nav and the section heading (nav
+  height 69 + scroll-margin-top 96 + section padding-top 144 stacking).
+  Fix: set `section[id] { scroll-margin-top: 0 }` so hash-scroll aligns
+  section top with viewport top, letting the section's own padding-top
+  provide the visual gap under the nav. Tuned padding to
+  `clamp(104px, 8vw, 132px)` so the gap between nav bottom and heading
+  lands around 43-46px on mobile and desktop.
+
 ## Where the site stands right now
 
 - Architecture split complete
@@ -141,12 +173,13 @@ ship.
 Priority ordered. High at top.
 
 ### H1, finish the "microanimations pass" the user asked for
+- JSON panel typewriter is now live (shipped 2026-04-20). Section titles
+  could still get a letter-by-letter reveal using the same node walker
+  pattern applied to `.section-title em`.
 - Card hover lift everywhere (engineering, cases, apps grid, web grid)
   should be consistent. Today they're close but slightly different.
 - Button press state (scale 0.98) missing on `.btn-primary`, `.btn-ghost`,
   `.cal-cta`, form submit, testimonial nav.
-- Section titles could do a letter-by-letter fade-in (use the existing
-  `runTypewriter` helper, point it at `.section-title em`).
 - Timeline: when opening an item, animate the bullet points in with a
   staggered fade (they currently just appear because `.tl-body` does
   one big height transition).
@@ -181,17 +214,15 @@ Priority ordered. High at top.
 - Extract design tokens into `assets/tokens.css` imported first.
 
 ### H4, responsive granularity
+- **Mobile horizontal scroll + hamburger drawer shipped 2026-04-20**
+  (see Latest round). Mobile is now scroll-free at 390 and the
+  hamburger covers all 9 section links.
 - User called out that the contact social list and the web projects
   grid could go 2-column in intermediate widths (850 to 1100) instead
   of staying 1-column. Audit and add auto-fill / auto-fit grids where
   they make sense.
 - Audit log in `.playwright-mcp/` has screenshots at 360, 390, 768,
   1024, 1280, 1920, 2560, 3440 from the previous responsive sweep.
-- Critical issues left from that audit:
-  - Duplicated tag labels were fixed by removing `.web-thumb-tag`.
-    Re-verify there is no drift.
-  - The 1024 nav overflow is fixed.
-  - The 360 kicker overflow is fixed.
 - Remaining issues from that audit:
   - Web project cards at 768 have ~450px of empty gradient space,
     single-column looks too padded.

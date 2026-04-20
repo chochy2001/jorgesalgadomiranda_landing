@@ -82,7 +82,11 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;
 }
-section[id], #main { scroll-margin-top: 96px; }
+/* Hash-scroll: sections land with top aligned to viewport top, so the
+   internal padding-top of the section flows under the fixed nav and the
+   heading sits about 70-80px below the nav (padding-top minus nav height). */
+section[id] { scroll-margin-top: 0; }
+#main { scroll-margin-top: 72px; }
 body {
   background: var(--bg);
   color: var(--fg);
@@ -372,7 +376,7 @@ body.drawer-open { overflow: hidden; }
 .section {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: clamp(80px, 10vw, 160px) var(--pad-x);
+  padding: clamp(104px, 8vw, 132px) var(--pad-x) clamp(80px, 10vw, 160px);
   position: relative;
 }
 .section-head {
