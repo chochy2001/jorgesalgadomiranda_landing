@@ -640,11 +640,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: var(--fg-muted);
 }
 .marquee-track {
-  display: inline-flex; gap: 48px; align-items: center;
-  animation: marquee 40s linear infinite;
+  display: flex; width: max-content; align-items: center;
+  animation: marquee 50s linear infinite;
+  will-change: transform;
 }
-.marquee-track span { flex-shrink: 0; display: inline-flex; align-items: center; gap: 14px; }
-.marquee-track span.marquee-sep { color: var(--accent); font-size: 0.6em; vertical-align: middle; }
+.marquee-group {
+  display: flex; align-items: center; gap: 48px;
+  padding-right: 48px;
+  flex-shrink: 0;
+}
+.marquee-group span {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 14px;
+}
+.marquee-group span.marquee-sep { color: var(--accent); font-size: 0.6em; vertical-align: middle; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 .marquee-logo {
   width: 28px; height: 28px; object-fit: contain;
   background: #fff; border-radius: 6px; padding: 3px;
@@ -1223,83 +1233,97 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   letter-spacing: 0.02em;
 }
 
-/* CERTIFICATIONS */
+/* CERTIFICATIONS (typographic roster, hairlines only) */
 .cert-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 64px;
 }
-@media (max-width: 1100px) { .cert-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 700px)  { .cert-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .cert-grid { grid-template-columns: 1fr 1fr; gap: 48px; } }
+@media (max-width: 700px)  { .cert-grid { grid-template-columns: 1fr; gap: 40px; } }
 .cert-item a.cert-link {
   color: inherit;
   text-decoration: none;
   display: block;
 }
 .cert-item a.cert-link:hover h4 { color: var(--accent); }
-.cert-badge-next {
-  background: transparent;
-  border: 1px dashed var(--border);
-  color: var(--fg-muted);
-}
-.cert-item-next { opacity: 0.88; }
+.cert-item-next { opacity: 0.82; }
 .cert-item-next:hover { opacity: 1; }
 .cert-col-title {
-  font-family: var(--font-mono); font-size: 12px;
-  text-transform: uppercase; letter-spacing: 0.12em;
+  font-family: var(--font-mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.14em;
   color: var(--fg-muted);
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
 }
-.cert-list { display: flex; flex-direction: column; gap: 12px; }
+.cert-col-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-soft);
+  margin-left: 16px;
+}
+.cert-list { display: flex; flex-direction: column; }
 .cert-item {
   display: grid;
-  grid-template-columns: 36px 1fr;
-  gap: 16px;
-  padding: 16px 18px;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  transition: border-color 0.3s;
-  align-items: start;
+  grid-template-columns: 28px 1fr;
+  column-gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border-soft);
+  align-items: baseline;
+  transition: padding-left 0.3s ease;
 }
-.cert-item:hover { border-color: var(--accent); }
+.cert-item:last-child { border-bottom: none; }
+.cert-item:hover { padding-left: 6px; }
+.cert-item:hover h4 { color: var(--accent); }
+.cert-item > .cert-link,
+.cert-item > h4,
+.cert-item > p,
+.cert-item > .cert-progress { grid-column: 2; }
+.cert-item > .cert-badge { grid-column: 1; grid-row: 1; }
 .cert-badge {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  display: grid; place-items: center;
-  font-weight: 600;
-  background: var(--accent);
-  color: var(--bg);
-  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  line-height: 1.1;
 }
 .cert-badge-loading {
-  background: transparent;
-  border: 1px dashed var(--accent);
   color: var(--accent);
-  animation: spin 3s linear infinite;
+  animation: cert-pulse 2s ease-in-out infinite;
 }
+.cert-badge-next { color: var(--fg-muted); }
 @keyframes spin { to { transform: rotate(360deg); } }
+@keyframes cert-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 .cert-item h4 {
   font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 400;
-  letter-spacing: -0.005em;
-  line-height: 1.2;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  transition: color 0.2s;
 }
 .cert-item p {
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--fg-muted);
-  margin-top: 4px;
+  margin-top: 6px;
   line-height: 1.5;
+  max-width: 42ch;
+}
+.cert-item-inflight p,
+.cert-item-next p {
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: normal;
 }
 .cert-progress {
   display: block;
-  height: 2px;
-  background: var(--border-soft);
-  border-radius: 2px;
-  margin-top: 12px;
+  height: 1px;
+  background: var(--border);
+  margin-top: 10px;
   overflow: hidden;
 }
 .cert-progress i {
@@ -1310,97 +1334,136 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .in-view .cert-progress i { width: var(--w); }
 
-/* UDEMY */
+/* UDEMY (editorial stat strip) */
 .section-udemy { position: relative; }
 .udemy-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
+  display: block;
+  max-width: 960px;
+  margin: 0 auto;
 }
-@media (max-width: 900px) { .udemy-wrap { grid-template-columns: 1fr; gap: 40px; } }
-.udemy-left p {
+.udemy-lede {
   font-size: 17px;
   line-height: 1.65;
   color: var(--fg-muted);
-  max-width: 50ch;
-  margin: -32px 0 32px;
+  max-width: 58ch;
+  margin: -16px 0 32px;
 }
-.udemy-right {
+.udemy-cta-row {
+  display: flex; gap: 16px; align-items: center;
+  margin-bottom: 56px;
+}
+.udemy-strip {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  padding: 28px 0;
+}
+@media (max-width: 760px) {
+  .udemy-strip { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
 }
 .udemy-stat {
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 28px 24px;
   display: flex; flex-direction: column; gap: 6px;
-  transform-style: preserve-3d;
-  transition: border-color 0.3s;
+  padding: 0 28px;
+  border-right: 1px solid var(--border-soft);
 }
-.udemy-stat:hover { border-color: var(--accent); }
+.udemy-strip > .udemy-stat:last-child { border-right: none; }
+@media (max-width: 760px) {
+  .udemy-stat { padding: 0 16px; }
+  .udemy-strip > .udemy-stat:nth-child(2n) { border-right: none; }
+}
 .udemy-big {
   font-family: var(--font-serif);
-  font-size: clamp(40px, 5vw, 60px);
+  font-size: clamp(44px, 5.5vw, 72px);
   line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--accent);
+  letter-spacing: -0.03em;
+  color: var(--fg);
 }
 .udemy-lbl {
   font-family: var(--font-mono); font-size: 11px;
-  text-transform: uppercase; letter-spacing: 0.08em;
+  text-transform: uppercase; letter-spacing: 0.1em;
   color: var(--fg-muted);
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
-/* TESTIMONIALS */
-.test-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-@media (max-width: 800px) { .test-grid { grid-template-columns: 1fr; } }
-.test-card {
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  transform-style: preserve-3d;
-  transition: border-color 0.3s;
+/* TESTIMONIALS (editorial rotator) */
+.test-stage {
   position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px 0 32px;
+  min-height: 320px;
 }
-.test-card::before {
-  content: '"';
-  position: absolute;
-  top: 16px; right: 24px;
+.test-quotemark {
   font-family: var(--font-serif);
-  font-size: 80px;
-  line-height: 1;
+  font-style: italic;
+  font-size: clamp(80px, 10vw, 140px);
+  line-height: 0.7;
   color: var(--accent);
-  opacity: 0.25;
+  opacity: 0.35;
+  user-select: none;
+  display: block;
+  margin-bottom: -24px;
 }
-.test-card:hover { border-color: var(--accent); }
-.test-card blockquote {
+.test-slide {
+  position: absolute;
+  inset: 48px 0 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+.test-slide.is-active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.test-slide blockquote {
   font-family: var(--font-serif);
-  font-size: 22px;
-  line-height: 1.35;
+  font-size: clamp(26px, 3.2vw, 38px);
+  line-height: 1.3;
   font-style: italic;
   color: var(--fg);
-  margin-bottom: 20px;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.015em;
+  margin: 0 0 32px;
+  max-width: 760px;
 }
-.test-card figcaption {
-  display: flex; flex-direction: column; gap: 2px;
-  padding-top: 16px;
+.test-slide figcaption {
+  display: flex; flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.test-slide .test-name { color: var(--fg); font-weight: 500; }
+.test-slide .test-sep { color: var(--accent); opacity: 0.6; }
+.test-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 32px;
+  justify-content: flex-start;
+  padding-top: 24px;
   border-top: 1px solid var(--border-soft);
 }
-.test-name { font-weight: 500; font-size: 14px; }
-.test-role {
-  font-family: var(--font-mono); font-size: 11px;
-  color: var(--fg-muted);
-  letter-spacing: 0.04em;
+.test-dot {
+  width: 28px; height: 2px;
+  background: var(--border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+}
+.test-dot:hover { background: var(--fg-muted); }
+.test-dot.is-active { background: var(--accent); width: 56px; }
+.test-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .test-slide { transition: none; }
 }
 
 /* CV */
@@ -2368,17 +2431,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <!-- MARQUEE -->
   <section class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async">PayPal · Venmo</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async">Capdesis</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async">Tienda UNAM</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async">Flexera</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async">Udemy · 54K+ devs</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/ios-YBgpM5QrVwHGLral.png" alt="" loading="lazy" decoding="async">iOS Lab FI · UNAM</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async">PayPal · Venmo</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async">Capdesis</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async">Tienda UNAM</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async">Flexera</span><span class="marquee-sep">◆</span>
-      <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async">Udemy · 54K+ devs</span><span class="marquee-sep">◆</span>
+      <div class="marquee-group">
+        <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async">PayPal · Venmo</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async">Capdesis</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async">Tienda UNAM</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async">Flexera</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async">Udemy · 54K+ devs</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/ios-YBgpM5QrVwHGLral.png" alt="" loading="lazy" decoding="async">iOS Lab FI · UNAM</span><span class="marquee-sep">◆</span>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/paypal_logo-YZ9xk8n549faNl0x.png" alt="" loading="lazy" decoding="async">PayPal · Venmo</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/capdesis-juntos-A3Qp8lElWvsrRgJw.png" alt="" loading="lazy" decoding="async">Capdesis</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="28" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,h=64,fit=contain/mjE2xGMQ20iKRBEE/tienda_unam-dOqb66oBp9iOekl8.png" alt="" loading="lazy" decoding="async">Tienda UNAM</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/flexera_logo-AMqlk1X5Bqu56Z74.png" alt="" loading="lazy" decoding="async">Flexera</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/udemy-YKbJw2bZ6WFVeb59.webp" alt="" loading="lazy" decoding="async">Udemy · 54K+ devs</span><span class="marquee-sep">◆</span>
+        <span><img class="marquee-logo" width="42" height="28" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=96,h=64,fit=contain/mjE2xGMQ20iKRBEE/ios-YBgpM5QrVwHGLral.png" alt="" loading="lazy" decoding="async">iOS Lab FI · UNAM</span><span class="marquee-sep">◆</span>
+      </div>
     </div>
   </section>
 
@@ -3180,132 +3248,105 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
     <div class="cert-grid">
       <div class="cert-col">
-        <h3 class="cert-col-title" data-reveal data-i18n="cert.done">Earned</h3>
+        <h3 class="cert-col-title" data-reveal><span data-i18n="cert.done">Earned</span></h3>
         <div class="cert-list">
           <div class="cert-item" data-reveal>
-            <span class="cert-badge">✓</span>
-            <div><h4>Google Play Store Listing</h4><p>Google Play Academy, 2026</p></div>
+            <span class="cert-badge">01</span>
+            <h4>Google Play Store Listing</h4>
+            <p>Google Play Academy · 2026</p>
           </div>
           <div class="cert-item" data-reveal>
-            <span class="cert-badge">✓</span>
-            <div><h4>Meta Developer Certification</h4><p>Meta</p></div>
+            <span class="cert-badge">02</span>
+            <h4>Meta Developer Certification</h4>
+            <p>Meta</p>
           </div>
           <div class="cert-item" data-reveal>
-            <span class="cert-badge">✓</span>
-            <div><h4>Google Developer Certification</h4><p>Google</p></div>
+            <span class="cert-badge">03</span>
+            <h4>Google Developer Certification</h4>
+            <p>Google</p>
           </div>
           <div class="cert-item" data-reveal>
-            <span class="cert-badge">✓</span>
-            <div><h4>Mobile Architecture</h4><p data-i18n="cert.mobile">Specialization</p></div>
+            <span class="cert-badge">04</span>
+            <h4>Mobile Architecture</h4>
+            <p data-i18n="cert.mobile">Specialization</p>
           </div>
           <div class="cert-item" data-reveal>
-            <span class="cert-badge">✓</span>
-            <div><h4>B.S. Computer Engineering</h4><p>Facultad de Ingeniería, UNAM</p></div>
+            <span class="cert-badge">05</span>
+            <h4>B.S. Computer Engineering</h4>
+            <p>Facultad de Ingeniería · UNAM</p>
           </div>
         </div>
       </div>
 
       <div class="cert-col">
-        <h3 class="cert-col-title" data-reveal data-i18n="cert.inprogress">In progress</h3>
+        <h3 class="cert-col-title" data-reveal><span data-i18n="cert.inprogress">In progress</span></h3>
         <div class="cert-list">
           <div class="cert-item cert-item-inflight" data-reveal>
-            <span class="cert-badge cert-badge-loading">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-            </span>
-            <div>
-              <a class="cert-link" href="https://aws.amazon.com/certification/certified-solutions-architect-professional/" target="_blank" rel="noopener noreferrer">
-                <h4>AWS Solutions Architect, Professional</h4>
-              </a>
-              <p data-i18n="cert.aws.desc">Distributed system design, multi-region, cost governance. The architect credential that matches what I ship.</p>
-              <span class="cert-progress"><i style="--w:55%"></i></span>
-            </div>
+            <span class="cert-badge cert-badge-loading">55%</span>
+            <a class="cert-link" href="https://aws.amazon.com/certification/certified-solutions-architect-professional/" target="_blank" rel="noopener noreferrer">
+              <h4>AWS Solutions Architect, Professional</h4>
+            </a>
+            <p data-i18n="cert.aws.desc">Distributed system design, multi-region, cost governance. The architect credential that matches what I ship.</p>
+            <span class="cert-progress"><i style="--w:55%"></i></span>
           </div>
           <div class="cert-item cert-item-inflight" data-reveal>
-            <span class="cert-badge cert-badge-loading">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-            </span>
-            <div>
-              <a class="cert-link" href="https://aws.amazon.com/certification/certified-security-specialty/" target="_blank" rel="noopener noreferrer">
-                <h4>AWS Security, Specialty</h4>
-              </a>
-              <p data-i18n="cert.awssec.desc">IAM deep-dive, KMS, GuardDuty, VPC hardening and incident response in the cloud.</p>
-              <span class="cert-progress"><i style="--w:40%"></i></span>
-            </div>
+            <span class="cert-badge cert-badge-loading">40%</span>
+            <a class="cert-link" href="https://aws.amazon.com/certification/certified-security-specialty/" target="_blank" rel="noopener noreferrer">
+              <h4>AWS Security, Specialty</h4>
+            </a>
+            <p data-i18n="cert.awssec.desc">IAM deep-dive, KMS, GuardDuty, VPC hardening and incident response in the cloud.</p>
+            <span class="cert-progress"><i style="--w:40%"></i></span>
           </div>
           <div class="cert-item cert-item-inflight" data-reveal>
-            <span class="cert-badge cert-badge-loading">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-            </span>
-            <div>
-              <a class="cert-link" href="https://www.isc2.org/certifications/cissp" target="_blank" rel="noopener noreferrer">
-                <h4>CISSP</h4>
-              </a>
-              <p data-i18n="cert.cissp.desc">ISC2 Certified Information Systems Security Professional. The security gold standard.</p>
-              <span class="cert-progress"><i style="--w:30%"></i></span>
-            </div>
+            <span class="cert-badge cert-badge-loading">30%</span>
+            <a class="cert-link" href="https://www.isc2.org/certifications/cissp" target="_blank" rel="noopener noreferrer">
+              <h4>CISSP</h4>
+            </a>
+            <p data-i18n="cert.cissp.desc">ISC2 Certified Information Systems Security Professional. The security gold standard.</p>
+            <span class="cert-progress"><i style="--w:30%"></i></span>
           </div>
           <div class="cert-item cert-item-inflight" data-reveal>
-            <span class="cert-badge cert-badge-loading">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-            </span>
-            <div>
-              <a class="cert-link" href="https://www.coursera.org/professional-certificates/meta-ios-developer" target="_blank" rel="noopener noreferrer">
-                <h4>Meta iOS Developer, Professional</h4>
-              </a>
-              <p data-i18n="cert.metaios.desc">Production-grade Swift and SwiftUI from Meta, App Store release workflow end to end.</p>
-              <span class="cert-progress"><i style="--w:60%"></i></span>
-            </div>
+            <span class="cert-badge cert-badge-loading">60%</span>
+            <a class="cert-link" href="https://www.coursera.org/professional-certificates/meta-ios-developer" target="_blank" rel="noopener noreferrer">
+              <h4>Meta iOS Developer, Professional</h4>
+            </a>
+            <p data-i18n="cert.metaios.desc">Production-grade Swift and SwiftUI from Meta, App Store release workflow end to end.</p>
+            <span class="cert-progress"><i style="--w:60%"></i></span>
           </div>
           <div class="cert-item cert-item-inflight" data-reveal>
-            <span class="cert-badge cert-badge-loading">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-            </span>
-            <div>
-              <a class="cert-link" href="https://www.coursera.org/professional-certificates/meta-android-developer" target="_blank" rel="noopener noreferrer">
-                <h4>Meta Android Developer, Professional</h4>
-              </a>
-              <p data-i18n="cert.metaandroid.desc">Kotlin, Jetpack Compose, modern Android architecture from Meta, Play Store release end to end.</p>
-              <span class="cert-progress"><i style="--w:55%"></i></span>
-            </div>
+            <span class="cert-badge cert-badge-loading">55%</span>
+            <a class="cert-link" href="https://www.coursera.org/professional-certificates/meta-android-developer" target="_blank" rel="noopener noreferrer">
+              <h4>Meta Android Developer, Professional</h4>
+            </a>
+            <p data-i18n="cert.metaandroid.desc">Kotlin, Jetpack Compose, modern Android architecture from Meta, Play Store release end to end.</p>
+            <span class="cert-progress"><i style="--w:55%"></i></span>
           </div>
         </div>
       </div>
 
       <div class="cert-col">
-        <h3 class="cert-col-title" data-reveal data-i18n="cert.roadmap">On the roadmap</h3>
+        <h3 class="cert-col-title" data-reveal><span data-i18n="cert.roadmap">On the roadmap</span></h3>
         <div class="cert-list">
           <div class="cert-item cert-item-next" data-reveal>
-            <span class="cert-badge cert-badge-next">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </span>
-            <div>
-              <a class="cert-link" href="https://aws.amazon.com/certification/certified-devops-engineer-professional/" target="_blank" rel="noopener noreferrer">
-                <h4>AWS DevOps Engineer, Professional</h4>
-              </a>
-              <p data-i18n="cert.awsdevops.desc">Pipelines, IaC, monitoring, governance and cost controls across multi-account AWS.</p>
-            </div>
+            <span class="cert-badge cert-badge-next">Q3</span>
+            <a class="cert-link" href="https://aws.amazon.com/certification/certified-devops-engineer-professional/" target="_blank" rel="noopener noreferrer">
+              <h4>AWS DevOps Engineer, Professional</h4>
+            </a>
+            <p data-i18n="cert.awsdevops.desc">Pipelines, IaC, monitoring, governance and cost controls across multi-account AWS.</p>
           </div>
           <div class="cert-item cert-item-next" data-reveal>
-            <span class="cert-badge cert-badge-next">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </span>
-            <div>
-              <a class="cert-link" href="https://aws.amazon.com/certification/certified-generative-ai-developer-professional/" target="_blank" rel="noopener noreferrer">
-                <h4>AWS Generative AI Developer, Professional</h4>
-              </a>
-              <p data-i18n="cert.awsgenai.desc">Building production LLM applications on AWS: Bedrock, vector stores, evaluation, guardrails.</p>
-            </div>
+            <span class="cert-badge cert-badge-next">Q4</span>
+            <a class="cert-link" href="https://aws.amazon.com/certification/certified-generative-ai-developer-professional/" target="_blank" rel="noopener noreferrer">
+              <h4>AWS Generative AI Developer, Professional</h4>
+            </a>
+            <p data-i18n="cert.awsgenai.desc">Building production LLM applications on AWS: Bedrock, vector stores, evaluation, guardrails.</p>
           </div>
           <div class="cert-item cert-item-next" data-reveal>
-            <span class="cert-badge cert-badge-next">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </span>
-            <div>
-              <a class="cert-link" href="https://www.isc2.org/certifications/issap" target="_blank" rel="noopener noreferrer">
-                <h4>ISSAP</h4>
-              </a>
-              <p data-i18n="cert.issap.desc">CISSP concentration in security architecture, the natural follow-up to CISSP for an architect.</p>
-            </div>
+            <span class="cert-badge cert-badge-next">27</span>
+            <a class="cert-link" href="https://www.isc2.org/certifications/issap" target="_blank" rel="noopener noreferrer">
+              <h4>ISSAP</h4>
+            </a>
+            <p data-i18n="cert.issap.desc">CISSP concentration in security architecture, the natural follow-up to CISSP for an architect.</p>
           </div>
         </div>
       </div>
@@ -3320,32 +3361,32 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     </div>
 
     <div class="udemy-wrap">
-      <div class="udemy-left">
-        <h2 class="section-title">
-          <span data-reveal data-i18n="udemy.title1">54,000+ developers</span>
-          <em data-reveal data-i18n="udemy.title2">learned with me on Udemy.</em>
-        </h2>
-        <p data-reveal data-i18n="udemy.p">Six full courses on C, C++, Kotlin and Git &amp; GitHub. Built for working engineers, with projects, quizzes and real problems, not tutorials that only run on the instructor's laptop.</p>
+      <h2 class="section-title">
+        <span data-reveal data-i18n="udemy.title1">54,000+ developers</span>
+        <em data-reveal data-i18n="udemy.title2">learned with me on Udemy.</em>
+      </h2>
+      <p class="udemy-lede" data-reveal data-i18n="udemy.p">Six full courses on C, C++, Kotlin and Git &amp; GitHub. Built for working engineers, with projects, quizzes and real problems, not tutorials that only run on the instructor's laptop.</p>
+      <div class="udemy-cta-row" data-reveal>
         <a href="https://www.udemy.com/user/jorge-salgado-miranda-4/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-magnetic>
           <span data-i18n="udemy.cta">See all courses</span>
           <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </div>
 
-      <div class="udemy-right">
-        <div class="udemy-stat" data-tilt data-reveal>
+      <div class="udemy-strip" data-reveal>
+        <div class="udemy-stat">
           <span class="udemy-big" data-count="54" data-suffix="K+">0</span>
           <span class="udemy-lbl" data-i18n="udemy.s1">Students enrolled</span>
         </div>
-        <div class="udemy-stat" data-tilt data-reveal>
+        <div class="udemy-stat">
           <span class="udemy-big" data-count="6" data-suffix="">0</span>
           <span class="udemy-lbl" data-i18n="udemy.s2">Courses published</span>
         </div>
-        <div class="udemy-stat" data-tilt data-reveal>
+        <div class="udemy-stat">
           <span class="udemy-big" data-count="4" data-suffix=".6 ★">0</span>
           <span class="udemy-lbl" data-i18n="udemy.s3">Average rating</span>
         </div>
-        <div class="udemy-stat" data-tilt data-reveal>
+        <div class="udemy-stat">
           <span class="udemy-big" data-count="20" data-suffix="+">0</span>
           <span class="udemy-lbl" data-i18n="udemy.s4">Mentored directly</span>
         </div>
@@ -3365,38 +3406,51 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <em data-reveal data-i18n="test.title2">about working with me.</em>
     </h2>
 
-    <div class="test-grid">
-      <figure class="test-card" data-tilt data-reveal>
-        <blockquote data-i18n="test.q1">"Jorge doesn't just write code, he asks the questions nobody else is asking, a week before anyone realizes they mattered. His HLDs saved us two sprints."</blockquote>
+    <div class="test-stage" data-reveal role="region" aria-roledescription="carousel" aria-label="Testimonials">
+      <span class="test-quotemark" aria-hidden="true">&ldquo;</span>
+
+      <figure class="test-slide is-active" data-idx="0">
+        <blockquote data-i18n="test.q1">Jorge doesn't just write code, he asks the questions nobody else is asking, a week before anyone realizes they mattered. His HLDs saved us two sprints.</blockquote>
         <figcaption>
           <span class="test-name">Engineering Manager</span>
-          <span class="test-role">PayPal / Venmo</span>
+          <span class="test-sep">/</span>
+          <span>PayPal · Venmo</span>
         </figcaption>
       </figure>
 
-      <figure class="test-card" data-tilt data-reveal>
-        <blockquote data-i18n="test.q2">"One of the clearest technical communicators I've worked with. He can translate between product, design and engineering without losing nuance in any direction."</blockquote>
+      <figure class="test-slide" data-idx="1">
+        <blockquote data-i18n="test.q2">One of the clearest technical communicators I've worked with. He can translate between product, design and engineering without losing nuance in any direction.</blockquote>
         <figcaption>
           <span class="test-name">Product Lead</span>
-          <span class="test-role">Tienda UNAM</span>
+          <span class="test-sep">/</span>
+          <span>Tienda UNAM</span>
         </figcaption>
       </figure>
 
-      <figure class="test-card" data-tilt data-reveal>
-        <blockquote data-i18n="test.q3">"His Git &amp; GitHub course changed my career. Practical, opinionated, and structured like he actually shipped production apps, because he does."</blockquote>
+      <figure class="test-slide" data-idx="2">
+        <blockquote data-i18n="test.q3">His Git &amp; GitHub course changed my career. Practical, opinionated, and structured like he actually shipped production apps, because he does.</blockquote>
         <figcaption>
           <span class="test-name">Mobile Developer</span>
-          <span class="test-role">Udemy · ★★★★★</span>
+          <span class="test-sep">/</span>
+          <span>Udemy · 5 stars</span>
         </figcaption>
       </figure>
 
-      <figure class="test-card" data-tilt data-reveal>
-        <blockquote data-i18n="test.q4">"Jorge led our backend migration with the calm of someone who has done it before. 66% latency reduction in the first quarter."</blockquote>
+      <figure class="test-slide" data-idx="3">
+        <blockquote data-i18n="test.q4">Jorge led our backend migration with the calm of someone who has done it before. 66% latency reduction in the first quarter.</blockquote>
         <figcaption>
           <span class="test-name">CTO</span>
-          <span class="test-role">Capdesis client</span>
+          <span class="test-sep">/</span>
+          <span>Capdesis client</span>
         </figcaption>
       </figure>
+
+      <div class="test-controls" role="tablist" aria-label="Select testimonial">
+        <button type="button" class="test-dot is-active" data-go="0" aria-label="Testimonial 1" aria-selected="true" role="tab"></button>
+        <button type="button" class="test-dot" data-go="1" aria-label="Testimonial 2" role="tab"></button>
+        <button type="button" class="test-dot" data-go="2" aria-label="Testimonial 3" role="tab"></button>
+        <button type="button" class="test-dot" data-go="3" aria-label="Testimonial 4" role="tab"></button>
+      </div>
     </div>
   </section>
 
@@ -3809,10 +3863,10 @@ const I18N = {
     "test.kicker": "Testimonials",
     "test.title1": "What people say",
     "test.title2": "about working with me.",
-    "test.q1": "\"Jorge doesn't just write code, he asks the questions nobody else is asking, a week before anyone realizes they mattered. His HLDs saved us two sprints.\"",
-    "test.q2": "\"One of the clearest technical communicators I've worked with. He can translate between product, design and engineering without losing nuance in any direction.\"",
-    "test.q3": "\"His Git & GitHub course changed my career. Practical, opinionated, and structured like he actually shipped production apps, because he does.\"",
-    "test.q4": "\"Jorge led our backend migration with the calm of someone who has done it before. 66% latency reduction in the first quarter.\"",
+    "test.q1": "Jorge doesn't just write code, he asks the questions nobody else is asking, a week before anyone realizes they mattered. His HLDs saved us two sprints.",
+    "test.q2": "One of the clearest technical communicators I've worked with. He can translate between product, design and engineering without losing nuance in any direction.",
+    "test.q3": "His Git & GitHub course changed my career. Practical, opinionated, and structured like he actually shipped production apps, because he does.",
+    "test.q4": "Jorge led our backend migration with the calm of someone who has done it before. 66% latency reduction in the first quarter.",
 
     "cv.kicker": "Résumé",
     "cv.title1": "Want the",
@@ -4108,10 +4162,10 @@ const I18N = {
     "test.kicker": "Testimonios",
     "test.title1": "Lo que dicen",
     "test.title2": "de trabajar conmigo.",
-    "test.q1": "\"Jorge no solo escribe código, hace las preguntas que nadie más hace, una semana antes de que alguien se dé cuenta de que importaban. Sus HLDs nos ahorraron dos sprints.\"",
-    "test.q2": "\"Uno de los comunicadores técnicos más claros con los que he trabajado. Traduce entre producto, diseño e ingeniería sin perder matices en ninguna dirección.\"",
-    "test.q3": "\"Su curso de Git & GitHub cambió mi carrera. Práctico, con opinión y estructurado como si de verdad hubiera entregado apps en producción, porque lo hace.\"",
-    "test.q4": "\"Jorge lideró nuestra migración de backend con la calma de alguien que ya lo ha hecho antes. 66% de reducción de latencia en el primer trimestre.\"",
+    "test.q1": "Jorge no solo escribe código, hace las preguntas que nadie más hace, una semana antes de que alguien se dé cuenta de que importaban. Sus HLDs nos ahorraron dos sprints.",
+    "test.q2": "Uno de los comunicadores técnicos más claros con los que he trabajado. Traduce entre producto, diseño e ingeniería sin perder matices en ninguna dirección.",
+    "test.q3": "Su curso de Git & GitHub cambió mi carrera. Práctico, con opinión y estructurado como si de verdad hubiera entregado apps en producción, porque lo hace.",
+    "test.q4": "Jorge lideró nuestra migración de backend con la calma de alguien que ya lo ha hecho antes. 66% de reducción de latencia en el primer trimestre.",
 
     "cv.kicker": "Currículum",
     "cv.title1": "¿Quieres la",
@@ -4410,6 +4464,56 @@ window.__I18N__ = I18N;
       el.style.transform = `translateY(${-y * f}px)`;
     });
   }, { passive: true });
+
+  // ============ TESTIMONIALS ROTATOR ============
+  (function () {
+    const stage = document.querySelector('.test-stage');
+    if (!stage) return;
+    const slides = Array.from(stage.querySelectorAll('.test-slide'));
+    const dots = Array.from(stage.querySelectorAll('.test-dot'));
+    if (slides.length <= 1) return;
+
+    let idx = 0;
+    let timer = null;
+    const INTERVAL = 8000;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const go = (next) => {
+      next = ((next % slides.length) + slides.length) % slides.length;
+      if (next === idx) return;
+      slides[idx].classList.remove('is-active');
+      dots[idx].classList.remove('is-active');
+      dots[idx].removeAttribute('aria-selected');
+      idx = next;
+      slides[idx].classList.add('is-active');
+      dots[idx].classList.add('is-active');
+      dots[idx].setAttribute('aria-selected', 'true');
+    };
+
+    const start = () => {
+      if (reduce) return;
+      stop();
+      timer = setInterval(() => go(idx + 1), INTERVAL);
+    };
+    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+    dots.forEach(d => {
+      d.addEventListener('click', () => {
+        go(parseInt(d.dataset.go, 10));
+        start();
+      });
+    });
+
+    stage.addEventListener('mouseenter', stop);
+    stage.addEventListener('mouseleave', start);
+    stage.addEventListener('focusin', stop);
+    stage.addEventListener('focusout', start);
+
+    const visibilityIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => e.isIntersecting ? start() : stop());
+    }, { threshold: 0.4 });
+    visibilityIO.observe(stage);
+  })();
 
   // ============ WELCOME MODAL (free 30-min review CTA) ============
   // Shows after 12s once per 7 days. Dismiss persists in localStorage.
