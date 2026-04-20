@@ -6,8 +6,8 @@ roughly 150 KB before image assets and font requests.
 
 The decision to keep everything in one file is deliberate. It eliminates a
 class of issues (cache desync, asset 404s, build server downtime) that
-plagued the original Claude Design hand-off. Anyone can open `index.html` in
-a browser and see the same thing the production server serves.
+plagued the original Zyro template the site grew out of. Anyone can open
+`index.html` in a browser and see the same thing the production server serves.
 
 ## Page structure
 

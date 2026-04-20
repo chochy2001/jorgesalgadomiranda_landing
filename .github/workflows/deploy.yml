@@ -77,17 +77,22 @@ jobs:
             **/.git*/**
             **/.github/**
             **/.remember/**
+            **/.playwright-mcp/**
+            **/.idea/**
+            **/.vscode/**
             **/node_modules/**
             **/scripts/**
             **/docs/**
             **/.env
             **/.env.example
+            **/.env.local
             **/.gitignore
             **/.DS_Store
             **/package.json
             **/package-lock.json
             **/bun.lockb
             **/README.md
+            **/CLAUDE.md
             **/og.html
             **/verify-*.png
-            **/.playwright-mcp/**
+            **/*.log

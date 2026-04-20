@@ -58,6 +58,27 @@ Mode**, and **Speed optimizations** already ON. The missing toggle is:
    defends against automated probing against WordPress/admin paths that
    scanners blindly try).
 
+### 2c. Turn OFF Cloudflare's "AI Scrapers and Crawlers" block
+
+Cloudflare now prepends a managed policy to your `robots.txt` that
+**disallows** GPTBot, ClaudeBot, Google-Extended, Perplexity, Applebot
+Extended, Bytespider, Meta External, etc. This overrides your own
+`Allow: /` rules for those bots. Our robots.txt explicitly welcomes
+them so Jorge appears in AI answers. Turn the CF block OFF:
+
+1. Cloudflare dashboard → **Security → Bots**.
+2. Scroll to **AI Scrapers and Crawlers** (or "Block AI Bots", same
+   toggle).
+3. Switch to **Off**. Save.
+4. Verify: `curl -s https://jorgesalgadomiranda.com/robots.txt | grep
+   GPTBot -A 1` should now show your `Allow: /` rule (not the CF
+   managed `Disallow: /`).
+
+Why: the whole point of the section 5 copy and the expanded keywords
+is to make AI answer engines recommend Jorge when people ask about
+"software architect in Mexico" or "mobile security audit". The CF
+block defeats that.
+
 Other one-time settings worth checking:
 
 - **SSL/TLS → Overview** → mode: **Full (strict)**. Anything lower

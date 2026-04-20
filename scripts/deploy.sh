@@ -20,7 +20,8 @@ fi
 echo "Uploading to $FTP_HOST:$FTP_REMOTE_DIR"
 
 lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" <<EOF
-set ssl:verify-certificate no
+set ssl:verify-certificate yes
+set ftp:ssl-force true
 mirror --reverse \
   --delete \
   --verbose \
@@ -30,8 +31,12 @@ mirror --reverse \
   --exclude-glob .github/ \
   --exclude-glob .env \
   --exclude-glob .env.example \
+  --exclude-glob .env.local \
   --exclude-glob .gitignore \
   --exclude-glob .remember/ \
+  --exclude-glob .playwright-mcp/ \
+  --exclude-glob .idea/ \
+  --exclude-glob .vscode/ \
   --exclude-glob node_modules/ \
   --exclude-glob scripts/ \
   --exclude-glob docs/ \
@@ -39,7 +44,10 @@ mirror --reverse \
   --exclude-glob package-lock.json \
   --exclude-glob bun.lockb \
   --exclude-glob README.md \
+  --exclude-glob CLAUDE.md \
   --exclude-glob og.html \
+  --exclude-glob verify-*.png \
+  --exclude-glob *.log \
   --exclude-glob .DS_Store \
   ./ $FTP_REMOTE_DIR
 bye
