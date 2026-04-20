@@ -18,7 +18,11 @@ and create these **four repository secrets**:
 | `FTP_HOST`         | `ftp.jorgesalgadomiranda.com` or `files.hostinger.com` | Same value you'd put in an FTP client |
 | `FTP_USER`         | `u1234567`           | Hostinger panel > Files > FTP Accounts     |
 | `FTP_PASSWORD`     | `your-real-password` | Password from the same panel               |
-| `FTP_REMOTE_DIR`   | `public_html`        | Relative path (no leading slash)           |
+
+> `FTP_REMOTE_DIR` is **no longer required**. Hostinger's FTP user is
+> chrooted to `public_html/`, so the workflow uploads to `./` at the
+> account root. If the secret still exists it's harmless; you can delete
+> it.
 
 Exact names matter. The workflow at `.github/workflows/deploy.yml` reads
 them as `${{ secrets.FTP_HOST }}`, etc.
@@ -72,8 +76,14 @@ you the DNS didn't resolve. Double-check the value in hPanel.
 - **530 Login incorrect**: wrong `FTP_USER` or `FTP_PASSWORD`.
   Double-check in hPanel, especially for trailing whitespace when you
   paste.
-- **550 Permission denied**: `FTP_REMOTE_DIR` is wrong. Hostinger's
-  default is `public_html` (no leading slash).
+- **550 Permission denied**: the FTP user can't write at its landing
+  directory. If Hostinger created a non-standard layout for your account
+  you may need to set `server-dir` explicitly in `deploy.yml` (e.g.
+  `./public_html/`) instead of the default `./`.
+- **Site still shows Hostinger placeholder after a green deploy**:
+  you're likely double-nested. The chroot already lands you inside
+  `public_html/`, so `server-dir: public_html/` would create
+  `public_html/public_html/`. Keep `server-dir: ./`.
 - **FTPS handshake failure**: if your account doesn't support FTPS,
   change `protocol: ftps` back to `protocol: ftp` in
   `.github/workflows/deploy.yml`. Hostinger supports FTPS on port 21

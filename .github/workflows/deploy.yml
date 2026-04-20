@@ -9,13 +9,17 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false
 
+env:
+  # Force third-party JS actions onto Node 24 before the June 2026 cutoff.
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   deploy:
     name: FTP upload
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Sanitize FTP host
         id: host
@@ -59,7 +63,10 @@ jobs:
           server: ${{ steps.host.outputs.host }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_REMOTE_DIR }}/
+          # Hostinger FTP users are chrooted to public_html/, so upload at the
+          # account root. FTP_REMOTE_DIR is ignored on purpose to avoid double-
+          # nesting (previous runs landed files at public_html/public_html/).
+          server-dir: ./
           protocol: ftps
           port: 21
           timeout: 60000
