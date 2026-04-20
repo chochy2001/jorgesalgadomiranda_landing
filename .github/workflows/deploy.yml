@@ -17,27 +17,46 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Pre-flight check (hostname resolves)
+      - name: Sanitize FTP host
+        id: host
         env:
-          HOST: ${{ secrets.FTP_HOST }}
+          RAW_HOST: ${{ secrets.FTP_HOST }}
         run: |
           set -e
-          if [ -z "$HOST" ]; then
+          if [ -z "$RAW_HOST" ]; then
             echo "::error::FTP_HOST secret is empty. Set it under Settings > Secrets and variables > Actions."
             exit 1
           fi
-          echo "Resolving FTP host (value is masked in logs) ..."
-          if getent hosts "$HOST" > /dev/null; then
-            echo "DNS OK"
-          else
-            echo "::error::FTP_HOST does not resolve. Check the value in hPanel > Files > FTP Accounts. It should be a bare hostname (e.g. ftp.example.com) or an IPv4, with no scheme (no ftp://) and no path."
-            exit 1
+          # Strip whitespace/newlines/CR, any scheme (ftp://, ftps://, sftp://), and any trailing path.
+          CLEAN=$(printf '%s' "$RAW_HOST" | tr -d '[:space:]\r' | sed -E 's#^[a-zA-Z]+://##' | sed 's#/.*##')
+          echo "::add-mask::$CLEAN"
+          echo "host=$CLEAN" >> "$GITHUB_OUTPUT"
+          if [ "$CLEAN" != "$RAW_HOST" ]; then
+            echo "::warning::FTP_HOST had extra characters (whitespace, scheme, or path). Sanitized before use."
           fi
+
+      - name: Pre-flight check (hostname/IP resolves)
+        env:
+          HOST: ${{ steps.host.outputs.host }}
+        run: |
+          python3 - <<'PY'
+          import os, socket, sys
+          host = os.environ.get('HOST', '')
+          if not host:
+              print('::error::Sanitized FTP host is empty.', file=sys.stderr)
+              sys.exit(1)
+          try:
+              ip = socket.gethostbyname(host)
+              print('DNS/IP OK')
+          except Exception as e:
+              print(f'::error::FTP host could not be resolved. Check hPanel > Files > FTP Accounts. Error: {type(e).__name__}', file=sys.stderr)
+              sys.exit(1)
+          PY
 
       - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ${{ steps.host.outputs.host }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}/
