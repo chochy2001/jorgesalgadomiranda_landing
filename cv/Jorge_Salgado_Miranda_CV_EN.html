@@ -117,12 +117,13 @@ h2.section::before {
       +52 55 2198 2449<br/>
       <a href="https://jorgesalgadomiranda.com">jorgesalgadomiranda.com</a><br/>
       <a href="https://linkedin.com/in/jorge-salgado-miranda-74023b181">linkedin.com/in/jorge-salgado-miranda</a><br/>
-      <a href="https://github.com/chochy2001">github.com/chochy2001</a>
+      <a href="https://github.com/chochy2001">github.com/chochy2001</a><br/>
+      <a href="https://www.youtube.com/channel/UChoDyFV5T1t9qWymeTz8Gvg">youtube.com/@jorgesalgado</a>
     </div>
   </header>
 
   <p class="summary">
-    Senior Software Architect with <strong>8+ years</strong> designing systems across mobile, web and backend. Currently at <strong>PayPal/Venmo</strong>, shipping financial features for 426M+ users with an <strong>"Exceeds Expectations"</strong> performance rating. Founder &amp; CEO of <strong>Capdesis</strong>: 34+ delivered projects, 51,000+ students reached, team of 4 to 6 engineers. Deep expertise in Kotlin, Swift, Flutter and Go; Clean Architecture, OAuth 2.0, biometric auth, multi-module systems. Actively pursuing <strong>AWS Solutions Architect Professional</strong> and advanced cybersecurity certifications. Instructor to 54,000+ developers on Udemy.
+    Senior Software Architect with <strong><span data-years-since="2018">8</span>+ years</strong> designing systems across mobile, web and backend. Currently at <strong>PayPal/Venmo</strong>, shipping financial features for 426M+ users with an <strong>"Exceeds Expectations"</strong> performance rating. Founder &amp; CEO of <strong>Capdesis</strong>: 34+ delivered projects, 51,000+ students reached, team of 4 to 6 engineers. Deep expertise in Kotlin, Swift, Flutter and Go; Clean Architecture, OAuth 2.0, biometric auth, multi-module systems. Actively pursuing <strong>AWS Solutions Architect Professional</strong> and advanced cybersecurity certifications. Instructor to 54,000+ developers on Udemy.
   </p>
 
   <h2 class="section" data-num="01">Technical Skills</h2>
@@ -282,5 +283,14 @@ h2.section::before {
     <span>jorgesalgadomiranda.com</span>
   </div>
 </article>
+<script>
+  (function () {
+    var y = new Date().getFullYear();
+    document.querySelectorAll('[data-years-since]').forEach(function (el) {
+      var since = parseInt(el.getAttribute('data-years-since'), 10);
+      if (!isNaN(since)) el.textContent = String(y - since);
+    });
+  })();
+</script>
 </body>
 </html>

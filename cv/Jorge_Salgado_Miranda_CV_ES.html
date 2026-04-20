@@ -67,12 +67,13 @@ h2.section::before { content: attr(data-num); font-family: 'Geist Mono', monospa
       +52 55 2198 2449<br/>
       <a href="https://jorgesalgadomiranda.com">jorgesalgadomiranda.com</a><br/>
       <a href="https://linkedin.com/in/jorge-salgado-miranda-74023b181">linkedin.com/in/jorge-salgado-miranda</a><br/>
-      <a href="https://github.com/chochy2001">github.com/chochy2001</a>
+      <a href="https://github.com/chochy2001">github.com/chochy2001</a><br/>
+      <a href="https://www.youtube.com/channel/UChoDyFV5T1t9qWymeTz8Gvg">youtube.com/@jorgesalgado</a>
     </div>
   </header>
 
   <p class="summary">
-    Arquitecto de Software Senior con <strong>8+ años</strong> diseñando sistemas completos en mobile, web y backend. Actualmente en <strong>PayPal/Venmo</strong>, entregando features financieras para 426M+ usuarios con rating <strong>"Exceeds Expectations"</strong>. Fundador y CEO de <strong>Capdesis</strong>: 34+ proyectos entregados, 51,000+ estudiantes alcanzados, equipo de 4 a 6 ingenieros. Experiencia profunda en Kotlin, Swift, Flutter y Go; Clean Architecture, OAuth 2.0, auth biométrica, sistemas multi-módulo. Actualmente preparando <strong>AWS Solutions Architect Professional</strong> y certificaciones avanzadas de ciberseguridad. Instructor de 54,000+ desarrolladores en Udemy.
+    Arquitecto de Software Senior con <strong><span data-years-since="2018">8</span>+ años</strong> diseñando sistemas completos en mobile, web y backend. Actualmente en <strong>PayPal/Venmo</strong>, entregando features financieras para 426M+ usuarios con rating <strong>"Exceeds Expectations"</strong>. Fundador y CEO de <strong>Capdesis</strong>: 34+ proyectos entregados, 51,000+ estudiantes alcanzados, equipo de 4 a 6 ingenieros. Experiencia profunda en Kotlin, Swift, Flutter y Go; Clean Architecture, OAuth 2.0, auth biométrica, sistemas multi-módulo. Actualmente preparando <strong>AWS Solutions Architect Professional</strong> y certificaciones avanzadas de ciberseguridad. Instructor de 54,000+ desarrolladores en Udemy.
   </p>
 
   <h2 class="section" data-num="01">Habilidades Técnicas</h2>
@@ -232,5 +233,14 @@ h2.section::before { content: attr(data-num); font-family: 'Geist Mono', monospa
     <span>jorgesalgadomiranda.com</span>
   </div>
 </article>
+<script>
+  (function () {
+    var y = new Date().getFullYear();
+    document.querySelectorAll('[data-years-since]').forEach(function (el) {
+      var since = parseInt(el.getAttribute('data-years-since'), 10);
+      if (!isNaN(since)) el.textContent = String(y - since);
+    });
+  })();
+</script>
 </body>
 </html>

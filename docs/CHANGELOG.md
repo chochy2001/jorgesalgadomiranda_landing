@@ -4,6 +4,50 @@ Reverse-chronological log of what shipped, why, and what to verify next time.
 
 ---
 
+## 2026-04-19 - Auto-update tenure, CapTienda, YouTube, GitHub Actions deploy
+
+**Tenure auto-updates each new year**
+- `[data-years-since="2018"]` spans in the HTML (and i18n dicts) now
+  render as `new Date().getFullYear() - 2018`. 2026 shows "8", 2027 will
+  show "9", 2028 "10", all without touching code.
+- Hero "Years shipping at scale" stat: `data-count-since="2018"` drives
+  the count-up animation to the current number.
+- `{{yearsSince:YYYY}}` tokens substituted at apply-lang time for meta
+  description and document title (where HTML spans don't render).
+- Both CVs (EN + ES) get a tiny inline script that does the same
+  substitution for the print-ready pages.
+
+**CapTienda added to Capdesis apps**
+- Flutter + POS + Retail card with the official product logo from
+  `capdesis.com/images/products/captienda_logo.svg` and link to
+  `captienda.com`. App icon gradient in the same red-orange family used
+  on retail-ish brands.
+- The old "And more in the lab" dashed card replaced with a single-line
+  note below the grid that links to `capdesis.com/#portfolio`, so the
+  grid stays a clean 2x3 of real products.
+
+**Ownership framing for Capdesis**
+- `cap.lede` now reads "I founded Capdesis in 2019 and I still ship for
+  it every week ... every product below, built and maintained by me."
+  Same tone in ES. Makes the ownership explicit instead of implicit.
+
+**YouTube channel**
+- Added to the contact links (4th item), JSON-LD `sameAs`, and both CVs.
+
+**GitHub Actions FTP deploy**
+- New `.github/workflows/deploy.yml` mirrors the site to Hostinger FTP on
+  every push to `main` and on manual dispatch. Uses
+  `SamKirkland/FTP-Deploy-Action@v4.3.5`.
+- Four secrets required (docs/DEPLOY.md has the full setup guide):
+  `FTP_HOST`, `FTP_USER`, `FTP_PASSWORD`, `FTP_REMOTE_DIR`.
+- Exclude list matches the local `scripts/deploy.sh` exactly, so the two
+  deploy paths produce byte-identical remotes. No password leaves the
+  local machine or the repo; lives only in GitHub Actions Secrets.
+
+i18n parity 209 / 209.
+
+---
+
 ## 2026-04-19 - Google Play Store Listing certificate earned
 
 Passed the Google Play Academy *Play Store Listing* certificate exam

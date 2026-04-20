@@ -1,0 +1,47 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: FTP upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}/
+          protocol: ftp
+          port: 21
+          timeout: 60000
+          log-level: standard
+          # Everything uploads EXCEPT these (dev-only, private, or repo metadata):
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            **/scripts/**
+            **/docs/**
+            **/.env
+            **/.env.example
+            **/.gitignore
+            **/.DS_Store
+            **/package.json
+            **/package-lock.json
+            **/bun.lockb
+            **/README.md
+            **/og.html

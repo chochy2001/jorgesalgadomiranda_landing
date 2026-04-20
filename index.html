@@ -6,7 +6,7 @@
 
 <!-- SEO primary -->
 <title data-i18n-title>Jorge Salgado Miranda, Software Architect · Mobile, Web & Security</title>
-<meta name="description" content="Jorge Salgado Miranda, Senior Software Architect specialized in Mobile, Web and Security. CEO of Capdesis. Currently at PayPal/Venmo. 8+ years building native Android, iOS, Flutter and Go backends for 426M+ users." data-i18n-desc />
+<meta name="description" content="Jorge Salgado Miranda, Senior Software Architect specialized in Mobile, Web and Security. CEO of Capdesis. Currently at PayPal/Venmo. {{yearsSince:2018}}+ years building native Android, iOS, Flutter and Go backends for 426M+ users." data-i18n-desc />
 <meta name="author" content="Jorge Salgado Miranda" />
 <meta name="keywords" content="Jorge Salgado Miranda, Software Architect, Mobile Engineer, iOS Developer, Android Developer, Flutter, Kotlin, Swift, PayPal, Venmo, Capdesis, CEO Capdesis, UNAM, Mexico City, Cybersecurity, AWS Architect, Full Stack, Backend Go, GraphQL, Clean Architecture, IngenieriaTracker, Formulae" />
 <link rel="canonical" href="https://jorgesalgadomiranda.com/" />
@@ -47,6 +47,7 @@
   "email": "jorgesalgadomiranda@protonmail.com",
   "sameAs": [
     "https://linkedin.com/in/jorge-salgado-miranda-74023b181",
+    "https://www.youtube.com/channel/UChoDyFV5T1t9qWymeTz8Gvg",
     "https://github.com/chochy2001",
     "https://www.udemy.com/user/jorge-salgado-miranda-4/",
     "https://capdesis.com"
@@ -819,6 +820,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .app-icon-cm { background: linear-gradient(135deg, #f59e0b, #ef4444); }
 .app-icon-cl { background: linear-gradient(135deg, #10b981, #3b82f6); }
 .app-icon-lf { background: linear-gradient(135deg, #22c55e, #eab308); }
+.app-icon-ct { background: linear-gradient(135deg, #dc2626, #f97316); }
 
 .app-body h4 {
   font-family: var(--font-serif);
@@ -849,11 +851,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.app-card-more {
-  background: transparent;
-  border-style: dashed;
+.capdesis-more {
+  margin-top: 28px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+  max-width: 72ch;
 }
-.app-card-more h4 { color: var(--fg); }
+.capdesis-more strong { color: var(--fg); font-weight: 500; }
+.capdesis-more a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+.capdesis-more a:hover { border-color: var(--accent); }
 .app-link {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--font-mono); font-size: 12px;
@@ -1698,7 +1705,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <span class="stat-label" data-i18n="hero.stat2">Developers trained on Udemy</span>
         </div>
         <div class="stat">
-          <span class="stat-value" data-count="8" data-suffix="+">0</span>
+          <span class="stat-value" data-count="8" data-count-since="2018" data-suffix="+">0</span>
           <span class="stat-label" data-i18n="hero.stat3">Years shipping at scale</span>
         </div>
         <div class="stat">
@@ -1769,7 +1776,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
     <div class="about-grid">
       <div class="about-prose">
-        <p data-reveal data-i18n="about.p1">I've spent the last eight years going deeper than the screen. Mobile is my craft, Kotlin, Swift, Flutter, the architectures that make them scale, but I've also built Go microservices for 10k concurrent users, designed authentication flows for a 426M-user fintech, and sat in the CEO chair of my own consultancy.</p>
+        <p data-reveal data-i18n="about.p1">I've spent the last <span data-years-since="2018">8</span> years going deeper than the screen. Mobile is my craft, Kotlin, Swift, Flutter, the architectures that make them scale, but I've also built Go microservices for 10k concurrent users, designed authentication flows for a 426M-user fintech, and sat in the CEO chair of my own consultancy.</p>
 
         <p data-reveal data-i18n="about.p2">What sets me apart is the <strong>full-stack perspective on architecture</strong>. I don't just consume APIs; I design them. I don't just ship features; I think about the HLD, the threat model, the feedback loop, the developer experience. I've taken UI/UX courses because I believe engineers who don't understand design ship worse products.</p>
 
@@ -1777,7 +1784,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
         <ul class="about-quick" data-reveal aria-label="Quick facts">
           <li><span class="about-quick-k" data-i18n="about.quick.based">Based</span><span class="about-quick-v">CDMX · Remote</span></li>
-          <li><span class="about-quick-k" data-i18n="about.quick.years">Years shipping</span><span class="about-quick-v">8+</span></li>
+          <li><span class="about-quick-k" data-i18n="about.quick.years">Years shipping</span><span class="about-quick-v"><span data-years-since="2018">8</span>+</span></li>
           <li><span class="about-quick-k" data-i18n="about.quick.role">Role</span><span class="about-quick-v" data-i18n="about.quick.role.v">Senior Mobile Engineer · Founder</span></li>
           <li><span class="about-quick-k" data-i18n="about.quick.open">Open to</span><span class="about-quick-v" data-i18n="about.quick.open.v">Architecture &amp; security advisory</span></li>
         </ul>
@@ -1947,7 +1954,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
         <span data-reveal data-i18n="cap.title1">Products I ship</span>
         <em data-reveal data-i18n="cap.title2">as founder &amp; CEO.</em>
       </h2>
-      <p class="capdesis-lede" data-reveal data-i18n="cap.lede">Founded in 2019, a studio where I practice what I preach. Mobile apps, full-stack platforms, audiovisual solutions, and the occasional IoT experiment. <strong>51,000+ students · 34+ projects · &lt;24h response</strong>.</p>
+      <p class="capdesis-lede" data-reveal data-i18n="cap.lede">I founded Capdesis in 2019 and I still ship for it every week. It's the studio where I practice what I preach, mobile apps, full-stack platforms, audiovisual work and the occasional IoT experiment. Every product below, built and maintained by me. <strong>51,000+ students · 34+ projects · &lt;24h response</strong>.</p>
     </div>
 
     <!-- APPS -->
@@ -2049,17 +2056,27 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
         </div>
       </article>
 
-      <article class="app-card app-card-more" data-reveal>
+      <article class="app-card" data-tilt data-reveal>
+        <div class="app-icon app-icon-ct">
+          <span class="app-icon-inner" aria-hidden="true">CT</span>
+          <img class="app-icon-img" src="https://capdesis.com/images/products/captienda_logo.svg" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
+        </div>
         <div class="app-body">
-          <h4 data-i18n="cap.apps.more.title">And more in the lab</h4>
-          <p class="app-desc" data-i18n="cap.apps.more.desc">GestiónInventarioQR, POS systems, home-automation IoT, ARKit prototypes, internal tools for clients. Ask me about them.</p>
-          <a href="https://capdesis.com" target="_blank" rel="noopener noreferrer" class="app-link" data-magnetic>
-            <span>capdesis.com</span>
+          <h4>CapTienda</h4>
+          <p class="app-tag" data-i18n="cap.apps.ct.tag">Flutter · POS · Retail</p>
+          <p class="app-desc" data-i18n="cap.apps.ct.desc">Point of sale and retail management for small shops. Inventory, sales, multi-location and a companion web dashboard for owners.</p>
+          <div class="app-meta">
+            <span class="app-pill">iOS</span><span class="app-pill">Android</span><span class="app-pill">Web Admin</span>
+          </div>
+          <a href="https://captienda.com/" target="_blank" rel="noopener noreferrer" class="app-link" aria-label="Visit captienda.com">
+            <span>captienda.com</span>
             <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
         </div>
       </article>
     </div>
+
+    <p class="capdesis-more" data-reveal data-i18n="cap.apps.more.lead">And more in the lab: <strong>GestiónInventarioQR</strong>, home-automation IoT, ARKit prototypes and internal tools for clients. <a href="https://capdesis.com/#portfolio" target="_blank" rel="noopener noreferrer">See the full portfolio on capdesis.com &rarr;</a></p>
 
     <!-- WEB PROJECTS -->
     <h3 class="capdesis-sub" data-reveal data-i18n="cap.sub.web">Web projects · Capdesis clients</h3>
@@ -2703,6 +2720,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
         <li data-reveal><a href="https://github.com/chochy2001" target="_blank" rel="noopener noreferrer" ><span>GitHub</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
         <li data-reveal><a href="https://capdesis.com" target="_blank" rel="noopener noreferrer" ><span>Capdesis</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
         <li data-reveal><a href="https://www.udemy.com/user/jorge-salgado-miranda-4/" target="_blank" rel="noopener noreferrer" ><span>Udemy</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
+        <li data-reveal><a href="https://www.youtube.com/channel/UChoDyFV5T1t9qWymeTz8Gvg" target="_blank" rel="noopener noreferrer" ><span>YouTube</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
         <li data-reveal><a href="https://wa.me/525521982449?text=Hola%20Jorge%2C" target="_blank" rel="noopener noreferrer" aria-label="Send a WhatsApp message to Jorge"><span data-i18n="contact.whatsapp">WhatsApp · messages preferred</span><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
       </ul>
     </div>
@@ -2753,7 +2771,7 @@ const I18N = {
     "about.kicker": "About",
     "about.title1": "Not just a mobile engineer.",
     "about.title2": "I think in systems.",
-    "about.p1": "I've spent the last eight years going deeper than the screen. Mobile is my craft, Kotlin, Swift, Flutter, the architectures that make them scale, but I've also built Go microservices for 10k concurrent users, designed authentication flows for a 426M-user fintech, and sat in the CEO chair of my own consultancy.",
+    "about.p1": "I've spent the last <span data-years-since='2018'>8</span> years going deeper than the screen. Mobile is my craft, Kotlin, Swift, Flutter, the architectures that make them scale, but I've also built Go microservices for 10k concurrent users, designed authentication flows for a 426M-user fintech, and sat in the CEO chair of my own consultancy.",
     "about.p2": "What sets me apart is the <strong>full-stack perspective on architecture</strong>. I don't just consume APIs; I design them. I don't just ship features; I think about the HLD, the threat model, the feedback loop, the developer experience. I've taken UI/UX courses because I believe engineers who don't understand design ship worse products.",
     "about.p3": "My next chapter is deliberate: <strong>AWS Solutions Architect Professional</strong> and advanced cybersecurity certifications. Architecture and security are where I want to spend the next decade, building platforms that are fast, secure, and a pleasure to work on.",
     "about.card1.label": "Currently",
@@ -2814,7 +2832,7 @@ const I18N = {
     "cap.kicker": "Capdesis · My Lab",
     "cap.title1": "Products I ship",
     "cap.title2": "as founder & CEO.",
-    "cap.lede": "Founded in 2019, a studio where I practice what I preach. Mobile apps, full-stack platforms, audiovisual solutions, and the occasional IoT experiment. <strong>51,000+ students · 34+ projects · &lt;24h response</strong>.",
+    "cap.lede": "I founded Capdesis in 2019 and I still ship for it every week. It's the studio where I practice what I preach, mobile apps, full-stack platforms, audiovisual work and the occasional IoT experiment. Every product below, built and maintained by me. <strong>51,000+ students · 34+ projects · &lt;24h response</strong>.",
     "cap.sub.apps": "Native & cross-platform apps",
     "cap.sub.web": "Web projects · Capdesis clients",
     "cap.apps.it.tag": "Flutter · Go · 10,000+ MAU",
@@ -2827,8 +2845,9 @@ const I18N = {
     "cap.apps.cl.desc": "Residence & property management, residents report incidents, book amenities, receive announcements. Admin side for managers with analytics and access control.",
     "cap.apps.lf.tag": "Flutter · Marketplace",
     "cap.apps.lf.desc": "Fresh produce marketplace connecting local providers with buyers. Catalog, cart, orders and provider dashboard, built to be light, fast and offline-tolerant.",
-    "cap.apps.more.title": "And more in the lab",
-    "cap.apps.more.desc": "GestiónInventarioQR, POS systems, home-automation IoT, ARKit prototypes, internal tools for clients. Ask me about them.",
+    "cap.apps.ct.tag": "Flutter · POS · Retail",
+    "cap.apps.ct.desc": "Point of sale and retail management for small shops. Inventory, sales, multi-location and a companion web dashboard for owners.",
+    "cap.apps.more.lead": "And more in the lab: <strong>GestiónInventarioQR</strong>, home-automation IoT, ARKit prototypes and internal tools for clients. <a href=\"https://capdesis.com/#portfolio\" target=\"_blank\" rel=\"noopener noreferrer\">See the full portfolio on capdesis.com &rarr;</a>",
     "cap.web.1": "Entertainment agency, artist roster, events calendar and booking. Media-heavy storytelling with a private back-office to manage availability, riders and contracts.",
     "cap.web.1.kind": "Events · Booking",
     "cap.web.2": "Consulting firm web presence, services catalog, content hub and lead capture, integrated with their CRM pipeline so sales follows up on every inquiry.",
@@ -2945,7 +2964,7 @@ const I18N = {
     "footer.top": "Back to top",
 
     "title": "Jorge Salgado Miranda, Software Architect · Mobile, Web & Security",
-    "desc": "Jorge Salgado Miranda, Senior Software Architect specialized in Mobile, Web and Security. CEO of Capdesis. Currently at PayPal/Venmo. 8+ years building native Android, iOS, Flutter and Go backends for 426M+ users."
+    "desc": "Jorge Salgado Miranda, Senior Software Architect specialized in Mobile, Web and Security. CEO of Capdesis. Currently at PayPal/Venmo. {{yearsSince:2018}}+ years building native Android, iOS, Flutter and Go backends for 426M+ users."
   },
 
   es: {
@@ -2977,7 +2996,7 @@ const I18N = {
     "about.kicker": "Sobre mí",
     "about.title1": "No solo soy ingeniero mobile.",
     "about.title2": "Pienso en sistemas.",
-    "about.p1": "Llevo ocho años yendo más allá de la pantalla. Mobile es mi oficio, Kotlin, Swift, Flutter, las arquitecturas que los hacen escalar, pero también he construido microservicios en Go para 10k usuarios concurrentes, diseñado flujos de autenticación para un fintech de 426M usuarios, y ocupado la silla de CEO en mi propia consultora.",
+    "about.p1": "Llevo <span data-years-since='2018'>8</span> años yendo más allá de la pantalla. Mobile es mi oficio, Kotlin, Swift, Flutter, las arquitecturas que los hacen escalar, pero también he construido microservicios en Go para 10k usuarios concurrentes, diseñado flujos de autenticación para un fintech de 426M usuarios, y ocupado la silla de CEO en mi propia consultora.",
     "about.p2": "Lo que me distingue es la <strong>perspectiva full-stack en arquitectura</strong>. No solo consumo APIs; las diseño. No solo entrego features; pienso en el HLD, el modelo de amenazas, el feedback loop, el DX. He tomado cursos de UI/UX porque creo que los ingenieros que no entienden diseño entregan peores productos.",
     "about.p3": "Mi siguiente capítulo es deliberado: <strong>AWS Solutions Architect Professional</strong> y certificaciones avanzadas de ciberseguridad. Arquitectura y seguridad son donde quiero pasar la próxima década, construyendo plataformas rápidas, seguras y agradables de mantener.",
     "about.card1.label": "Actualmente",
@@ -3037,7 +3056,7 @@ const I18N = {
     "cap.kicker": "Capdesis · Mi laboratorio",
     "cap.title1": "Productos que entrego",
     "cap.title2": "como fundador y CEO.",
-    "cap.lede": "Fundada en 2019, un estudio donde practico lo que predico. Apps mobile, plataformas full-stack, soluciones audiovisuales y algún experimento de IoT. <strong>51,000+ estudiantes · 34+ proyectos · Respuesta en &lt;24h</strong>.",
+    "cap.lede": "Fundé Capdesis en 2019 y sigo entregando código cada semana. Es el estudio donde practico lo que predico, apps mobile, plataformas full-stack, trabajo audiovisual y algún experimento de IoT. Cada producto de abajo, construido y mantenido por mí. <strong>51,000+ estudiantes · 34+ proyectos · Respuesta en &lt;24h</strong>.",
     "cap.sub.apps": "Apps nativas y cross-platform",
     "cap.sub.web": "Proyectos web · Clientes de Capdesis",
     "cap.apps.it.tag": "Flutter · Go · 10,000+ MAU",
@@ -3050,8 +3069,9 @@ const I18N = {
     "cap.apps.cl.desc": "Gestión de residencias y propiedades, residentes reportan incidencias, reservan amenidades, reciben anuncios. Lado admin para gerentes con analytics y control de acceso.",
     "cap.apps.lf.tag": "Flutter · Marketplace",
     "cap.apps.lf.desc": "Marketplace de productos frescos conectando proveedores locales con compradores. Catálogo, carrito, órdenes y dashboard de proveedor, ligero, rápido y tolerante a modo offline.",
-    "cap.apps.more.title": "Y más en el laboratorio",
-    "cap.apps.more.desc": "GestiónInventarioQR, sistemas POS, IoT de domótica, prototipos ARKit, herramientas internas para clientes. Pregúntame por ellos.",
+    "cap.apps.ct.tag": "Flutter · POS · Retail",
+    "cap.apps.ct.desc": "Punto de venta y gestión para comercios pequeños. Inventario, ventas, multi-sucursal y un dashboard web para los dueños.",
+    "cap.apps.more.lead": "Y más en el laboratorio: <strong>GestiónInventarioQR</strong>, IoT de domótica, prototipos ARKit y herramientas internas para clientes. <a href=\"https://capdesis.com/#portfolio\" target=\"_blank\" rel=\"noopener noreferrer\">Ver el portafolio completo en capdesis.com &rarr;</a>",
     "cap.web.1": "Agencia de entretenimiento, roster de artistas, calendario de eventos y booking. Storytelling media-heavy con back-office privado para gestionar disponibilidad, riders y contratos.",
     "cap.web.1.kind": "Eventos · Booking",
     "cap.web.2": "Presencia web de consultora, catálogo de servicios, hub de contenido y captura de leads, integrado con su CRM para que ventas dé seguimiento a cada lead.",
@@ -3168,7 +3188,7 @@ const I18N = {
     "footer.top": "Volver arriba",
 
     "title": "Jorge Salgado Miranda, Arquitecto de Software · Mobile, Web y Seguridad",
-    "desc": "Jorge Salgado Miranda, Senior Software Architect especializado en Mobile, Web y Seguridad. CEO de Capdesis. Actualmente en PayPal/Venmo. 8+ años construyendo Android nativo, iOS, Flutter y backends en Go para 426M+ usuarios."
+    "desc": "Jorge Salgado Miranda, Senior Software Architect especializado en Mobile, Web y Seguridad. CEO de Capdesis. Actualmente en PayPal/Venmo. {{yearsSince:2018}}+ años construyendo Android nativo, iOS, Flutter y backends en Go para 426M+ usuarios."
   }
 };
 
@@ -3183,9 +3203,31 @@ window.__I18N__ = I18N;
 (function () {
   const root = document.documentElement;
 
-  // ============ COPYRIGHT YEAR (dynamic) ============
+  // ============ DYNAMIC YEAR + TENURE ============
+  const NOW_YEAR = new Date().getFullYear();
   const yearEl = document.getElementById('copyright-year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  if (yearEl) yearEl.textContent = NOW_YEAR;
+
+  // Replace every [data-years-since="YYYY"] span with the elapsed years.
+  // Used for "8 years shipping" style numbers; auto-increments each Jan 1st.
+  const applyYearsSince = () => {
+    document.querySelectorAll('[data-years-since]').forEach(el => {
+      const since = parseInt(el.getAttribute('data-years-since'), 10);
+      if (!isNaN(since)) el.textContent = String(NOW_YEAR - since);
+    });
+  };
+  applyYearsSince();
+
+  // Update the hero "years shipping" stat's data-count so the count-up
+  // animation lands on the current number.
+  const yearsStat = document.querySelector('[data-count-since]');
+  if (yearsStat) {
+    const since = parseInt(yearsStat.getAttribute('data-count-since'), 10);
+    yearsStat.setAttribute('data-count', String(NOW_YEAR - since));
+  }
+
+  // Token substitution for strings that don't render HTML (title/desc meta).
+  const subYears = (s) => s.replace(/\{\{yearsSince:(\d+)\}\}/g, (_, y) => String(NOW_YEAR - parseInt(y, 10)));
 
   // ============ THEME ============
   const savedTheme = localStorage.getItem('theme');
@@ -3218,12 +3260,14 @@ window.__I18N__ = I18N;
     const dict = I18N[lang];
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const k = el.getAttribute('data-i18n');
-      if (dict[k] !== undefined) el.innerHTML = dict[k];
+      if (dict[k] !== undefined) el.innerHTML = subYears(dict[k]);
     });
     // title & desc
-    document.title = dict['title'];
+    document.title = subYears(dict['title']);
     const descMeta = document.querySelector('meta[name="description"]');
-    if (descMeta) descMeta.setAttribute('content', dict['desc']);
+    if (descMeta) descMeta.setAttribute('content', subYears(dict['desc']));
+    // Re-apply years-since after innerHTML rewrite creates fresh spans
+    applyYearsSince();
     // refresh scramble sources
     document.querySelectorAll('[data-scramble]').forEach(el => {
       el.dataset.scrambleText = el.textContent.trim();
