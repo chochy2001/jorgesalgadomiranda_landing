@@ -4,6 +4,18 @@ Reverse-chronological log of what shipped, why, and what to verify next time.
 
 ---
 
+## 2026-04-19 - Google Play Store Listing certificate earned
+
+Passed the Google Play Academy *Play Store Listing* certificate exam
+(65/68). Added to the Earned column on the landing (top of the list with
+the 2026 issue year) and to both CVs.
+
+Rationale updated in `docs/CERTIFICATIONS.md`: this is a smaller cert than
+CISSP or AWS Pro, but it's a real signal that the release path (listing,
+metadata, screenshots, ASO) is owned end to end, not just the code.
+
+---
+
 ## 2026-04-19 - Certifications revamp + self-hosted fonts + WhatsApp CTA
 
 **Certifications section rewritten around a real path**

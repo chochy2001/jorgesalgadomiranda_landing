@@ -14,6 +14,7 @@ Kept on the page. These are issued or completed:
 | **Mobile Architecture**             | -      | Specialization that matches day-to-day work.     |
 | **Google Developer Certification**  | Google | Industry-credible validation for mobile work.    |
 | **Meta Developer Certification**    | Meta   | Industry-credible validation for mobile work.    |
+| **Google Play Store Listing**       | Google Play Academy | Passed 2026-04-19 (65/68). Covers store listing metadata, screenshots, store discovery, ASO. Small cert but real signal that I own the release path, not just the code. |
 
 ## Removed
 
