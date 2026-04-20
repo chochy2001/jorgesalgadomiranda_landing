@@ -1,5 +1,5 @@
 # ────────────────────────────────────────────────────────────
-# jorgesalgadomiranda.com — Apache config (Hostinger shared)
+# jorgesalgadomiranda.com. Apache config (Hostinger shared)
 # Handles: HTTPS redirect, security headers, gzip, long cache.
 # ────────────────────────────────────────────────────────────
 
@@ -22,19 +22,19 @@
   # 2 years, preload. Only enable preload after you're 100% on HTTPS permanently.
   Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 
-  # Legacy but cheap — disallow MIME sniffing
+  # Legacy but cheap. Disallow MIME sniffing
   Header always set X-Content-Type-Options "nosniff"
 
   # Don't allow framing. Prevents clickjacking.
   Header always set X-Frame-Options "SAMEORIGIN"
 
-  # Referrer leak budget — keep origin only
+  # Referrer leak budget. Keep origin only
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
   # Browsers: disable features we don't use. Expand if you add a use case.
   Header always set Permissions-Policy "accelerometer=(), autoplay=(), camera=(), cross-origin-isolated=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()"
 
-  # Content-Security-Policy — deliberately permissive enough for inline styles/scripts
+  # Content-Security-Policy, deliberately permissive enough for inline styles/scripts
   # that this single-file HTML relies on. Tighten after separating out scripts/styles.
   # Allowed third-parties: analytics (umami self-host + cloudflare beacon), form (web3forms),
   # booking (cal.com), external images we intentionally hotlink.

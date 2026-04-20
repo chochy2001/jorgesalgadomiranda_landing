@@ -4,7 +4,7 @@ Everything I couldn't automate (account creation, dashboard clicks,
 private tokens) lives here. Work top-to-bottom; each section says what
 to paste into the code once you've got the value.
 
-After any change, commit and push — GitHub Actions redeploys to
+After any change, commit and push. GitHub Actions redeploys to
 Hostinger automatically.
 
 ---
@@ -41,7 +41,7 @@ DNS is proxied.
 2. **Add a site** → `jorgesalgadomiranda.com`.
 3. Cloudflare generates a JS snippet with a `token` value.
 4. Open `index.html`, search for `YOUR_CF_BEACON_TOKEN`, replace with
-   just the token string (not the whole snippet — the `<script>` tag
+   just the token string (not the whole snippet: the `<script>` tag
    is already in the file).
 5. Commit + push. Data appears within ~5 minutes.
 
@@ -81,7 +81,7 @@ Free, no signup required beyond entering an email.
 2. In the "Create your Access Key" form, enter
    `jorgesalgadomiranda@protonmail.com` (this is where submissions
    will be delivered).
-3. Check that inbox — they send a confirmation with your unique
+3. Check that inbox: they send a confirmation with your unique
    access key.
 4. Open `index.html`, search for `YOUR_WEB3FORMS_ACCESS_KEY`, replace
    with the key.
@@ -96,7 +96,7 @@ Free, no signup required beyond entering an email.
   rejected).
 - RFC5322 email regex.
 - ~70-domain blocklist for disposable addresses (mailinator,
-  yopmail, guerrillamail, etc.) — checks client-side before the
+  yopmail, guerrillamail, etc.), checks client-side before the
   request leaves the browser.
 - Guard that refuses to submit while the placeholder is still in
   place, so you'll see a clear error until you finish this step.
@@ -108,7 +108,7 @@ Free, no signup required beyond entering an email.
 1. Sign in at https://cal.com/ (or create account).
 2. **Event Types → New** → create "30-min technical review" (or
    similar). Duration: 30 min.
-3. Copy the event slug — looks like `your-username/30min`.
+3. Copy the event slug. Looks like `your-username/30min`.
 4. Open `index.html`, find the CTA button:
 
    ```html
@@ -170,7 +170,7 @@ Do this on a calendar reminder every 3-6 months:
 ## 9 · LinkedIn + GitHub profile polish
 
 - Linkedin headline: include `Software Architect · Mobile, Web &
-  Security · Auditorías de arquitectura` — so recruiter searches
+  Security · Auditorías de arquitectura`, so recruiter searches
   match.
 - Linkedin "Contact info" → add `https://jorgesalgadomiranda.com/`
   as the personal website (counts as a backlink for SEO).
@@ -191,7 +191,7 @@ the site, you'll want:
 - `/legal/terms.html` (boilerplate for engagements).
 - Mention both in the footer.
 
-I can generate templates when you're ready — ping me.
+I can generate templates when you're ready. Ping me.
 
 ---
 

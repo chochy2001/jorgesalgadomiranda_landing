@@ -4,7 +4,7 @@ Reverse-chronological log of what shipped, why, and what to verify next time.
 
 ---
 
-## 2026-04-19 - Open Source section (OmniMon + GitHub)
+## 2026-04-19: Open Source section (OmniMon + GitHub)
 
 **New section 06: Open Source** between Engineering and Certifications.
 The old concern was that the page made Jorge look like someone who only
@@ -19,16 +19,16 @@ OSS activity.
   icon to the repo.
 
 **Three secondary cards** (all linking to their GitHub repo):
-- `ubuntu2kali` (Shell) - Transforms Ubuntu 24.04 into a pentesting
+- `ubuntu2kali` (Shell): transforms Ubuntu 24.04 into a pentesting
   workstation with 500+ Kali tools.
-- `openai-kotlin` (Kotlin) - OpenAI API client for Kotlin, multiplatform.
-- `Neovim config` (Lua) - daily editor setup.
+- `openai-kotlin` (Kotlin): OpenAI API client for Kotlin, multiplatform.
+- `Neovim config` (Lua): daily editor setup.
 
 **Footer link** to `github.com/chochy2001?tab=repositories`: "See all
 60+ public repos on GitHub".
 
-**Renumber subsequent sections**: Certifications 06->07, Udemy 07->08,
-Testimonials 08->09, Contact 09->10. Added nav link "Open Source" /
+**Renumber subsequent sections**: Certifications 06 to 07, Udemy 07 to 08,
+Testimonials 08 to 09, Contact 09 to 10. Added nav link "Open Source" /
 "Open Source" (same word in ES, technical term).
 
 **Security sweep**: confirmed no secrets, no internal IPs, no private
@@ -38,12 +38,12 @@ i18n parity: adds 10 new keys per dict.
 
 ---
 
-## 2026-04-19 - Auto-update tenure, CapTienda, YouTube, GitHub Actions deploy
+## 2026-04-19: Auto-update tenure, CapTienda, YouTube, GitHub Actions deploy
 
 **Tenure auto-updates each new year**
 - `[data-years-since="2018"]` spans in the HTML (and i18n dicts) now
-  render as `new Date().getFullYear() - 2018`. 2026 shows "8", 2027 will
-  show "9", 2028 "10", all without touching code.
+  render as `new Date().getFullYear()` minus `2018`. 2026 shows "8",
+  2027 will show "9", 2028 "10", all without touching code.
 - Hero "Years shipping at scale" stat: `data-count-since="2018"` drives
   the count-up animation to the current number.
 - `{{yearsSince:YYYY}}` tokens substituted at apply-lang time for meta
@@ -82,7 +82,7 @@ i18n parity 209 / 209.
 
 ---
 
-## 2026-04-19 - Google Play Store Listing certificate earned
+## 2026-04-19: Google Play Store Listing certificate earned
 
 Passed the Google Play Academy *Play Store Listing* certificate exam
 (65/68). Added to the Earned column on the landing (top of the list with
@@ -94,7 +94,7 @@ metadata, screenshots, ASO) is owned end to end, not just the code.
 
 ---
 
-## 2026-04-19 - Certifications revamp + self-hosted fonts + WhatsApp CTA
+## 2026-04-19: Certifications revamp + self-hosted fonts + WhatsApp CTA
 
 **Certifications section rewritten around a real path**
 - Removed AWS Cloud Practitioner (foundational tier, below the level of a
@@ -122,7 +122,7 @@ metadata, screenshots, ASO) is owned end to end, not just the code.
 - Added `<link rel="preload">` hints for the two critical fonts
   (Instrument Serif and Geist).
 - CVs previously used Inter + JetBrains Mono + Instrument Serif from
-  Google Fonts; swapped Inter -> Geist and JetBrains Mono -> Geist Mono
+  Google Fonts; swapped Inter for Geist and JetBrains Mono for Geist Mono
   so the whole project runs on one local font system.
 - Verified via Playwright: `document.fonts.check('16px "Instrument Serif"')`,
   `Geist`, `Geist Mono` all return `true` after load.
@@ -137,7 +137,7 @@ i18n parity 208 / 208.
 
 ---
 
-## 2026-04-19 - `b33cd70` Engineering: senior-architect rewrite + audit fixes
+## 2026-04-19: `b33cd70` Engineering: senior-architect rewrite + audit fixes
 
 **Why:** the Engineering section read like a homelab logbook (Contabo VPS by
 name, "31 rules on CapLiving", repo file paths). Recasted as
@@ -149,12 +149,12 @@ capability-first copy that lands as senior-architect work.
   POSTURE, VELOCITY, CONFIDENCE) and a serif title.
 - Hero stat font size bumped from `clamp(32, 4vw, 52)` to
   `clamp(40, 5vw, 64)` so the numbers anchor like the Udemy stats already do.
-- Hero stat label "Developers mentored" -> "trained" / "formados"
+- Hero stat label "Developers mentored" changed to "trained" / "formados"
   (54K is enrollments, not 1:1 mentees).
 
 **Performance & a11y**
 - Google Fonts loaded with `media="print" onload="this.media='all'"` plus
-  `<noscript>` fallback - no longer render-blocking.
+  `<noscript>` fallback. No longer render-blocking.
 - Above-fold portrait switched to `loading="eager" fetchpriority="high"`.
 - Marquee + tech-strip images now have explicit `width`/`height` to avoid
   CLS during image fetch.
@@ -168,7 +168,7 @@ i18n parity remains 202 / 202.
 
 ---
 
-## 2026-04-19 - `79b4373` Stack 6th column + timeline locations translated
+## 2026-04-19: `79b4373` Stack 6th column + timeline locations translated
 
 **Why:** screenshot showed the Stack section with 5 categories in a 2-column
 grid, leaving an empty cell at row 3 col 2. Also the timeline location
@@ -185,7 +185,7 @@ i18n parity 196 / 196.
 
 ---
 
-## 2026-04-19 - `03a57c0` About: rebalance, quick facts, cards row
+## 2026-04-19: `03a57c0` About: rebalance, quick facts, cards row
 
 **Why:** screenshot showed empty whitespace under the prose (left column
 ended after 3 paragraphs while right column held portrait + 4 stacked cards).
@@ -201,7 +201,7 @@ ended after 3 paragraphs while right column held portrait + 4 stacked cards).
 
 ---
 
-## 2026-04-19 - `df8799c` Fix UI/UX bugs reported in About + 8 systemic issues
+## 2026-04-19: `df8799c` Fix UI/UX bugs reported in About + 8 systemic issues
 
 **Why:** the About `<h2>` "Not just a mobile engineer..." was visually
 absent in a screenshot. Root cause was grid auto-placement plus
@@ -251,7 +251,7 @@ implementation gaps that affected every section.
 
 ---
 
-## 2026-04-19 - `57f88d4` Add real logos, fix client links, new Engineering section
+## 2026-04-19: `57f88d4` Add real logos, fix client links, new Engineering section
 
 **Why:** monogram placeholders (IT, Σ, CM, CL, LF and LE, OP, AP, AN, XK,
 SR) made the page feel like a template. Client cards all linked to
@@ -279,8 +279,8 @@ depth on engineering practice.
   VPS, layered security, CI/CD, observability. (This was the section that
   later got rewritten in `b33cd70`.)
 - Added a tech logo strip with 12 tech icons.
-- Renumbered subsequent sections (Certs 05->06, Udemy 06->07, Testimonials
-  07->08, Contact 08->09). Added nav link to Engineering.
+- Renumbered subsequent sections (Certs 05 to 06, Udemy 06 to 07, Testimonials
+  07 to 08, Contact 08 to 09). Added nav link to Engineering.
 
 **Code quality**
 - Wrapped `data-magnetic` and `data-tilt` registration behind
@@ -288,16 +288,16 @@ depth on engineering practice.
   don't override the a11y media query.
 - Replaced `oklch(from ...)` relative color syntax with `color-mix()` for
   broader browser support.
-- Fixed brand naming across CVs (Arty Publimex -> Artipublimex, Opus ->
-  OPUS, Xunkaab -> Apiario Xun-kaab, added "Analogic Care" to Ancare).
+- Fixed brand naming across CVs (Arty Publimex to Artipublimex, Opus to
+  OPUS, Xunkaab to Apiario Xun-kaab, added "Analogic Care" to Ancare).
 - Unified Capdesis student count at 51,000+ across the page.
 
 ---
 
-## 2026-04-18 - `976709e` Initial landing page
+## 2026-04-18: `976709e` Initial landing page
 
-**Why:** bootstrap from a Claude Design hand-off bundle into a real public
-repo at `github.com/chochy2001/jorgesalgadomiranda_landing`.
+**Why:** bootstrap the public repo at
+`github.com/chochy2001/jorgesalgadomiranda_landing`.
 
 **Initial scope**
 - Self-contained `index.html` with inline CSS, JavaScript, i18n dicts.
@@ -307,8 +307,7 @@ repo at `github.com/chochy2001/jorgesalgadomiranda_landing`.
   reveal, count-up, scroll progress, marquee.
 - SEO: JSON-LD Person schema, Open Graph, Twitter card, canonical,
   hreflang via `<html lang>`.
-- Three review agents ran in parallel before commit (security,
-  quality/a11y, anti-AI content) and findings were applied:
+- Security + a11y + content review before commit:
   `rel="noopener noreferrer"` on all `target="_blank"`, frozen `__I18N__`
   global, fixed `.stack-col, .cert-col` selector, added 6 missing EN i18n
   keys, gated reduce-motion blob cursor, added `og:image`/`twitter:image`,

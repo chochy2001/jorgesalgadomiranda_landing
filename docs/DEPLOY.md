@@ -167,19 +167,19 @@ apex. HTTPS handled by Hostinger automatically.
 ## Third-party tokens to plug in
 
 The repo ships with clearly-labelled `YOUR_*` placeholders. Fill them in
-and push — all four are safe to commit because they're scoped to the
+and push. All four are safe to commit because they're scoped to the
 public domain and/or don't expose secrets server-side.
 
 | Placeholder                  | Where                                      | Where to get it                                       |
 |------------------------------|--------------------------------------------|-------------------------------------------------------|
 | `YOUR_UMAMI_WEBSITE_ID`      | `<script data-website-id>` in `index.html` | `stats.capdesis.com` → Settings → Websites → Add site |
 | `YOUR_CF_BEACON_TOKEN`       | `data-cf-beacon` in `index.html`           | Cloudflare → Analytics & Logs → Web Analytics         |
-| `YOUR_WEB3FORMS_ACCESS_KEY`  | `<input name="access_key">` in `index.html`| web3forms.com — enter an email, get the key instantly |
+| `YOUR_WEB3FORMS_ACCESS_KEY`  | `<input name="access_key">` in `index.html`| web3forms.com, enter an email, get the key instantly |
 | `jorgesalgadomiranda/30min`  | `href` on `#cal-cta` button in `index.html`| cal.com → Event Types → copy the slug                 |
 
 After plugging them in:
 1. Smoke-test locally (`python3 -m http.server 8765 --bind 127.0.0.1`)
-2. Submit the contact form with a real email — confirm it hits your inbox.
+2. Submit the contact form with a real email. Confirm it hits your inbox.
 3. Check the Umami dashboard within ~60s to see the visit appear.
 4. Check the Cloudflare Web Analytics dashboard within ~5 min.
 
@@ -187,15 +187,15 @@ After plugging them in:
 
 Defense-in-depth for a static site:
 
-1. **Cloudflare (free plan, proxied DNS)** — WAF, DDoS, bot fight mode,
+1. **Cloudflare (free plan, proxied DNS)**: WAF, DDoS, bot fight mode,
    client-side security monitor, leaked-credential mitigation. Already
    enabled.
-2. **`.htaccess`** — HSTS, X-Frame-Options, CSP, Referrer-Policy,
+2. **`.htaccess`**: HSTS, X-Frame-Options, CSP, Referrer-Policy,
    Permissions-Policy, gzip, long-cache immutable assets. Lives at
    repo root, uploaded on every deploy.
-3. **FTP password rotation** — rotate `FTP_PASSWORD` secret every
+3. **FTP password rotation**: rotate `FTP_PASSWORD` secret every
    3-6 months in Hostinger panel and GitHub Secrets.
-4. **Watermark in code** — scattered attribution in HTML comment,
+4. **Watermark in code**: scattered attribution in HTML comment,
    `<meta name="template-origin">`, `--jsm-origin` CSS custom property,
    `data-origin` on `<html>`/`<body>`, JSON-LD `@id`, and a console
    signature. Humans can find it; casual AI-assisted rebrands miss at

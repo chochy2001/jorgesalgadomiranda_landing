@@ -82,25 +82,25 @@ Light theme overrides only the color tokens, keeps everything else identical.
 The single inline `<script>` block runs on `DOMContentLoaded` and sets up
 seven small modules in this order. Each one is independent.
 
-1. **Copyright year** - sets the footer year from `new Date().getFullYear()`
+1. **Copyright year**: sets the footer year from `new Date().getFullYear()`
    so it never goes stale.
-2. **Theme** - reads `localStorage.theme`, falls back to
+2. **Theme**: reads `localStorage.theme`, falls back to
    `prefers-color-scheme`, wires the toggle button, syncs `aria-pressed` and
    `aria-label` on each click.
-3. **Language** - reads `localStorage.lang`, falls back to
+3. **Language**: reads `localStorage.lang`, falls back to
    `navigator.language` (truncated to `es`/`en`), iterates every
    `[data-i18n]` and sets `el.innerHTML = dict[k]`. Also updates
    `document.title` and `<meta name="description">`.
-4. **Custom cursor** - dot + delayed blob animated with
+4. **Custom cursor**: dot + delayed blob animated with
    `requestAnimationFrame`. Disabled entirely under
    `prefers-reduced-motion` or `pointer: coarse` so it never runs on
    touch or accessibility-sensitive setups.
-5. **Magnetic + tilt** - `[data-magnetic]` follows the cursor at 25%,
+5. **Magnetic + tilt**: `[data-magnetic]` follows the cursor at 25%,
    `[data-tilt]` rotates with `perspective(1000px) rotateX/Y`. Same
    accessibility gate as the custom cursor.
-6. **Scroll progress** - top-of-viewport bar that fills as the page
+6. **Scroll progress**: top-of-viewport bar that fills as the page
    scrolls. Listens to `scroll` with `passive: true`.
-7. **Reveal + count-up + scramble** - one `IntersectionObserver` watches
+7. **Reveal + count-up + scramble**: one `IntersectionObserver` watches
    every `[data-reveal]`. On entry: adds `.in-view`, runs count-up on any
    `[data-count]` child, runs scramble on any `[data-scramble]` child,
    then unobserves.
@@ -160,4 +160,4 @@ Tested in current versions of Chrome, Safari, Firefox. Uses `oklch()`,
 `color-mix()`, `aspect-ratio`, `clamp()`, `:focus-visible`,
 `prefers-reduced-motion`, `prefers-color-scheme`. None of these have a
 graceful degradation path for browsers older than 2023, but the content
-remains readable - only the styling and animations are affected.
+remains readable. Only the styling and animations are affected.

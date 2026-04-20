@@ -11,7 +11,7 @@ Kept on the page. These are issued or completed:
 | Cert                                | Issuer | Why it's still relevant                          |
 |-------------------------------------|--------|--------------------------------------------------|
 | **B.S. Computer Engineering**       | UNAM   | Formal foundation. Always stays on a CV.         |
-| **Mobile Architecture**             | -      | Specialization that matches day-to-day work.     |
+| **Mobile Architecture**             |        | Specialization that matches day-to-day work.     |
 | **Google Developer Certification**  | Google | Industry-credible validation for mobile work.    |
 | **Meta Developer Certification**    | Meta   | Industry-credible validation for mobile work.    |
 | **Google Play Store Listing**       | Google Play Academy | Passed 2026-04-19 (65/68). Covers store listing metadata, screenshots, store discovery, ASO. Small cert but real signal that I own the release path, not just the code. |
@@ -28,12 +28,12 @@ Five certs in parallel, split by theme:
 
 ### Cloud architecture + security (3)
 
-- **[AWS Solutions Architect - Professional (SAP-C02)](https://aws.amazon.com/certification/certified-solutions-architect-professional/)**
+- **[AWS Solutions Architect, Professional (SAP-C02)](https://aws.amazon.com/certification/certified-solutions-architect-professional/)**
   The architect credential. Covers multi-region design, cost governance,
   advanced networking, migration strategy. Directly matches the "Software
   Architect" positioning. Highest weight in the path.
 
-- **[AWS Certified Security - Specialty (SCS-C02)](https://aws.amazon.com/certification/certified-security-specialty/)**
+- **[AWS Certified Security, Specialty (SCS-C02)](https://aws.amazon.com/certification/certified-security-specialty/)**
   IAM, KMS, GuardDuty, detective controls, VPC hardening, incident
   response. Security + cloud is the target market; this is the cloud
   half of that combo.
@@ -57,10 +57,10 @@ Five certs in parallel, split by theme:
 
 Certs that expand the surface area but aren't immediate:
 
-- **[AWS DevOps Engineer - Professional (DOP-C02)](https://aws.amazon.com/certification/certified-devops-engineer-professional/)**
+- **[AWS DevOps Engineer, Professional (DOP-C02)](https://aws.amazon.com/certification/certified-devops-engineer-professional/)**
   Pairs with SAP-C02 for full-stack infra coverage. Natural follow-up.
 
-- **[AWS Generative AI Developer - Professional](https://aws.amazon.com/certification/certified-generative-ai-developer-professional/)**
+- **[AWS Generative AI Developer, Professional](https://aws.amazon.com/certification/certified-generative-ai-developer-professional/)**
   Production LLM applications on AWS: Bedrock, vector stores, evaluation,
   guardrails. Newer exam; market demand is high right now.
 

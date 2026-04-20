@@ -7,7 +7,8 @@ bun.lockb
 .idea/
 .vscode/
 
-# Local-only: Claude session buffer + Playwright MCP scratch
+# Local-only: session buffer + Playwright MCP scratch + project rulebook
 .remember/
 .playwright-mcp/
 verify-*.png
+CLAUDE.md

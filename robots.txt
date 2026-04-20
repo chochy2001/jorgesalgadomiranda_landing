@@ -1,4 +1,4 @@
-# jorgesalgadomiranda.com — robots policy
+# jorgesalgadomiranda.com robots policy
 #
 # Open to: search engines (Google, Bing, DuckDuckGo, Yandex, Apple),
 # answer engines (ChatGPT, Claude, Perplexity, Gemini), and LLM training
@@ -9,7 +9,7 @@
 #
 # DDoS and abusive crawler mitigation lives at the edge (Cloudflare Bot
 # Fight Mode, WAF, rate limiting). robots.txt is honoured by polite
-# crawlers only — it isn't a security tool.
+# crawlers only, it isn't a security tool.
 
 User-agent: *
 Allow: /

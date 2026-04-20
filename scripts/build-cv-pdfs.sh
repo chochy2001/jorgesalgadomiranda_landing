@@ -7,15 +7,15 @@
 # Usage: bash scripts/build-cv-pdfs.sh
 #
 # Why headless Chromium and not wkhtmltopdf?
-# - Chromium renders the same @media print CSS you see in the browser;
-#   wkhtmltopdf is still stuck on Webkit-from-2014 and drops modern CSS.
-# - Chromium's PDF output is text-based with embedded fonts → ATS parsers
-#   extract text reliably (no OCR needed).
+# Chromium renders the same @media print CSS you see in the browser;
+# wkhtmltopdf is still stuck on Webkit-from-2014 and drops modern CSS.
+# Chromium's PDF output is text-based with embedded fonts so ATS parsers
+# extract text reliably (no OCR needed).
 #
 # Caveat: Chromium does NOT embed PDF /Info metadata (Author, Title, Subject)
 # from the HTML <meta> tags. If you need that, post-process with `exiftool`:
 #   exiftool -Author="Jorge Salgado Miranda" \
-#            -Title="Jorge Salgado Miranda - Software Architect CV" \
+#            -Title="Jorge Salgado Miranda, Software Architect CV" \
 #            -Subject="Senior Software Architect CV" \
 #            assets/cv/Jorge_Salgado_Miranda_CV_EN.pdf
 
@@ -104,14 +104,14 @@ if command -v exiftool >/dev/null 2>&1; then
              "$OUT_DIR"/Jorge_Salgado_Miranda_CV.pdf; do
     exiftool -overwrite_original \
       -Author="Jorge Salgado Miranda" \
-      -Title="Jorge Salgado Miranda - Software Architect - CV" \
+      -Title="Jorge Salgado Miranda, Software Architect, CV" \
       -Subject="Senior Software Architect CV (EN)" \
       -Keywords="Software Architect, Mobile Engineer, iOS, Android, Flutter, Kotlin, Swift, Go, AWS, Security, Clean Architecture" \
       "$pdf" >/dev/null
   done
   exiftool -overwrite_original \
     -Author="Jorge Salgado Miranda" \
-    -Title="Jorge Salgado Miranda - Arquitecto de Software - CV" \
+    -Title="Jorge Salgado Miranda, Arquitecto de Software, CV" \
     -Subject="CV de Arquitecto de Software Senior (ES)" \
     -Keywords="Arquitecto de Software, Mobile, iOS, Android, Flutter, Kotlin, Swift, Go, AWS, Seguridad, Clean Architecture" \
     "$OUT_DIR/Jorge_Salgado_Miranda_CV_ES.pdf" >/dev/null
