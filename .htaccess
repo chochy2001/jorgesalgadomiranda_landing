@@ -77,6 +77,13 @@
   <FilesMatch "\.(png|jpg|jpeg|webp|svg|ico)$">
     Header set Cache-Control "public, max-age=15552000"
   </FilesMatch>
+  # HTML and XML: keep TTL short so a new deploy is visible within minutes,
+  # not 24 hours. CSS/JS are versioned per deploy via ?v=SHA in the workflow
+  # so browsers pull fresh bytes regardless; HTML is the entry point that
+  # carries the new asset URLs, so it must not be pinned by CDN edges.
+  <FilesMatch "\.(html|htm|xml)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
 </IfModule>
 
 # -------- Nice URL handling --------
