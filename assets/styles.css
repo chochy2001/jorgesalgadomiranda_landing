@@ -1909,6 +1909,21 @@ body.drawer-open { overflow: hidden; }
   .contact-links a { grid-template-columns: 28px 1fr auto; gap: 14px; padding: 16px 0; }
   .contact-link-name { font-size: 18px; }
 }
+/* At intermediate widths the contact-grid collapses to 1 column, so
+   the social list has enough horizontal room to split into 2 cards
+   side by side. Keep 1 column below 640px (phone) where a single card
+   already fills the row. */
+@media (min-width: 640px) and (max-width: 900px) {
+  .contact-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 28px;
+    row-gap: 0;
+  }
+  .contact-links li:nth-child(2) { border-top: 1px solid var(--border-soft); }
+  .contact-links a { padding: 16px 4px 16px 0; }
+  .contact-link-desc { font-size: 12.5px; }
+}
 
 /* FOOTER */
 .footer {
