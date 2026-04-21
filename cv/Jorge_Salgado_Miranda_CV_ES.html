@@ -244,28 +244,29 @@ h2.section {
   <h2 class="section">Habilidades Técnicas</h2>
   <ul class="skills-list">
     <li><strong>Mobile:</strong> iOS (Swift, SwiftUI, UIKit, Combine, Core Data), Android (Kotlin, Jetpack Compose, Coroutines, Flow, Room), Flutter, Dart, BLoC, Riverpod, React Native, Kotlin Flows, RxJava, RxSwift, LiveData</li>
-    <li><strong>Backend y Cloud:</strong> Go (Golang), Python, Node.js, REST, GraphQL, gRPC, microservicios, Kafka, AWS (EC2, S3, RDS, Lambda, IAM), GCP, Firebase, Docker, Kubernetes, Terraform</li>
+    <li><strong>Backend y Cloud:</strong> Go (Golang), Python, Node.js, REST, GraphQL, gRPC, microservicios, AWS (EC2, S3, RDS, Lambda, IAM), GCP, Firebase, Docker, Kubernetes, Terraform</li>
     <li><strong>Arquitectura:</strong> Clean Architecture, MVVM, MVI, Multi-módulo, Repository Pattern, SOLID, DDD, Hexagonal, Diseños de Alto Nivel (HLD), observabilidad, prácticas SRE</li>
     <li><strong>Seguridad y Cumplimiento:</strong> OAuth 2.0, OpenID Connect, JWT, autenticación biométrica (Face ID, Touch ID, Fingerprint), Keychain, Android Keystore, Secure Enclave, Certificate Pinning, App Attest, Play Integrity, mTLS, modelado de amenazas, OWASP MASVS, OWASP MASTG, OWASP Top 10, PCI DSS, SOC 2, GDPR, WCAG 2.1 (VoiceOver, TalkBack)</li>
     <li><strong>Testing y DevOps:</strong> JUnit, Mockito, Espresso, XCTest, Flutter Test, 85%+ de cobertura, contract testing, GitHub Actions, GitLab CI, Jenkins, Fastlane, Bitrise, Datadog, Sentry, Grafana, Feature Flags, A/B testing</li>
-    <li><strong>Bases de Datos y Herramientas:</strong> PostgreSQL, MySQL, SQLite, Firebase Firestore, Redis, DynamoDB. Git, Linux (Arch), macOS, Neovim, Android Studio, Xcode, Figma, AI pair programming (Claude, Cursor)</li>
+    <li><strong>Bases de Datos y Herramientas:</strong> PostgreSQL, MySQL, SQLite, Firebase Firestore, Redis, DynamoDB. Git, Linux (Debian, Ubuntu, Kali), macOS, Neovim, Android Studio, Xcode, Figma, AI pair programming (Claude, Cursor)</li>
     <li><strong>Idiomas:</strong> Español (Nativo), Inglés (C1 Profesional)</li>
   </ul>
 
   <h2 class="section">Experiencia Profesional</h2>
 
   <div class="job">
-    <div class="job-title">Senior Mobile Engineer, <span class="company">PayPal / Venmo</span></div>
+    <div class="job-title">Senior Mobile Engineer, Venmo Credit Card, <span class="company">PayPal / Venmo</span></div>
     <div class="job-meta">May 2024 a Presente | Remoto | Fintech (pagos de consumo)</div>
-    <div class="job-blurb">Entregando features financieras para 426M+ usuarios. Rating de desempeño: Exceeds Expectations.</div>
+    <div class="job-blurb">Front Android de la tarjeta de crédito de Venmo dentro del stack fintech de PayPal. Rating de desempeño: Exceeds Expectations.</div>
     <ul>
-      <li>Autoría de High-Level Designs (HLDs) para Push Provisioning, Auth Users y otras features críticas de seguridad</li>
-      <li>Lideré Push Provisioning en Kotlin y Swift: adición de tarjeta de crédito a Apple Wallet y Google Pay</li>
+      <li>Autoría de High-Level Designs (HLDs) para Push Provisioning, Auth Users, VCC 2.0 (Virtual Credit Card) y otras features críticas de seguridad</li>
+      <li>Lideré Push Provisioning end to end: adición de tarjeta de crédito a Apple Wallet y Google Pay</li>
       <li>Arquitecté Auth Users (6 usuarios por tarjeta) con refactor a Clean Architecture, reglas de autorización y audit logging</li>
       <li>Implementé autenticación biométrica (Face ID, Touch ID, Fingerprint) y almacenamiento Keychain / Keystore para flujos seguros de tarjetas</li>
-      <li>Entrego features 50 / 50 en Android e iOS; mantengo 85%+ de cobertura en pruebas; entregué infraestructura de Feature Flags y Fake Responses para rollouts controlados</li>
+      <li>Android-first: lideré la migración XML a Jetpack Compose en la superficie de la tarjeta. Mantengo 85%+ de cobertura; entregué Feature Flags y Fake Responses para rollouts controlados</li>
+      <li>Construí el cliente GraphQL de la tarjeta y ejecuté el pase de accesibilidad (Dynamic Type, contraste AA, flujo completo con TalkBack)</li>
     </ul>
-    <div class="tech">Stack: Kotlin, Swift, Jetpack Compose, SwiftUI, Kotlin Flows, Combine, GraphQL, OAuth 2.0, JWT, Biometría, Feature Flags, Datadog, GitHub Actions</div>
+    <div class="tech">Stack: Kotlin, Jetpack Compose, Kotlin Flows, GraphQL, OAuth 2.0, JWT, Biometría, Feature Flags, Datadog, GitHub Actions</div>
   </div>
 
   <div class="job">
@@ -305,9 +306,9 @@ h2.section {
     <ul>
       <li>Lideré migración de base de datos mejorando el rendimiento de consultas y la confiabilidad</li>
       <li>Construí pipelines CI/CD con GitLab CI, Jenkins y GitHub Actions</li>
-      <li>Implementé Kafka y Redis para streaming en tiempo real y cacheo</li>
+      <li>Usé Redis para cacheo de rutas calientes y datos de sesión</li>
     </ul>
-    <div class="tech">Stack: Go, Kubernetes, AWS (S3, EC2, RDS), PostgreSQL, MySQL, Docker, Terraform, Kafka, Redis</div>
+    <div class="tech">Stack: Go, Kubernetes, AWS (S3, EC2, RDS), PostgreSQL, MySQL, Docker, Terraform, Redis</div>
   </div>
 
   <div class="job">
@@ -325,7 +326,7 @@ h2.section {
     <div class="job-title">Senior Instructor, <span class="company">Udemy</span></div>
     <div class="job-meta">Ene 2020 a Dic 2023 | Remoto | Educación en línea</div>
     <ul>
-      <li>Creé 6 cursos (C, C++, Kotlin, Git y GitHub) formando a <strong>54,000+ desarrolladores</strong> a nivel mundial</li>
+      <li>Creé 4 cursos (Go, C, Git y GitHub, y un curso gratis de Intro a la Programación en Múltiples Lenguajes) formando a <strong>54,000+ desarrolladores</strong> a nivel mundial</li>
       <li>Mantuve alto engagement con proyectos prácticos, evaluaciones y contenido actualizado regularmente</li>
     </ul>
   </div>

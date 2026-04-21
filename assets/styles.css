@@ -1227,9 +1227,9 @@ body.drawer-open { overflow: hidden; }
 .stack-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
 .stack-list li {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 20px 1fr auto;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   font-family: var(--font-mono); font-size: 13px;
   color: var(--fg);
   padding: 10px 0;
@@ -1238,6 +1238,30 @@ body.drawer-open { overflow: hidden; }
   transition: padding-left 0.25s ease, color 0.25s ease;
   cursor: help;
 }
+.stack-logo {
+  width: 18px; height: 18px;
+  object-fit: contain;
+  opacity: 0.78;
+  filter: grayscale(35%);
+  transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+}
+.stack-list li:hover .stack-logo {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.08);
+}
+[data-theme="light"] .stack-logo { filter: grayscale(0%); }
+.stack-logo-mark {
+  width: 18px; height: 18px;
+  display: grid; place-items: center;
+  color: var(--fg-muted);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.stack-list li:hover .stack-logo-mark {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+.stack-logo-mark svg { width: 15px; height: 15px; }
 .stack-list li:last-child { border-bottom: none; }
 .stack-list li:hover { padding-left: 6px; color: var(--accent); }
 .stack-list li .stack-tip {
