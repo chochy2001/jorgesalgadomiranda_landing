@@ -57,6 +57,24 @@ jobs:
               sys.exit(1)
           PY
 
+      - name: Cache-bust asset URLs
+        env:
+          SHA: ${{ github.sha }}
+        run: |
+          set -e
+          # Append the commit SHA as a version query to the stylesheet and
+          # extracted-i18n script so Cloudflare, Hostinger, and browsers all
+          # see a new URL on every deploy. Without this the 7-day text/css
+          # Expires header can pin an old stylesheet at the CF edge while the
+          # HTML has already changed, producing unstyled markup on the live
+          # site. The edit is applied to the working tree only, never
+          # committed back to the repo.
+          V="${SHA:0:7}"
+          sed -i -E "s#href=\"assets/styles\.css\"#href=\"assets/styles.css?v=${V}\"#g" index.html
+          sed -i -E "s#src=\"assets/i18n\.js\"#src=\"assets/i18n.js?v=${V}\"#g" index.html
+          echo "Asset version: ${V}"
+          grep -E "assets/(styles\.css|i18n\.js)" index.html || (echo "::error::cache-bust rewrite missed expected references" && exit 1)
+
       - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
