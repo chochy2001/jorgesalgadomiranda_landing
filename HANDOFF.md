@@ -5,9 +5,9 @@ It exists so the next session starts fast and no context is lost.
 Keep this file updated at the end of each session; delete entries that
 ship.
 
-## Latest round (2026-04-20, continuation)
+## Latest round (2026-04-20, extended)
 
-Shipped in commits `3b64f8f` + anchor whitespace fix follow-up.
+Shipped in commits `3b64f8f`, `59ee084`, `3cdf862`, `004cb0b`.
 
 - **Mobile horizontal scroll fixed.** Root cause: `.tech-tip` tooltip
   (280px wide, centered on 108px chip) extended past the viewport in
@@ -36,6 +36,51 @@ Shipped in commits `3b64f8f` + anchor whitespace fix follow-up.
   provide the visual gap under the nav. Tuned padding to
   `clamp(104px, 8vw, 132px)` so the gap between nav bottom and heading
   lands around 43-46px on mobile and desktop.
+- **Hero scramble vs JSON typewriter de-conflict.** User reported the
+  JSON panel flickered during the hero title scramble. Root cause: the
+  hero grid was `1fr 400px`, so serif characters with varying widths
+  (chars like `#$%&@` during scramble) pushed the 400px panel column
+  sideways. Fix: `minmax(0, 1fr) 400px`, plus `contain: layout paint
+  style` on `.hero-panel` to isolate its render tree. Typewriter start
+  bumped from 250ms to 2000ms so the two motion surfaces never overlap.
+  Also only mutate text nodes whose visible char count actually changed.
+  Measured jitter: 0px across the whole scramble window, down from
+  visible shake.
+- **Secondary warm accent.** Added `--accent-warm` tokens (dark and
+  light themes) for callouts. Warm takes over the "in development"
+  pill; a soft warm/cyan radial gradient pair now sits under the hero
+  JSON panel so it reads less flat without fighting the primary cyan.
+- **Microanimations pass (H1).** `.btn:active`, `.cal-cta:active`,
+  `.form-submit:active`, `.test-arrow:active` all scale to 0.96-0.97
+  for 80ms so taps feel physical. `.app-card` now lifts -3px with soft
+  shadow on hover to match the rest of the card vocabulary. Timeline
+  `.tl-body-inner > *` children fade in with an 80ms stagger when
+  `.is-open` is added.
+- **Stack inline logos (H2).** Every `.stack-list li` gets an 18x18
+  logo slot before the name. Brand marks via devicon CDN
+  (Kotlin, Swift, Flutter, Go, Postgres, AWS, Firebase, Docker, GitHub,
+  Linux, Neovim, Android Studio, Figma, Git, TypeScript, Next.js,
+  Tailwind, React, Vite). Abstract concepts get inline Lucide-style
+  SVG marks in currentColor so they tint with theme. 36/36 items
+  covered. New `.stack-logo` (img) and `.stack-logo-mark` (svg wrapper)
+  styles.
+- **Stack additions (H6).** Added Riverpod next to BLoC on the Flutter
+  line. Added RxSwift on the reactive-streams line alongside RxJava,
+  Kotlin Flows, Combine. Tooltips updated.
+- **CV sync EN + ES (H8).** Venmo job title is now `Senior Mobile
+  Engineer, Venmo Credit Card`; blurb reflects the Android-first
+  reality; added VCC 2.0, XML to Compose, GraphQL client, accessibility
+  pass bullets; stack trimmed to the tools actually used (Kotlin /
+  Compose / Flows / GraphQL). Udemy 6 courses with C++/Kotlin to 4
+  real courses (Go, C, Git and GitHub, free Intro to Programming).
+  Kafka dropped from Flexera bullets and tools (Redis kept). Skills
+  `Linux (Arch)` to `Linux (Debian, Ubuntu, Kali)`. Kafka dropped from
+  the Backend and Cloud skill line too.
+- **Design system doc (H3).** New `docs/DESIGN_SYSTEM.md` with tokens,
+  interaction primitives (hover, press, focus, reveal, caret),
+  components (section head, title, buttons, cards, stack list,
+  timeline, testimonial, nav), breakpoints, and the "when to extend
+  this document" policy. Single source of truth for visual vocabulary.
 
 ## Where the site stands right now
 
@@ -170,48 +215,35 @@ Shipped in commits `3b64f8f` + anchor whitespace fix follow-up.
 
 ## Known pending work (for next session)
 
-Priority ordered. High at top.
+Priority ordered. High at top. H1, H2, H3, H6, H8, H9 shipped
+2026-04-20 (see Latest round). Blockers and remaining items below.
 
-### H1, finish the "microanimations pass" the user asked for
-- JSON panel typewriter is now live (shipped 2026-04-20). Section titles
-  could still get a letter-by-letter reveal using the same node walker
-  pattern applied to `.section-title em`.
-- Card hover lift everywhere (engineering, cases, apps grid, web grid)
-  should be consistent. Today they're close but slightly different.
-- Button press state (scale 0.98) missing on `.btn-primary`, `.btn-ghost`,
-  `.cal-cta`, form submit, testimonial nav.
-- Timeline: when opening an item, animate the bullet points in with a
-  staggered fade (they currently just appear because `.tl-body` does
-  one big height transition).
+### H1, micro-polish (done, tiny remainders)
+- JSON panel typewriter, button press states, card hover lifts and
+  timeline stagger all shipped 2026-04-20.
+- Optional extension: section titles with a letter-by-letter reveal
+  using the same text-node-walker pattern pointed at `.section-title
+  em`. Not essential.
 
-### H2, finish the stack overhaul the user specifically asked for
-- Add inline logos for every stack item (Kotlin glyph, Swift bird,
-  AWS cube, etc.). Today only the `.tech-strip` (between Stack and OSS)
-  has logos. The 36 `.stack-list li` entries carry tooltips but no
-  logos next to the name.
-- Source: `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/<name>/<name>-original.svg`
-  already used for some entries in the tech-strip.
-- Layout: insert a small 18x18 logo slot before the name in each li,
-  keep the level badge on the right.
+### H2, stack inline logos (shipped)
+- 36/36 stack items now carry a logo. Brand marks via devicon CDN
+  (Kotlin, Swift, Flutter, Go, Postgres, AWS, Firebase, Docker, GitHub,
+  Linux, Neovim, Android Studio, Figma, Git, TypeScript, Next.js,
+  Tailwind, React, Vite); inline Lucide-style SVGs for abstract
+  concepts (Accessibility, OAuth, Biometric, Threat modeling, etc).
+- Next-session nice-to-have: self-host the devicon SVGs under
+  `assets/logos/` so the CDN is not a runtime dependency.
 
-### H3, design system extraction + docs
-- User wants documented reusable components. Proposed structure:
-  - `docs/DESIGN_SYSTEM.md` with a one-pager per component
-  - Components to extract and document:
-    - Section head (num + kicker)
-    - Section title (span + em serif)
-    - Stack chip (name + level badge + tooltip)
-    - Cert item (numbered roster)
-    - App card (icon + body + pills + link)
-    - Web card (thumb + badge + body)
-    - Contact link row (icon + body + CTA + arrow)
-    - Testimonial slide (quotemark + blockquote + attribution)
-    - Timeline item (marker + content, collapsible)
-    - Tech chip (logo + name + hover tooltip)
-    - Button primary, button ghost, cal-cta, toggle
-  - For each: markup, required tokens, hover state, click state,
-    responsive rules, when to use it, when not to.
-- Extract design tokens into `assets/tokens.css` imported first.
+### H3, design system doc (shipped)
+- `docs/DESIGN_SYSTEM.md` now ships with tokens (color, type, spacing,
+  shadow), interaction primitives (hover, press, focus, reveal),
+  component specs (section head, title, buttons, cards, stack list,
+  timeline, testimonial, nav), breakpoints, watermarks, and the
+  extension policy.
+- Future extension (not urgent): move all `:root` tokens into
+  `assets/tokens.css` imported first so component CSS only consumes
+  tokens, never hardcodes colors. Today tokens live inside
+  `assets/styles.css`.
 
 ### H4, responsive granularity
 - **Mobile horizontal scroll + hamburger drawer shipped 2026-04-20**
@@ -238,10 +270,11 @@ Priority ordered. High at top.
   the real entries, keep the B.S. UNAM and Google Play Store Listing
   rows that are already correct.
 
-### H6, stack copy updates from the CV
-- User confirmed adding: `Riverpod`, `Kotlin Flows`, `RxJava / RxSwift`
-- User said don't remove anything from the stack; only add.
-- React Native is in the CV. Keep. Do not claim prod use.
+### H6, stack copy updates from the CV (shipped)
+- Riverpod added to Flutter line. RxSwift added to reactive-streams
+  line alongside RxJava, Kotlin Flows, Combine. Tooltips updated.
+- React Native still sits in the CV skills list. Not surfaced on the
+  landing stack yet. Add only if a public project uses it.
 
 ### H7, Udemy review capture
 - Udemy blocks HTTP scrapers. To pull real 5-star reviews verbatim the
@@ -249,23 +282,31 @@ Priority ordered. High at top.
   (user has to authorize), fetch 2-3 reviews per course, replace the
   Feedback-theme 3rd slide with a real quote.
 
-### H8, CV update
-- The printed `cv/Jorge_Salgado_Miranda_CV_EN.html` and `_ES.html` are
-  now out of sync with the landing. They still say:
-  - 6 Udemy courses (should be 4)
-  - 50/50 iOS and Android at Venmo (user said Android-specialized)
-  - Kafka in Flexera (not used)
-  - Linux (Arch) (it is Debian / Ubuntu / Kali)
-  - 66% latency reduction at IngenieríaTracker (needs validation)
-- Next session: do the same rewrite pass on the CVs, rebuild PDFs via
-  `bash scripts/build-cv-pdfs.sh`, and verify the extracted text.
+### H8, CV update (shipped)
+- Both CV files now match the landing:
+  - Venmo job title: `Senior Mobile Engineer, Venmo Credit Card`;
+    Android-first blurb; new bullets for VCC 2.0, XML to Compose
+    migration, GraphQL client, accessibility pass.
+  - Udemy: 4 real courses (Go, C, Git and GitHub, free Intro to
+    Programming in Multiple Languages).
+  - Flexera: Kafka dropped from bullets and tools. Redis kept.
+  - Skills: Kafka dropped from Backend and Cloud. Linux tooling
+    reads `Linux (Debian, Ubuntu, Kali)`.
+- Still to do next session: rebuild `cv/*.pdf` via
+  `bash scripts/build-cv-pdfs.sh` and verify the extracted text
+  carries the same keywords.
+- The 66% latency reduction at IngenieríaTracker is still in the CV.
+  User has not yet confirmed the measurement source. Either validate
+  or soften the copy.
 
-### H9, color + depth
-- User feedback: "la página se ve muy plana y hay muy pocos colores".
-- Proposed: introduce a secondary accent (warm gold or muted lime) for
-  callouts. Reserve the cyan for primary. Add subtle gradients to the
-  hero panel and tier card without turning the whole thing into a
-  marketing page.
+### H9, color + depth (shipped)
+- `--accent-warm` tokens added for dark and light themes.
+- Warm accent drives the "in development" status pill and the hero
+  panel gradient (soft dual-radial cyan and warm). Cyan remains the
+  primary accent for every interactive state. Rule documented in
+  `docs/DESIGN_SYSTEM.md` so it does not get mixed.
+- Future extension: apply a muted warm glow to the Cal.com tier card
+  on hover, and consider a warm secondary on the cases kicker.
 
 ### H10, Design System ticket discipline
 - User mentioned they've already been writing tickets per sprint.
