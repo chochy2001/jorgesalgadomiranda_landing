@@ -1,9 +1,76 @@
-# Session Handoff, 2026-04-20
+# Session Handoff, 2026-04-21
 
 This file captures the state of the site after a very long session.
 It exists so the next session starts fast and no context is lost.
 Keep this file updated at the end of each session; delete entries that
 ship.
+
+## Latest round (2026-04-21)
+
+Shipped across commits `84eb006`, `b58112e`, `87f2ce8`, plus the big
+post-audit polish commit you are about to push.
+
+- **CDN cache mismatch root-caused and permanently fixed.** Site was
+  showing unstyled drawer links in the top-left because Cloudflare had
+  cached the pre-hamburger `assets/styles.css` for the full 7 days the
+  `.htaccess` ExpiresByType rule allows. The new HTML markup met the
+  old stylesheet, so the drawer leaked into document flow. Fix is two
+  layers: (1) the deploy workflow rewrites `href="assets/styles.css"`
+  to `href="assets/styles.css?v=SHORT_SHA"` before FTP upload, so every
+  deploy ships a unique cache key; (2) `.htaccess` caps HTML at
+  `max-age=300, must-revalidate` so the versioned asset URL inside
+  propagates in minutes, not a day.
+- **CSP fix for stack logos.** 27 devicon SVGs were CSP-blocked because
+  `img-src` did not include `cdn.jsdelivr.net`. First loosened the
+  allowlist as a hotfix; then self-hosted all 22 unique logos under
+  `assets/logos/` and re-tightened the CSP. Net result: one fewer
+  external origin, one fewer DNS lookup, tighter allowlist.
+- **Audit-driven polish.**
+  - `sitemap.xml` no longer advertises the DRAFT legal pages. `lastmod`
+    bumped to 2026-04-21 across all remaining URLs.
+  - `og.png` compressed 294 KB to 39 KB via `pngquant --quality 75-92
+    --strip` at 1200x630. Visible fidelity preserved.
+  - `<meta name="theme-color">` added to both `index.html` and
+    `404.html`, with dark and light media queries so mobile Chrome
+    paints the address bar in the right surface color.
+  - CV PDFs rebuilt from the updated HTML so `assets/cv/*.pdf` is back
+    in sync with the landing copy. `pdftotext` confirms: VCC 2.0,
+    Jetpack Compose migration, GraphQL client, Linux (Debian, Ubuntu,
+    Kali), Udemy Senior Instructor. Zero em/en dashes, zero Kafka
+    references, per CLAUDE.md.
+- **New: `docs/TICKETS.md`** as the living audit log across sessions.
+  Shipped, in-progress, blocked (needs user), backlog, wontdo. Replaces
+  the mental list we kept carrying between sessions.
+
+### Live performance snapshot (after the polish)
+
+Measured on `https://jorgesalgadomiranda.com/` with a cache-busted URL,
+1440 x 900 viewport, warm DNS, cold CF edge for versioned assets.
+
+| Metric | Value |
+|---|---|
+| TTFB | 347 ms |
+| First Contentful Paint | 640 ms |
+| DOMContentLoaded | 776 ms |
+| Load event | 777 ms |
+| Page weight (request tree) | 37 KB |
+| HTML gzip | 39 KB |
+| CSS gzip | 14 KB |
+| i18n.js gzip | 21 KB |
+| Console errors post-fix | 0 (was 55) |
+| Broken images | 0 (was 27) |
+
+### What is blocked on the user
+
+Tracked in `docs/TICKETS.md` under BLOCKED. The short list:
+
+- Paste LinkedIn certifications list (T-101).
+- Validate the 66 percent latency claim for IngenieriaTracker (T-102).
+- Capture real Udemy reviews with an authenticated session (T-103).
+- Optional but easy: Cloudflare Cache Rule for `*.css?*` and `*.js?*`
+  to restore edge caching on versioned URLs (T-104).
+
+---
 
 ## Latest round (2026-04-20, extended)
 
