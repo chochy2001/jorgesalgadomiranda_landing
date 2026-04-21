@@ -37,13 +37,17 @@ Priority column: P0 critical, P1 high, P2 medium, P3 nice-to-have.
 | T-009 | P1 | Compress og.png 294 KB to 39 KB via pngquant | Social share previews now load instantly on slow networks. Dimensions preserved 1200x630. Quality band 75-92 kept visible fidelity. |
 | T-010 | P1 | Rebuild `assets/cv/*.pdf` from the updated HTML CVs | The PDFs were drifting from HTML after the Venmo and Udemy content updates. Verified via `pdftotext`: VCC 2.0, GraphQL, Compose migration, Linux (Debian, Ubuntu, Kali), Udemy Senior Instructor all present. No em/en dashes. |
 | T-011 | P2 | Typewriter animation on `.panel-body` with `contain: layout paint style` on the hero panel | Hero serif scramble was jittering the JSON panel sideways. Adding `contain` isolates the render tree; delaying the typewriter 2 s lets the scramble settle first. |
+| T-012 | P3 | `exiftool` installed and CV PDFs now carry Author, Title, Subject, Keywords in the `/Info` dictionary | ATS parsers that read PDF metadata now see the right fields. Kept as a separate ticket because it depends on the local `brew install exiftool`, which the build script detects but cannot install itself. |
+| T-013 | P3 | `humans.txt` at the site root | Classic attribution file with owner, stack, and thanks. Served 200 by Apache default, no htaccess rule needed. |
 
 Verified live after Cloudflare purge:
 
 - Drawer renders correctly.
-- Stack logos visible in both the list and the tech-strip.
+- Stack logos visible in both the list and the tech-strip (27/27 loaded after scroll).
 - OG card fetched fresh on Twitter and LinkedIn scrapers.
-- CV PDFs are in sync with HTML content.
+- CV PDFs are in sync with HTML content and carry embedded metadata.
+- humans.txt responds 200.
+- JSON-LD blocks parse cleanly (Person, ProfessionalService, WebSite).
 
 ---
 
@@ -56,7 +60,6 @@ Verified live after Cloudflare purge:
 | T-103 | P2 | Capture real Udemy reviews for the Udemy section | Needs a Playwright run with your authenticated Udemy instructor session, which I cannot do. You can either export reviews from the Udemy dashboard and paste them, or run a short scraping session locally and hand me the JSON. |
 | T-104 | P1 | Add a Cloudflare Cache Rule for `*.css?*` and `*.js?*` to restore edge caching | Right now CF returns `cf-cache-status: DYNAMIC` for versioned asset URLs because default CF rules bypass cache when a query string is present. In CF dashboard: Caching, Cache Rules, create a rule matching `(http.request.uri.path.extension in {"css" "js"})` with Eligible for cache, TTL 1 week. This shaves ~50 ms off cold CSS loads. Optional but easy. |
 | T-105 | P3 | Decide on the legal pages | Either publish them (remove the DRAFT banner, add a small footer link, re-include in sitemap), or leave them draft and do not link from anywhere. They are currently orphan URLs. |
-| T-106 | P3 | Install `exiftool` once for PDF metadata stamping | `brew install exiftool`. The build script already detects and uses it to embed Author, Title, Subject, Keywords into the PDF `/Info` dictionary, which some ATS parsers read. Without it the PDFs still work, just without Info metadata. |
 
 ---
 
@@ -67,7 +70,6 @@ Verified live after Cloudflare purge:
 | T-201 | P3 | Split design tokens into `assets/tokens.css` | `styles.css` is 2723 lines. Tokens live in `:root` and `[data-theme="light"]` blocks. Extracting would shrink the main stylesheet and let other pages (404, CVs, legal) import the same token file. |
 | T-202 | P3 | Self-host the tech logos hotlinked from `assets.zyrosite.com` | CLAUDE.md flags these as legacy-but-stable, user opted out for now. Revisit when the Zyro CDN finally dies. |
 | T-203 | P3 | Replace the timeline expand animation with a CSS `interpolate-size: allow-keywords` implementation once Safari stable ships it | Current `grid-template-rows: 0fr -> 1fr` trick is fine, but `interpolate-size` would let us animate to `auto` with no hack. |
-| T-204 | P3 | Add a `humans.txt` file | Classic attribution and fun easter egg. Owner, thanks, tech stack. |
 | T-205 | P3 | Publish an atom feed if a writing section is ever added | Premature until content exists. |
 | T-206 | P2 | Add a `downloads.json` or similar so the Cal.com CTA and CV download can be A/B tested | Only worth doing if we ever want to measure click-through. Today we have Umami and CF Web Analytics watching page views, but not per-CTA conversions. |
 

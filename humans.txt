@@ -1,0 +1,39 @@
+/* TEAM */
+
+Owner: Jorge Salgado Miranda
+Site: https://jorgesalgadomiranda.com
+Location: Mexico City
+Contact: hello [at] jorgesalgadomiranda [dot] com
+GitHub: https://github.com/chochy2001
+LinkedIn: https://linkedin.com/in/jorgesalgadomiranda
+
+/* SITE */
+
+Last update: 2026-04-21
+Standards: HTML5, CSS Nesting, ES2022
+Language: Spanish (MX), English
+Doctype: static single-file site, no framework, no bundler, no runtime deps
+
+/* STACK */
+
+Deployed on: Hostinger (Apache + mod_expires)
+Proxied by: Cloudflare (WAF, DDoS, analytics beacon)
+Analytics: Umami (self-hosted on stats.capdesis.com)
+Forms: Web3Forms
+Booking: Cal.com
+Fonts: Instrument Serif, Geist, Geist Mono (self-hosted woff2)
+Icons: devicon (self-hosted SVG under assets/logos)
+
+/* CV */
+
+ATS-safe PDF built from the HTML CV via headless Chromium.
+Available in English and Spanish under /cv and /assets/cv.
+
+/* THANKS */
+
+Open source maintainers of: Instrument Serif, Geist, devicon.
+
+/* FORKING */
+
+This site is public. If you fork it, please keep the watermarks.
+See README.md for attribution expectations.
