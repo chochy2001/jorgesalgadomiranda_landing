@@ -1820,8 +1820,8 @@ body.drawer-open { overflow: hidden; }
   margin: 4px 0 0;
 }
 .contact-social {
-  margin-top: 96px;
-  max-width: 880px;
+  margin: 96px auto 0;
+  max-width: 960px;
 }
 .contact-social-title {
   font-family: var(--font-serif);
@@ -1909,20 +1909,19 @@ body.drawer-open { overflow: hidden; }
   .contact-links a { grid-template-columns: 28px 1fr auto; gap: 14px; padding: 16px 0; }
   .contact-link-name { font-size: 18px; }
 }
-/* At intermediate widths the contact-grid collapses to 1 column, so
-   the social list has enough horizontal room to split into 2 cards
-   side by side. Keep 1 column below 640px (phone) where a single card
-   already fills the row. */
-@media (min-width: 640px) and (max-width: 900px) {
+/* Above 640px the social list always splits into 2 cards so there is
+   no dead-space-to-the-right at intermediate widths and the full 880-
+   960px container gets used. Below 640px (phone) it stays 1 column. */
+@media (min-width: 640px) {
   .contact-links {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 28px;
+    column-gap: 32px;
     row-gap: 0;
   }
   .contact-links li:nth-child(2) { border-top: 1px solid var(--border-soft); }
   .contact-links a { padding: 16px 4px 16px 0; }
-  .contact-link-desc { font-size: 12.5px; }
+  .contact-link-desc { font-size: 13px; }
 }
 
 /* FOOTER */
@@ -1934,13 +1933,27 @@ body.drawer-open { overflow: hidden; }
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
   font-family: var(--font-mono); font-size: 11px;
   color: var(--fg-muted);
   text-transform: uppercase; letter-spacing: 0.08em;
 }
-.footer-sep { opacity: 0.4; margin: 0 8px; }
-.footer-top { display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s; }
+.footer-left { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.footer-sep { opacity: 0.4; margin: 0 4px; }
+.footer-top { display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s; white-space: nowrap; }
 .footer-top:hover { color: var(--accent); }
+@media (max-width: 560px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px var(--pad-x);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+  }
+  .footer-left { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .footer-sep { display: none; }
+}
 
 /* REVEAL ANIMATION */
 [data-reveal] {
