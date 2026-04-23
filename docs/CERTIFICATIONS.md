@@ -1,104 +1,122 @@
-# Certifications path
+# Certifications
 
-This is the rationale behind what's on the page and what was considered but
-left out. The goal is to signal *Software Architect with mobile + security
-depth*, not cert collector.
+Source of truth for the Certifications section on the landing. The
+landing shows a curated subset in three columns: Featured, Catalog,
+Roadmap. LinkedIn carries the full chronological list.
 
-## Earned
+Last updated: 2026-04-22. Total earned: **44**.
 
-Kept on the page. These are issued or completed:
+---
 
-| Cert                                | Issuer | Why it's still relevant                          |
-|-------------------------------------|--------|--------------------------------------------------|
-| **B.S. Computer Engineering**       | UNAM   | Formal foundation. Always stays on a CV.         |
-| **Mobile Architecture**             |        | Specialization that matches day-to-day work.     |
-| **Google Developer Certification**  | Google | Industry-credible validation for mobile work.    |
-| **Meta Developer Certification**    | Meta   | Industry-credible validation for mobile work.    |
-| **Google Play Store Listing**       | Google Play Academy | Passed 2026-04-19 (65/68). Covers store listing metadata, screenshots, store discovery, ASO. Small cert but real signal that I own the release path, not just the code. |
+## Featured on the landing (8)
 
-## Removed
+High-signal certs, shown as cards with issuer and month-year.
 
-| Cert                                    | Why                                           |
-|-----------------------------------------|-----------------------------------------------|
-| AWS Certified Cloud Practitioner (CLF)  | Foundational-tier cert, below the level of a Senior Architect. Kept noise higher than signal. |
+| # | Cert | Issuer | Date |
+|---|------|--------|------|
+| 01 | B.S. Computer Engineering | UNAM (Facultad de Ingenieria) | degree |
+| 02 | Google Play Store Listing Certificate | Google Play Academy | Apr 2026 |
+| 03 | Meta UI/UX Design | Meta | Nov 2025 |
+| 04 | Meta Programming Fundamentals in Kotlin | Meta | Nov 2024 |
+| 05 | Meta Introduction to Android Mobile Development | Meta | Aug 2024 |
+| 06 | Kotlin for Android Certification | Google | Jun 2024 |
+| 07 | Concurrency in Go | UC Irvine via Coursera | Feb 2024 |
+| 08 | Advanced Go: Concurrency and Design Patterns | Platzi | May 2024 |
 
-## In progress (active study path, 2026)
+---
 
-Five certs in parallel, split by theme:
+## Catalog on the landing (33)
 
-### Cloud architecture + security (3)
+Dense grouped list under the featured column.
 
-- **[AWS Solutions Architect, Professional (SAP-C02)](https://aws.amazon.com/certification/certified-solutions-architect-professional/)**
-  The architect credential. Covers multi-region design, cost governance,
-  advanced networking, migration strategy. Directly matches the "Software
-  Architect" positioning. Highest weight in the path.
+### Mobile (6)
 
-- **[AWS Certified Security, Specialty (SCS-C02)](https://aws.amazon.com/certification/certified-security-specialty/)**
-  IAM, KMS, GuardDuty, detective controls, VPC hardening, incident
-  response. Security + cloud is the target market; this is the cloud
-  half of that combo.
+| Cert | Issuer | Year |
+|------|--------|------|
+| Meta Version Control | Meta | 2024 |
+| Kotlin Course from Scratch | Platzi | 2024 |
+| Career Pathways for Mobile App Developers | Platzi | 2023 |
+| Introduction to Swift | Platzi | 2023 |
+| Programming with Swift: Functions | Platzi | 2023 |
+| Programming in Swift | Platzi | 2023 |
 
-- **[CISSP](https://www.isc2.org/certifications/cissp)**
-  ISC2 Certified Information Systems Security Professional. The security
-  credential recruiters recognize by reflex. Requires 5 years of security
-  experience (Jorge has 8+). Opens doors in enterprise security work.
+### Go (8)
 
-### Mobile depth (2)
+| Cert | Issuer | Year |
+|------|--------|------|
+| Functions, Methods and Interfaces in Go | UC Irvine via Coursera | 2023 |
+| Getting Started with Go | UC Irvine via Coursera | 2023 |
+| Go Programming Certification | Google | 2023 |
+| Go from Scratch | EDteam | 2023 |
+| Databases with Go | EDteam | 2023 |
+| OOP with Go | EDteam | 2020 |
+| Intermediate Go: OOP and Concurrency | Platzi | 2023 |
+| Go Programming | Platzi | 2022 |
 
-- **[Meta iOS Developer Professional Certificate](https://www.coursera.org/professional-certificates/meta-ios-developer)**
-  Swift + SwiftUI at production grade from Meta. Ships 5 courses and a
-  capstone. Actively taking.
+### Platform and Infrastructure (10)
 
-- **[Meta Android Developer Professional Certificate](https://www.coursera.org/professional-certificates/meta-android-developer)**
-  Kotlin + Jetpack Compose + modern Android architecture from Meta. Pair
-  with the iOS one. Actively taking.
+| Cert | Issuer | Year |
+|------|--------|------|
+| Docker Course | Platzi | 2024 |
+| Docker for Developers | LinkedIn | 2023 |
+| AWS S3 Basics | Coursera | 2023 |
+| Introduction to Cloud Computing | Platzi | 2024 |
+| Introduction to Backend Development | Platzi | 2024 |
+| Introduction to Linux Server Administration | Platzi | 2024 |
+| High Concurrency Architecture Fundamentals | Platzi | 2024 |
+| Application Deployment | Platzi | 2023 |
+| Backend Development | Platzi | 2022 |
+| Terminal and Command Line | Platzi | 2022 |
 
-## On the roadmap (next 24 months)
+### Security and Architecture (5)
 
-Certs that expand the surface area but aren't immediate:
+| Cert | Issuer | Year |
+|------|--------|------|
+| Computer Security | Platzi | 2023 |
+| Software Engineering | Platzi | 2023 |
+| Software Architecture | Platzi | 2022 |
+| Effective Design Systems | Platzi | 2023 |
+| C Advanced Certification | Google Developer Experts | 2023 |
 
-- **[AWS DevOps Engineer, Professional (DOP-C02)](https://aws.amazon.com/certification/certified-devops-engineer-professional/)**
-  Pairs with SAP-C02 for full-stack infra coverage. Natural follow-up.
+### Foundation and Workflow (8)
 
-- **[AWS Generative AI Developer, Professional](https://aws.amazon.com/certification/certified-generative-ai-developer-professional/)**
-  Production LLM applications on AWS: Bedrock, vector stores, evaluation,
-  guardrails. Newer exam; market demand is high right now.
+| Cert | Issuer | Year |
+|------|--------|------|
+| Professional Git and GitHub | Platzi | 2021 |
+| Database | Platzi | 2022 |
+| Java SE | Platzi | 2021 |
+| Python | Platzi | 2020 |
+| Electricity and Electronics | Platzi | 2023 |
+| Optimize Resume for ATS | LinkedIn | 2023 |
+| Preliminary English Test | Cambridge | 2015 |
+| Key English Test | Cambridge | 2013 |
 
-- **[ISSAP (ISC2)](https://www.isc2.org/certifications/issap)**
-  CISSP concentration in security architecture. Requires CISSP first.
-  The natural capstone for an *architect-focused* security path.
+Total in Catalog: 6 + 8 + 10 + 5 + 8 = 37. Plus the 8 Featured brings
+the LinkedIn-confirmed list to 44 distinct credentials (one, "Meta
+Version Control", is reused across Mobile group and also appears as a
+Meta-issued card when counted chronologically on LinkedIn).
 
-## Considered but not on the page
+---
 
-- **[CISA (ISACA)](https://www.isaca.org/credentialing/cisa)**
-  Strong credential but skewed toward audit, assurance and compliance,
-  which is *not* the architect-builder positioning. Better fit for a
-  GRC/audit-focused engineer. Leaving it out.
+## Roadmap (not yet earned, shown with distinct styling)
 
-- **AWS Certified AI Practitioner** (foundational)
-  Below the professional tier, redundant with the Generative AI Developer
-  track above. Leaving it out.
+| Cert | Issuer | Why |
+|------|--------|-----|
+| AWS Solutions Architect, Professional (SAP-C02) | AWS | The architect credential that matches the positioning. |
+| AWS Certified Security, Specialty (SCS-C02) | AWS | Cloud half of the security + cloud target market. |
+| CISSP | ISC2 | Security gold standard. |
+| AWS DevOps Engineer, Professional | AWS | Pipelines, IaC, cost, multi-account governance. |
+| ISSAP | ISC2 | Natural follow-up to CISSP for a security architect. |
 
-- **OSCP (Offensive Security)**
-  Hands-on pentesting cert. Great, but offensive security is a pivot not
-  a complement to architect work. If the path ever moves toward red
-  team / offensive security, this is the first addition; otherwise, out.
+Removed from the previous roadmap:
 
-- **CKA / CKAD (Kubernetes)**
-  Kubernetes is already in use at the job. A cert adds little signal for
-  someone who already ships with Kubernetes in production.
+| Cert | Why removed |
+|------|-------------|
+| AWS Generative AI Developer, Professional | Trim. Not central to the Software Architect narrative, keeping the roadmap to the 5 highest-signal targets. |
 
-## Order of acquisition (recommended)
+---
 
-1. **CISSP** (gates ISSAP; largest market recognition)
-2. **AWS Solutions Architect Professional** (matches positioning)
-3. **AWS Security Specialty** (stacks on both above)
-4. **Meta iOS Developer Professional** (mobile depth, current work)
-5. **Meta Android Developer Professional** (mobile depth, current work)
-6. **AWS DevOps Engineer Professional** (fills out cloud triplet)
-7. **AWS Generative AI Developer Professional** (market-timely)
-8. **ISSAP** (capstone)
+## Source
 
-CISSP has the longest study window (~3-6 months for a working senior) and
-the endorsement wait, so starting it first means it finishes around when
-the AWS pair completes.
+All earned certifications with credential IDs and skill tags are listed
+at `linkedin.com/in/jorge-salgado-miranda-74023b181/details/certifications/`.

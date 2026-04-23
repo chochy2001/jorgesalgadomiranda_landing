@@ -1,3 +1,40 @@
+# Session Handoff, 2026-04-22
+
+## Latest round (2026-04-22)
+
+User unblocked 4 of the 6 things previously waiting on them and sent
+the raw data. Everything that can be shipped from their inputs is now
+live.
+
+- **Cal.com CTA fixed.** User registered the `jorge-salgado-miranda-lt3qxa`
+  profile and created the `/30min` event. Primary Book a call link
+  updated; verified 200 on both profile and event URLs.
+- **Certifications section rebuilt from scratch with the real 44
+  credentials.** Dropped the fabricated In-progress percentages. New
+  3-column layout: Featured (8 recent, high-signal cards), Catalog
+  (33 credentials grouped by Mobile, Go, Platform, Security &
+  Architecture, Foundation), Roadmap (5 targets). `docs/CERTIFICATIONS.md`
+  rewritten as the source of truth. CV cert list also expanded, now
+  includes 26 line items ATS-friendly.
+- **5 real Udemy review quotes live on the landing.** New
+  `.udemy-reviews` grid under the course list with initial-avatar,
+  reviewer name, course, 5-star mark, and quote. Reviews kept in their
+  original language (Spanish or Portuguese).
+- **Per-course Udemy ratings tightened to 2 decimals.** C 4.66, Git
+  4.52, Go 4.52, Intro 4.63, Photoshop 4.52, VIM 4.21. Headline stat
+  stays at 4.6 (weighted average).
+- **Legal pages published.** Removed DRAFT / Borrador banners, bumped
+  last-updated to 2026-04-22, added Privacy and Terms links in the
+  footer (EN/ES i18n), re-added both URLs to sitemap.xml with
+  priority 0.4.
+- **Previously unknown IngenieriaTracker latency claim:** user said to
+  leave as-is, so no edit.
+
+i18n parity: 341 keys each in EN and ES (was 335, net +6 after removing
+3 obsolete keys and adding 9 new ones). No em/en dashes anywhere.
+
+---
+
 # Session Handoff, 2026-04-21
 
 This file captures the state of the site after a very long session.

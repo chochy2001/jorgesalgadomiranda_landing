@@ -268,7 +268,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 [data-theme="dark"] .icon-sun { display: none; }
 [data-theme="light"] .icon-moon { display: none; }
 
-/* Hamburger button (base — hidden above 1060px) */
+/* Hamburger button (base, hidden above 1060px) */
 .nav-burger {
   display: none;
   width: 36px; height: 36px;
@@ -1404,6 +1404,54 @@ body.drawer-open { overflow: hidden; }
   background: var(--border-soft);
   margin-left: 16px;
 }
+.cert-lede {
+  max-width: 760px;
+  color: var(--fg-muted);
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 48px;
+}
+.cert-catalog { display: flex; flex-direction: column; gap: 28px; }
+.cert-cat-group {}
+.cert-cat-head {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--border-soft);
+}
+.cert-cat-group ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cert-cat-group li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 4px 0;
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+.cert-cat-name { color: var(--fg); }
+.cert-cat-meta {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: var(--fg-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .cert-cat-group li { flex-direction: column; gap: 2px; align-items: flex-start; }
+  .cert-cat-meta { font-size: 10px; }
+}
+
 .cert-list { display: flex; flex-direction: column; }
 .cert-item {
   display: grid;
@@ -1555,6 +1603,76 @@ body.drawer-open { overflow: hidden; }
   .udemy-courses a { flex-direction: column; align-items: flex-start; gap: 4px; }
   .udemy-course-meta { font-size: 10px; }
 }
+
+.udemy-reviews { margin-top: 64px; }
+.udemy-reviews-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 24px;
+}
+.udemy-reviews-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.udemy-review {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.3s, transform 0.3s cubic-bezier(.2,.8,.2,1);
+}
+.udemy-review:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+.udemy-review-head {
+  display: flex; align-items: center; gap: 12px;
+}
+.udemy-review-avatar {
+  width: 36px; height: 36px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--accent) 16%, var(--bg-elev-2));
+  color: var(--accent);
+  display: grid; place-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.udemy-review-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.udemy-review-name {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--fg);
+}
+.udemy-review-course {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--fg-muted);
+}
+.udemy-review-body {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--fg);
+  margin: 0;
+  font-style: italic;
+}
+@media (prefers-reduced-motion: reduce) {
+  .udemy-review { transition: none; }
+  .udemy-review:hover { transform: none; }
+}
+
 .udemy-lbl {
   font-family: var(--font-mono); font-size: 11px;
   text-transform: uppercase; letter-spacing: 0.1em;
@@ -1942,6 +2060,8 @@ body.drawer-open { overflow: hidden; }
 .footer-sep { opacity: 0.4; margin: 0 4px; }
 .footer-top { display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s; white-space: nowrap; }
 .footer-top:hover { color: var(--accent); }
+.footer-link { transition: color 0.2s; }
+.footer-link:hover { color: var(--accent); }
 @media (max-width: 560px) {
   .footer {
     flex-direction: column;
