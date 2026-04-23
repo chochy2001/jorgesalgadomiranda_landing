@@ -151,10 +151,13 @@ jobs:
           SHA: ${{ github.sha }}
         run: |
           set -e
-          # Retry each URL up to 3 times because CDN propagation may take a
-          # few seconds after the FTP upload finishes. Failing the job here
-          # makes broken deploys loud instead of silent.
+          # Cloudflare Bot Fight Mode is enabled on the zone and challenges
+          # bare curl from GitHub Actions IP ranges (returns 403). Using a
+          # full browser User-Agent plus an Accept header passes the challenge
+          # without needing to relax Bot Fight. Retries cover CDN propagation
+          # delay (the FTP upload is seconds old when this runs).
           V="${SHA:0:7}"
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
           URLS=(
             "/"
             "/robots.txt"
@@ -172,7 +175,11 @@ jobs:
           for url in "${URLS[@]}"; do
             CODE=""
             for attempt in 1 2 3; do
-              CODE=$(curl -sL -o /dev/null -w '%{http_code}' "https://jorgesalgadomiranda.com${url}")
+              CODE=$(curl -sL -o /dev/null -w '%{http_code}' \
+                -A "$UA" \
+                -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
+                -H "Accept-Language: en-US,en;q=0.9" \
+                "https://jorgesalgadomiranda.com${url}")
               if [ "$CODE" = "200" ]; then
                 echo "OK   $url -> $CODE"
                 break
