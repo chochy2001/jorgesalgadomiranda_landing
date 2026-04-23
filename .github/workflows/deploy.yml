@@ -75,6 +75,36 @@ jobs:
           echo "Asset version: ${V}"
           grep -E "assets/(styles\.css|i18n\.js)" index.html || (echo "::error::cache-bust rewrite missed expected references" && exit 1)
 
+      - name: Inject production tokens (optional, skip silently if secret missing)
+        env:
+          UMAMI_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
+          CF_BEACON: ${{ secrets.CF_BEACON_TOKEN }}
+          WEB3FORMS: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
+        run: |
+          set -e
+          # Replace the YOUR_* placeholders at deploy time so the committed
+          # HTML stays free of real tokens. Each substitution runs only when
+          # the corresponding secret is configured in the repo, so partial
+          # setups do not fail the build.
+          INJECTED=""
+          if [ -n "$UMAMI_ID" ]; then
+            python3 -c "import os,pathlib; f=pathlib.Path('index.html'); f.write_text(f.read_text().replace('YOUR_UMAMI_WEBSITE_ID', os.environ['UMAMI_ID']))"
+            INJECTED="$INJECTED UMAMI_WEBSITE_ID"
+          fi
+          if [ -n "$CF_BEACON" ]; then
+            python3 -c "import os,pathlib; f=pathlib.Path('index.html'); f.write_text(f.read_text().replace('YOUR_CF_BEACON_TOKEN', os.environ['CF_BEACON']))"
+            INJECTED="$INJECTED CF_BEACON_TOKEN"
+          fi
+          if [ -n "$WEB3FORMS" ]; then
+            python3 -c "import os,pathlib; f=pathlib.Path('index.html'); f.write_text(f.read_text().replace('YOUR_WEB3FORMS_ACCESS_KEY', os.environ['WEB3FORMS']))"
+            INJECTED="$INJECTED WEB3FORMS_ACCESS_KEY"
+          fi
+          if [ -z "$INJECTED" ]; then
+            echo "No optional tokens configured. Landing will keep placeholders and Umami/CF/Web3Forms init will skip at runtime."
+          else
+            echo "Injected:$INJECTED"
+          fi
+
       - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -115,3 +145,50 @@ jobs:
             **/og.html
             **/verify-*.png
             **/*.log
+
+      - name: Post-deploy smoke test
+        env:
+          SHA: ${{ github.sha }}
+        run: |
+          set -e
+          # Retry each URL up to 3 times because CDN propagation may take a
+          # few seconds after the FTP upload finishes. Failing the job here
+          # makes broken deploys loud instead of silent.
+          V="${SHA:0:7}"
+          URLS=(
+            "/"
+            "/robots.txt"
+            "/sitemap.xml"
+            "/humans.txt"
+            "/404.html"
+            "/cv/Jorge_Salgado_Miranda_CV_EN.html"
+            "/cv/Jorge_Salgado_Miranda_CV_ES.html"
+            "/legal/privacy.html"
+            "/legal/terms.html"
+            "/assets/styles.css?v=${V}"
+            "/assets/i18n.js?v=${V}"
+          )
+          FAILED=0
+          for url in "${URLS[@]}"; do
+            CODE=""
+            for attempt in 1 2 3; do
+              CODE=$(curl -sL -o /dev/null -w '%{http_code}' "https://jorgesalgadomiranda.com${url}")
+              if [ "$CODE" = "200" ]; then
+                echo "OK   $url -> $CODE"
+                break
+              fi
+              if [ "$attempt" -lt 3 ]; then
+                echo "WARN $url -> $CODE on attempt $attempt, retrying in 5s"
+                sleep 5
+              fi
+            done
+            if [ "$CODE" != "200" ]; then
+              echo "::error::$url returned $CODE after 3 attempts"
+              FAILED=$((FAILED + 1))
+            fi
+          done
+          if [ "$FAILED" -gt 0 ]; then
+            echo "::error::Smoke test failed on $FAILED of ${#URLS[@]} URLs"
+            exit 1
+          fi
+          echo "Smoke test: all ${#URLS[@]} URLs returned 200."
